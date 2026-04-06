@@ -130,12 +130,15 @@ soc-dashboard/
 
 ## Porting to Work Environment
 
-1. Export dashboards as JSON (or copy this entire folder)
-2. Install Infinity plugin on work Grafana: `grafana-cli plugins install yesoreyeram-infinity-datasource`
-3. Configure datasources pointing to your real Splunk/SOAR
-4. Import dashboard JSONs
-5. Update panel queries with real SPL / SOAR API paths
-6. Adjust thresholds to match your SLA targets
+### Offline Import (Air-Gapped Server)
+Use `export/minimal/` — it contains the Infinity plugin, datasource config, and all dashboard JSONs. Transfer the folder to the work server, then follow `export/minimal/README.md`.
+
+### Online Import
+1. Install Infinity plugin: `grafana-cli plugins install yesoreyeram-infinity-datasource`
+2. Configure datasources pointing to your real Splunk/SOAR
+3. Import dashboard JSONs from `export/minimal/`
+4. Update panel queries with real SPL / SOAR API paths
+5. Adjust thresholds to match your SLA targets
 
 ## Requirements
 

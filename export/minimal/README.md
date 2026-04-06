@@ -1,36 +1,56 @@
-# Import Guide
+# SOC Dashboards — Import Guide
 
 ## What's Included
-- `datasources.yml` — Infinity datasource configuration
+- `yesoreyeram-infinity-datasource/` — Infinity plugin (48MB)
+- `datasources.yml` — Datasource configuration
 - `soc-mgmt-overview.json` — Management dashboard
 - `soc-detail-incidents.json` — Incident drilldown
 - `soc-detail-soar.json` — SOAR analytics
 - `soc-detail-alerts.json` — Alert analysis
 
-## Steps
+---
 
-### 1. Install Infinity Plugin
+## Step 1: Install Infinity Plugin
+
+Copy the plugin folder to your Grafana plugins directory:
 ```bash
-grafana-cli plugins install yesoreyeram-infinity-datasource
+cp -r yesoreyeram-infinity-datasource /var/lib/grafana/plugins/
+chown -R grafana:grafana /var/lib/grafana/plugins/yesoreyeram-infinity-datasource
 systemctl restart grafana-server
 ```
 
-### 2. Provision Datasources
-Copy `datasources.yml` to your Grafana provisioning folder:
-```bash
-cp datasources.yml /etc/grafana/provisioning/datasources/infinity.yml
-systemctl restart grafana-server
-```
+---
 
-Or create manually in **Connections → Data Sources → Add**:
-- Type: **Infinity**, UID: `mock-data`, Auth: **None**
-- Allowed Hosts: your mock server host
+## Step 2: Create Datasource
 
-### 3. Import Dashboards
-**Dashboards → New → Import** — upload each `.json` file.
+In Grafana UI: **Connections → Data Sources → Add**
 
-### Datasource UIDs
-Dashboards reference `mock-data`. If your datasource UID differs, find-and-replace `mock-data` in the JSON files before importing.
+| Field | Value |
+|-------|-------|
+| Type | Infinity |
+| UID | `mock-data` |
+| Auth | None |
+| Allowed Hosts | your mock server host (e.g. `http://localhost:3001`) |
+| TLS Skip Verify | `true` |
 
-### Switch to Live Data
-Change the datasource from `mock-data` → `splunk-api` or `soar-api` in each panel, then update the URL to your real API endpoint.
+---
+
+## Step 3: Import Dashboards
+
+**Dashboards → New → Import** — upload each `.json` file:
+- `soc-mgmt-overview.json`
+- `soc-detail-incidents.json`
+- `soc-detail-soar.json`
+- `soc-detail-alerts.json`
+
+---
+
+## Datasource UID
+
+Dashboards reference `mock-data`. If your datasource UID is different, find-and-replace `mock-data` with your UID in all JSON files before importing.
+
+---
+
+## Switch to Live Data
+
+After importing, change each panel's datasource from `mock-data` → `splunk-api` or `soar-api`, then update the URL to your real API endpoint.
