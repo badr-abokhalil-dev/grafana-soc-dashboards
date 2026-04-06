@@ -4,23 +4,25 @@
   "graphTooltip": 2,
   "links": [
     {
-      "icon": "arrow-left",
-      "keepTime": true,
-      "title": "\u2190 Back to Overview",
+      "title": "\ud83d\udcca Back to Overview",
       "type": "link",
-      "url": "/d/soc-mgmt-overview/soc-management-overview"
+      "url": "/d/soc-mgmt-overview/soc-management-overview",
+      "icon": "apps",
+      "keepTime": true
     },
     {
-      "keepTime": true,
-      "title": "Incident Drilldown",
+      "title": "\ud83d\udd0d Incident Drilldown",
       "type": "link",
-      "url": "/d/soc-detail-incidents/soc-incident-drilldown"
+      "url": "/d/soc-detail-incidents/soc-incident-drilldown",
+      "icon": "apps",
+      "keepTime": true
     },
     {
-      "keepTime": true,
-      "title": "Alert Analysis",
+      "title": "\ud83d\udea8 Alert Analysis",
       "type": "link",
-      "url": "/d/soc-detail-alerts/soc-alert-analysis"
+      "url": "/d/soc-detail-alerts/soc-alert-analysis",
+      "icon": "apps",
+      "keepTime": true
     }
   ],
   "panels": [

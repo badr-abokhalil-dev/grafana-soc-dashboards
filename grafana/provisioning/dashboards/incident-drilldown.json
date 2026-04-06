@@ -17,51 +17,25 @@
   },
   "links": [
     {
-      "title": "\u2190 Back to Overview",
+      "title": "\ud83d\udcca Back to Overview",
       "type": "link",
       "url": "/d/soc-mgmt-overview/soc-management-overview",
-      "keepTime": true,
-      "icon": "arrow-left"
+      "icon": "apps",
+      "keepTime": true
     },
     {
-      "title": "Alert Analysis",
+      "title": "\ud83d\ude80 SOAR Analytics",
+      "type": "link",
+      "url": "/d/soc-detail-soar/soc-soar-drilldown",
+      "icon": "apps",
+      "keepTime": true
+    },
+    {
+      "title": "\ud83d\udea8 Alert Analysis",
       "type": "link",
       "url": "/d/soc-detail-alerts/soc-alert-analysis",
+      "icon": "apps",
       "keepTime": true
-    },
-    {
-      "title": "SOAR Drilldown",
-      "type": "link",
-      "url": "/d/soc-detail-soar/soar-playbook-drilldown",
-      "keepTime": true
-    },
-    {
-      "title": "Q1 2026",
-      "type": "link",
-      "url": "${__url.path}?from=2026-01-01T00:00:00.000Z&to=2026-04-01T00:00:00.000Z",
-      "keepTime": false,
-      "icon": "calendar-alt"
-    },
-    {
-      "title": "Q2 2026",
-      "type": "link",
-      "url": "${__url.path}?from=2026-04-01T00:00:00.000Z&to=2026-07-01T00:00:00.000Z",
-      "keepTime": false,
-      "icon": "calendar-alt"
-    },
-    {
-      "title": "Q4 2025",
-      "type": "link",
-      "url": "${__url.path}?from=2025-10-01T00:00:00.000Z&to=2026-01-01T00:00:00.000Z",
-      "keepTime": false,
-      "icon": "calendar-alt"
-    },
-    {
-      "title": "Q3 2025",
-      "type": "link",
-      "url": "${__url.path}?from=2025-07-01T00:00:00.000Z&to=2025-10-01T00:00:00.000Z",
-      "keepTime": false,
-      "icon": "calendar-alt"
     }
   ],
   "templating": {
