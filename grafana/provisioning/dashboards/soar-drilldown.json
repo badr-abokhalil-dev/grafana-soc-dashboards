@@ -1,0 +1,666 @@
+{
+  "description": "Detailed SOAR metrics \u2014 playbook success/failure, execution times, automation coverage",
+  "editable": true,
+  "graphTooltip": 2,
+  "links": [
+    {
+      "icon": "arrow-left",
+      "keepTime": true,
+      "title": "\u2190 Back to Overview",
+      "type": "link",
+      "url": "/d/soc-mgmt-overview/soc-management-overview"
+    },
+    {
+      "keepTime": true,
+      "title": "Incident Drilldown",
+      "type": "link",
+      "url": "/d/soc-detail-incidents/soc-incident-drilldown"
+    },
+    {
+      "keepTime": true,
+      "title": "Alert Analysis",
+      "type": "link",
+      "url": "/d/soc-detail-alerts/soc-alert-analysis"
+    }
+  ],
+  "panels": [
+    {
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "id": 1,
+      "options": {
+        "content": "# \u2699\ufe0f SOAR Playbook Analytics\nAutomation efficiency, execution trends, and failure analysis",
+        "mode": "markdown"
+      },
+      "title": "",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "blue",
+            "mode": "fixed"
+          }
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 2
+      },
+      "id": 2,
+      "options": {
+        "colorMode": "background",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/rest/playbook_run/stats?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          },
+          "columns": [
+            {
+              "selector": "total_runs",
+              "text": "Runs",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "title": "Total Playbook Runs",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "max": 1,
+          "min": 0.8,
+          "thresholds": {
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0.9
+              },
+              {
+                "color": "green",
+                "value": 0.97
+              }
+            ]
+          },
+          "unit": "percentunit"
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 6,
+        "y": 2
+      },
+      "id": 3,
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        }
+      },
+      "targets": [
+        {
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/rest/playbook_run/stats?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          },
+          "columns": [
+            {
+              "selector": "success_rate",
+              "text": "Success Rate",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "title": "Overall Success Rate",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 10
+              },
+              {
+                "color": "red",
+                "value": 25
+              }
+            ]
+          }
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 12,
+        "y": 2
+      },
+      "id": 4,
+      "options": {
+        "colorMode": "background",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/rest/playbook_run/stats?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          },
+          "columns": [
+            {
+              "selector": "failed_runs",
+              "text": "Failed",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "title": "Total Failed Runs",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "fixedColor": "purple",
+            "mode": "fixed"
+          },
+          "unit": "s"
+        }
+      },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 2
+      },
+      "id": 5,
+      "options": {
+        "colorMode": "value",
+        "reduceOptions": {
+          "calcs": [
+            "mean"
+          ],
+          "fields": "",
+          "values": false
+        },
+        "textMode": "value"
+      },
+      "targets": [
+        {
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/rest/playbook_run/stats?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          },
+          "columns": [
+            {
+              "selector": "avg_duration_seconds",
+              "text": "Duration",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "title": "Avg Execution Time",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
+      "fieldConfig": {
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Success"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Failed"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 0,
+        "y": 6
+      },
+      "id": 6,
+      "options": {
+        "barWidth": 0.6,
+        "orientation": "horizontal",
+        "showValue": "always",
+        "stacking": "normal"
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "name",
+              "text": "Playbook",
+              "type": "string"
+            },
+            {
+              "selector": "successful_run_count",
+              "text": "Success",
+              "type": "number"
+            },
+            {
+              "selector": "failed_run_count",
+              "text": "Failed",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/rest/playbook_run/per_playbook?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Playbook Success vs Failure",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          },
+          "unit": "s"
+        }
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 12,
+        "x": 12,
+        "y": 6
+      },
+      "id": 7,
+      "options": {
+        "barWidth": 0.6,
+        "orientation": "horizontal",
+        "showValue": "always"
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "name",
+              "text": "Playbook",
+              "type": "string"
+            },
+            {
+              "selector": "avg_duration_seconds",
+              "text": "Avg Duration",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/rest/playbook_run/per_playbook?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Execution Time by Playbook",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 16
+      },
+      "id": 8,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "right"
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ]
+        }
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "category",
+              "text": "Category",
+              "type": "string"
+            },
+            {
+              "selector": "playbook_run_count",
+              "text": "Runs",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/rest/playbook_run/by_category?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Playbooks by Category",
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
+      "fieldConfig": {
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Active"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "false": {
+                        "color": "red",
+                        "text": "\u274c Disabled"
+                      },
+                      "true": {
+                        "color": "green",
+                        "text": "\u2705 Active"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Avg Time"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "s"
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Failed"
+            },
+            "properties": [
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 3
+                    },
+                    {
+                      "color": "red",
+                      "value": 10
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 16,
+        "x": 8,
+        "y": 16
+      },
+      "id": 9,
+      "options": {
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Total Runs"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "id",
+              "text": "ID",
+              "type": "string"
+            },
+            {
+              "selector": "name",
+              "text": "Playbook",
+              "type": "string"
+            },
+            {
+              "selector": "category",
+              "text": "Category",
+              "type": "string"
+            },
+            {
+              "selector": "active",
+              "text": "Active",
+              "type": "string"
+            },
+            {
+              "selector": "playbook_run_count",
+              "text": "Total Runs",
+              "type": "number"
+            },
+            {
+              "selector": "successful_run_count",
+              "text": "Success",
+              "type": "number"
+            },
+            {
+              "selector": "failed_run_count",
+              "text": "Failed",
+              "type": "number"
+            },
+            {
+              "selector": "avg_duration_seconds",
+              "text": "Avg Time",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/rest/playbook_run/per_playbook?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "All Playbooks (Detail Table)",
+      "type": "table"
+    }
+  ],
+  "refresh": "5m",
+  "schemaVersion": 39,
+  "tags": [
+    "soc",
+    "detailed"
+  ],
+  "time": {
+    "from": "now-7d",
+    "to": "now"
+  },
+  "timezone": "browser",
+  "title": "SOAR Playbook Drilldown",
+  "uid": "soc-detail-soar",
+  "version": 1,
+  "templating": {
+    "list": []
+  }
+}

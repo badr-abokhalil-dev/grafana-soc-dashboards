@@ -1,0 +1,145 @@
+[
+  {
+    "id": 1,
+    "name": "Phishing Response",
+    "playbook_run_count": 48,
+    "successful_run_count": 44,
+    "failed_run_count": 4,
+    "avg_duration_seconds": 180,
+    "last_run_time": "2026-04-04T14:35:00Z",
+    "active": true,
+    "category": "Email Security",
+    "creator": "ahmed.ali",
+    "tags": [
+      "phishing",
+      "email",
+      "automated"
+    ],
+    "success_rate": 0.917
+  },
+  {
+    "id": 2,
+    "name": "Malware Containment",
+    "playbook_run_count": 22,
+    "successful_run_count": 20,
+    "failed_run_count": 2,
+    "avg_duration_seconds": 300,
+    "last_run_time": "2026-04-04T10:05:00Z",
+    "active": true,
+    "category": "Endpoint",
+    "creator": "sara.khan",
+    "tags": [
+      "malware",
+      "containment",
+      "endpoint"
+    ],
+    "success_rate": 0.909
+  },
+  {
+    "id": 3,
+    "name": "Brute Force Block",
+    "playbook_run_count": 156,
+    "successful_run_count": 155,
+    "failed_run_count": 1,
+    "avg_duration_seconds": 15,
+    "last_run_time": "2026-04-05T01:23:00Z",
+    "active": true,
+    "category": "Network",
+    "creator": "ahmed.ali",
+    "tags": [
+      "brute_force",
+      "firewall",
+      "automated"
+    ],
+    "success_rate": 0.994
+  },
+  {
+    "id": 4,
+    "name": "IOC Enrichment",
+    "playbook_run_count": 310,
+    "successful_run_count": 295,
+    "failed_run_count": 15,
+    "avg_duration_seconds": 45,
+    "last_run_time": "2026-04-05T04:00:00Z",
+    "active": true,
+    "category": "Threat Intel",
+    "creator": "mohammed.omar",
+    "tags": [
+      "ioc",
+      "enrichment",
+      "virustotal"
+    ],
+    "success_rate": 0.952
+  },
+  {
+    "id": 5,
+    "name": "User Account Lockout",
+    "playbook_run_count": 89,
+    "successful_run_count": 87,
+    "failed_run_count": 2,
+    "avg_duration_seconds": 8,
+    "last_run_time": "2026-04-04T22:10:00Z",
+    "active": true,
+    "category": "Identity",
+    "creator": "sara.khan",
+    "tags": [
+      "identity",
+      "lockout",
+      "automated"
+    ],
+    "success_rate": 0.978
+  },
+  {
+    "id": 6,
+    "name": "Lateral Movement Investigation",
+    "playbook_run_count": 15,
+    "successful_run_count": 12,
+    "failed_run_count": 3,
+    "avg_duration_seconds": 600,
+    "last_run_time": "2026-04-03T16:25:00Z",
+    "active": true,
+    "category": "Network",
+    "creator": "ahmed.ali",
+    "tags": [
+      "lateral_movement",
+      "investigation"
+    ],
+    "success_rate": 0.8
+  },
+  {
+    "id": 7,
+    "name": "DNS Sinkhole",
+    "playbook_run_count": 34,
+    "successful_run_count": 34,
+    "failed_run_count": 0,
+    "avg_duration_seconds": 20,
+    "last_run_time": "2026-04-05T04:02:00Z",
+    "active": true,
+    "category": "Network",
+    "creator": "mohammed.omar",
+    "tags": [
+      "dns",
+      "sinkhole",
+      "automated"
+    ],
+    "success_rate": 1.0
+  },
+  {
+    "id": 8,
+    "name": "Ticket Escalation",
+    "playbook_run_count": 200,
+    "successful_run_count": 198,
+    "failed_run_count": 2,
+    "avg_duration_seconds": 5,
+    "last_run_time": "2026-04-05T05:00:00Z",
+    "active": true,
+    "category": "Workflow",
+    "creator": "sara.khan",
+    "tags": [
+      "ticketing",
+      "escalation",
+      "jira"
+    ],
+    "success_rate": 0.99
+  }
+]

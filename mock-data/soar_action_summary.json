@@ -1,0 +1,72 @@
+[
+  {
+    "action": "get process list",
+    "total": 284,
+    "success": 264,
+    "failed": 20,
+    "success_rate": 0.93
+  },
+  {
+    "action": "block domain",
+    "total": 274,
+    "success": 254,
+    "failed": 20,
+    "success_rate": 0.927
+  },
+  {
+    "action": "quarantine device",
+    "total": 266,
+    "success": 240,
+    "failed": 26,
+    "success_rate": 0.902
+  },
+  {
+    "action": "file reputation",
+    "total": 259,
+    "success": 229,
+    "failed": 30,
+    "success_rate": 0.884
+  },
+  {
+    "action": "create ticket",
+    "total": 245,
+    "success": 222,
+    "failed": 23,
+    "success_rate": 0.906
+  },
+  {
+    "action": "geolocate ip",
+    "total": 245,
+    "success": 231,
+    "failed": 14,
+    "success_rate": 0.943
+  },
+  {
+    "action": "url reputation",
+    "total": 242,
+    "success": 221,
+    "failed": 21,
+    "success_rate": 0.913
+  },
+  {
+    "action": "block ip",
+    "total": 240,
+    "success": 216,
+    "failed": 24,
+    "success_rate": 0.9
+  },
+  {
+    "action": "disable user",
+    "total": 232,
+    "success": 220,
+    "failed": 12,
+    "success_rate": 0.948
+  },
+  {
+    "action": "whois domain",
+    "total": 223,
+    "success": 201,
+    "failed": 22,
+    "success_rate": 0.901
+  }
+]

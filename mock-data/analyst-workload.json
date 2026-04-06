@@ -1,0 +1,5 @@
+[
+  {"analyst": "ahmed.ali", "open_incidents": 2, "resolved_today": 1, "resolved_week": 12, "avg_ttr_min": 58, "sla_compliance": 0.92},
+  {"analyst": "sara.khan", "open_incidents": 1, "resolved_today": 0, "resolved_week": 13, "avg_ttr_min": 52, "sla_compliance": 0.95},
+  {"analyst": "mohammed.omar", "open_incidents": 0, "resolved_today": 0, "resolved_week": 10, "avg_ttr_min": 65, "sla_compliance": 0.88}
+]

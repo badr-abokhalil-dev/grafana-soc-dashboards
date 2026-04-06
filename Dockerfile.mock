@@ -1,0 +1,19 @@
+FROM node:18-alpine
+
+WORKDIR /app
+
+# Copy package.json first for better caching
+COPY mock-server/package*.json ./
+
+# Install dependencies
+RUN npm install --production
+
+# Copy the server code
+COPY mock-server/ ./
+
+# Copy mock data
+COPY mock-data/ ./mock-data/
+
+EXPOSE 3001
+
+CMD ["npm", "start"]

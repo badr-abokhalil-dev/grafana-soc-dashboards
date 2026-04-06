@@ -1,0 +1,68 @@
+[
+  {
+    "period": "2026-W13",
+    "total_incidents": 35,
+    "sla_met": 31,
+    "sla_breached": 4,
+    "avg_mttd_min": 6.2,
+    "avg_mttr_min": 62,
+    "false_positive_rate": 0.12,
+    "escalation_rate": 0.08,
+    "sla_compliance": 0.89
+  },
+  {
+    "period": "2026-W12",
+    "total_incidents": 42,
+    "sla_met": 38,
+    "sla_breached": 4,
+    "avg_mttd_min": 7.1,
+    "avg_mttr_min": 71,
+    "false_positive_rate": 0.15,
+    "escalation_rate": 0.1,
+    "sla_compliance": 0.9
+  },
+  {
+    "period": "2026-W11",
+    "total_incidents": 29,
+    "sla_met": 27,
+    "sla_breached": 2,
+    "avg_mttd_min": 5.5,
+    "avg_mttr_min": 55,
+    "false_positive_rate": 0.1,
+    "escalation_rate": 0.07,
+    "sla_compliance": 0.93
+  },
+  {
+    "period": "2026-W10",
+    "total_incidents": 38,
+    "sla_met": 33,
+    "sla_breached": 5,
+    "avg_mttd_min": 8.0,
+    "avg_mttr_min": 78,
+    "false_positive_rate": 0.18,
+    "escalation_rate": 0.13,
+    "sla_compliance": 0.87
+  },
+  {
+    "period": "2026-W09",
+    "total_incidents": 31,
+    "sla_met": 29,
+    "sla_breached": 2,
+    "avg_mttd_min": 5.8,
+    "avg_mttr_min": 58,
+    "false_positive_rate": 0.09,
+    "escalation_rate": 0.06,
+    "sla_compliance": 0.94
+  },
+  {
+    "period": "2026-W08",
+    "total_incidents": 45,
+    "sla_met": 39,
+    "sla_breached": 6,
+    "avg_mttd_min": 9.2,
+    "avg_mttr_min": 85,
+    "false_positive_rate": 0.2,
+    "escalation_rate": 0.15,
+    "sla_compliance": 0.87
+  }
+]

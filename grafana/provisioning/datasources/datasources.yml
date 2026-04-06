@@ -1,0 +1,64 @@
+apiVersion: 1
+
+deleteDatasources:
+  - name: Splunk-API
+    orgId: 1
+  - name: SOAR-API
+    orgId: 1
+  - name: Mock-Data
+    orgId: 1
+
+datasources:
+  # --- Infinity: Splunk REST API ---
+  - name: Splunk-API
+    type: yesoreyeram-infinity-datasource
+    uid: splunk-api
+    access: proxy
+    isDefault: false
+    # Grafana core TLS skip
+    tls_skip_verify_insecure: true
+    jsonData:
+      auth_method: "bearerToken"
+      # Infinity plugin TLS skip
+      tlsSkipVerify: true
+      allowedHosts:
+        - "http://soc-splunk:8089"
+    secureJsonData:
+      bearerToken: "${SPLUNK_API_TOKEN}"
+    editable: true
+
+  # --- Infinity: SOAR REST API ---
+  - name: SOAR-API
+    type: yesoreyeram-infinity-datasource
+    uid: soar-api
+    access: proxy
+    isDefault: false
+    jsonData:
+      auth_method: "bearerToken"
+      tlsSkipVerify: true
+      allowedHosts:
+        - "${SOAR_API_URL}"
+    secureJsonData:
+      bearerToken: "${SOAR_API_TOKEN}"
+    editable: true
+
+  # --- Infinity: Mock Data (time-aware Node.js server) ---
+  - name: Mock-Data
+    type: yesoreyeram-infinity-datasource
+    uid: mock-data
+    access: proxy
+    isDefault: true
+    jsonData:
+      auth_method: "none"
+      tlsSkipVerify: true
+      allowedHosts:
+        - "soc-mock-proxy"
+        - "http://soc-mock-proxy"
+        - "soc-mock-proxy:80"
+        - "soc-mock-server"
+        - "http://soc-mock-server"
+        - "soc-mock-server:3001"
+        - "soc-mock-server:80"
+      # Relaxed security for development/testing
+      securityLevel: "relaxed"
+    editable: true

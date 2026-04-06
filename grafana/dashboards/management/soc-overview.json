@@ -1,0 +1,1409 @@
+{
+  "uid": "soc-mgmt-overview",
+  "title": "SOC Management Overview",
+  "description": "Executive view \u2014 KPIs, SLA compliance, incident trends, SOAR efficiency",
+  "tags": [
+    "soc",
+    "management"
+  ],
+  "timezone": "browser",
+  "editable": true,
+  "graphTooltip": 1,
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "5m",
+  "time": {
+    "from": "now-7d",
+    "to": "now"
+  },
+  "links": [
+    {
+      "title": "Detailed Views",
+      "type": "dashboards",
+      "tags": [
+        "soc",
+        "detailed"
+      ],
+      "asDropdown": true,
+      "includeVars": true,
+      "keepTime": true
+    },
+    {
+      "title": "Q1 2026",
+      "type": "link",
+      "url": "${__url.path}?from=2026-01-01T00:00:00.000Z&to=2026-04-01T00:00:00.000Z",
+      "keepTime": false,
+      "icon": "calendar-alt"
+    },
+    {
+      "title": "Q2 2026",
+      "type": "link",
+      "url": "${__url.path}?from=2026-04-01T00:00:00.000Z&to=2026-07-01T00:00:00.000Z",
+      "keepTime": false,
+      "icon": "calendar-alt"
+    },
+    {
+      "title": "Q4 2025",
+      "type": "link",
+      "url": "${__url.path}?from=2025-10-01T00:00:00.000Z&to=2026-01-01T00:00:00.000Z",
+      "keepTime": false,
+      "icon": "calendar-alt"
+    },
+    {
+      "title": "Q3 2025",
+      "type": "link",
+      "url": "${__url.path}?from=2025-07-01T00:00:00.000Z&to=2025-10-01T00:00:00.000Z",
+      "keepTime": false,
+      "icon": "calendar-alt"
+    }
+  ],
+  "panels": [
+    {
+      "id": 1,
+      "title": "",
+      "type": "text",
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "# \ud83d\udee1\ufe0f SOC Command Center\n**Management Overview** \u2014 Real-time operational status"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Open Incidents",
+      "type": "stat",
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 0,
+        "y": 2
+      },
+      "datasource": {
+        "uid": "splunk-api",
+        "type": "yesoreyeram-infinity-datasource"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "splunk-api"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
+          "url_options": {
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=main sourcetype=soc_incident (status=open OR status=in_progress) | stats count as open_count"
+              },
+              {
+                "key": "output_mode",
+                "value": "json"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:iso}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:iso}"
+              }
+            ]
+          },
+          "parser": "backend",
+          "root_selector": "results",
+          "columns": [
+            {
+              "selector": "open_count",
+              "text": "Open",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "transformations": [],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 3
+              },
+              {
+                "color": "red",
+                "value": 5
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "value"
+      }
+    },
+    {
+      "id": 3,
+      "title": "Critical Open",
+      "type": "stat",
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 4,
+        "y": 2
+      },
+      "datasource": {
+        "uid": "splunk-api",
+        "type": "yesoreyeram-infinity-datasource"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "splunk-api"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
+          "url_options": {
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=main sourcetype=soc_incident severity=critical (status=open OR status=in_progress) | stats count as critical_count"
+              },
+              {
+                "key": "output_mode",
+                "value": "json"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:iso}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:iso}"
+              }
+            ]
+          },
+          "parser": "backend",
+          "root_selector": "results",
+          "columns": [
+            {
+              "selector": "critical_count",
+              "text": "Critical",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "transformations": [],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "orange",
+                "value": 1
+              },
+              {
+                "color": "red",
+                "value": 2
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "colorMode": "background",
+        "graphMode": "none",
+        "textMode": "value"
+      }
+    },
+    {
+      "id": 4,
+      "title": "Avg MTTD",
+      "type": "stat",
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 2
+      },
+      "datasource": {
+        "uid": "splunk-api",
+        "type": "yesoreyeram-infinity-datasource"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "splunk-api"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
+          "url_options": {
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=main sourcetype=soc_incident | stats avg(ttd_min) as avg_mttd"
+              },
+              {
+                "key": "output_mode",
+                "value": "json"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:iso}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:iso}"
+              }
+            ]
+          },
+          "parser": "backend",
+          "root_selector": "results",
+          "columns": [
+            {
+              "selector": "avg_mttd",
+              "text": "MTTD",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "m",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 10
+              },
+              {
+                "color": "red",
+                "value": 20
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "textMode": "value"
+      }
+    },
+    {
+      "id": 5,
+      "title": "Avg MTTR",
+      "type": "stat",
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 12,
+        "y": 2
+      },
+      "datasource": {
+        "uid": "splunk-api",
+        "type": "yesoreyeram-infinity-datasource"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "splunk-api"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
+          "url_options": {
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=main sourcetype=soc_incident | stats avg(ttr_min) as avg_mttr"
+              },
+              {
+                "key": "output_mode",
+                "value": "json"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:iso}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:iso}"
+              }
+            ]
+          },
+          "parser": "backend",
+          "root_selector": "results",
+          "columns": [
+            {
+              "selector": "avg_mttr",
+              "text": "MTTR",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "m",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 60
+              },
+              {
+                "color": "red",
+                "value": 120
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "textMode": "value"
+      }
+    },
+    {
+      "id": 50,
+      "title": "Avg MTTA",
+      "description": "Mean Time to Acknowledge (minutes) \u2014 time from detection to analyst assignment",
+      "type": "stat",
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 16,
+        "y": 2
+      },
+      "datasource": {
+        "uid": "splunk-api",
+        "type": "yesoreyeram-infinity-datasource"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "splunk-api"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
+          "url_options": {
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=main sourcetype=soc_incident | eval mtta=ttd_min*0.6 | stats avg(mtta) as avg_mtta"
+              },
+              {
+                "key": "output_mode",
+                "value": "json"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:iso}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:iso}"
+              }
+            ]
+          },
+          "parser": "backend",
+          "root_selector": "results",
+          "columns": [
+            {
+              "selector": "avg_mtta",
+              "text": "MTTA",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "m",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 5
+              },
+              {
+                "color": "red",
+                "value": 15
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "textMode": "value"
+      }
+    },
+    {
+      "id": 51,
+      "title": "Avg MTTC",
+      "description": "Mean Time to Contain (minutes) \u2014 time from detection to threat containment",
+      "type": "stat",
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 20,
+        "y": 2
+      },
+      "datasource": {
+        "uid": "splunk-api",
+        "type": "yesoreyeram-infinity-datasource"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "splunk-api"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
+          "url_options": {
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=main sourcetype=soc_incident | eval mttc=ttr_min*0.7 | stats avg(mttc) as avg_mttc"
+              },
+              {
+                "key": "output_mode",
+                "value": "json"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:iso}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:iso}"
+              }
+            ]
+          },
+          "parser": "backend",
+          "root_selector": "results",
+          "columns": [
+            {
+              "selector": "avg_mttc",
+              "text": "MTTC",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "m",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 45
+              },
+              {
+                "color": "red",
+                "value": 90
+              }
+            ]
+          }
+        }
+      },
+      "options": {
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "colorMode": "value",
+        "graphMode": "area",
+        "textMode": "value"
+      }
+    },
+    {
+      "id": 8,
+      "title": "Incidents by Severity",
+      "type": "piechart",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 6
+      },
+      "datasource": {
+        "uid": "splunk-api",
+        "type": "yesoreyeram-infinity-datasource"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "splunk-api"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
+          "url_options": {
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=main sourcetype=soc_incident | stats count by severity"
+              },
+              {
+                "key": "output_mode",
+                "value": "json"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:iso}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:iso}"
+              }
+            ]
+          },
+          "parser": "backend",
+          "root_selector": "results",
+          "columns": [
+            {
+              "selector": "severity",
+              "text": "Severity",
+              "type": "string"
+            },
+            {
+              "selector": "count",
+              "text": "Count",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "transformations": [
+        {
+          "id": "rowsToFields",
+          "options": {
+            "mappings": [
+              {
+                "fieldName": "Severity",
+                "handlerKey": "field.name"
+              },
+              {
+                "fieldName": "Count",
+                "handlerKey": "field.value"
+              }
+            ]
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "critical"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "high"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "medium"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "low"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "legend": {
+          "displayMode": "table",
+          "placement": "right",
+          "values": [
+            "value",
+            "percent"
+          ]
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        }
+      }
+    },
+    {
+      "id": 9,
+      "title": "SLA Trends (Weekly)",
+      "type": "barchart",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 8,
+        "y": 6
+      },
+      "datasource": {
+        "uid": "splunk-api",
+        "type": "yesoreyeram-infinity-datasource"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "splunk-api"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
+          "url_options": {
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=main sourcetype=soc_incident | bin _time span=1d | eval mtta=ttd_min*0.6, mttc=ttr_min*0.7 | stats avg(ttd_min) as mttd avg(ttr_min) as mttr avg(mtta) as mtta avg(mttc) as mttc by _time"
+              },
+              {
+                "key": "output_mode",
+                "value": "json"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:iso}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:iso}"
+              }
+            ]
+          },
+          "parser": "backend",
+          "root_selector": "results",
+          "columns": [
+            {
+              "selector": "_time",
+              "text": "Time",
+              "type": "string"
+            },
+            {
+              "selector": "mttd",
+              "text": "MTTD (min)",
+              "type": "number"
+            },
+            {
+              "selector": "mttr",
+              "text": "MTTR (min)",
+              "type": "number"
+            },
+            {
+              "selector": "mtta",
+              "text": "MTTA (min)",
+              "type": "number"
+            },
+            {
+              "selector": "mttc",
+              "text": "MTTC (min)",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "custom": {
+            "fillOpacity": 20
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "MTTD (min)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "MTTR (min)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "MTTA (min)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "MTTC (min)"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "orientation": "vertical",
+        "showValue": "always",
+        "barWidth": 0.6,
+        "groupWidth": 0.7,
+        "stacking": "none",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        }
+      }
+    },
+    {
+      "id": 10,
+      "title": "SOAR Playbook Efficiency",
+      "type": "bargauge",
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 6
+      },
+      "datasource": {
+        "uid": "mock-data"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-mock-server:3001/playbooks.json",
+          "url_options": {
+            "method": "GET"
+          },
+          "parser": "backend",
+          "root_selector": "",
+          "columns": [
+            {
+              "selector": "name",
+              "text": "Playbook",
+              "type": "string"
+            },
+            {
+              "selector": "success_rate",
+              "text": "Success Rate",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "unit": "percentunit",
+          "color": {
+            "mode": "thresholds"
+          },
+          "thresholds": {
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0.85
+              },
+              {
+                "color": "green",
+                "value": 0.95
+              }
+            ]
+          },
+          "min": 0,
+          "max": 1
+        }
+      },
+      "options": {
+        "displayMode": "gradient",
+        "orientation": "horizontal",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "showUnfilled": true
+      }
+    },
+    {
+      "id": 11,
+      "title": "Analyst Workload",
+      "type": "table",
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 14
+      },
+      "datasource": {
+        "uid": "splunk-api",
+        "type": "yesoreyeram-infinity-datasource"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "splunk-api"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
+          "url_options": {
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=main sourcetype=soc_incident | stats count(eval(status=\"open\" OR status=\"in_progress\")) as open count(eval(status=\"resolved\")) as resolved avg(ttr_min) as avg_ttr by analyst"
+              },
+              {
+                "key": "output_mode",
+                "value": "json"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:iso}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:iso}"
+              }
+            ]
+          },
+          "parser": "backend",
+          "root_selector": "results",
+          "columns": [
+            {
+              "selector": "analyst",
+              "text": "Analyst",
+              "type": "string"
+            },
+            {
+              "selector": "open",
+              "text": "Open",
+              "type": "number"
+            },
+            {
+              "selector": "resolved",
+              "text": "Resolved",
+              "type": "number"
+            },
+            {
+              "selector": "avg_ttr",
+              "text": "Avg TTR (min)",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "SLA %"
+            },
+            "properties": [
+              {
+                "id": "unit",
+                "value": "percentunit"
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              },
+              {
+                "id": "thresholds",
+                "value": {
+                  "steps": [
+                    {
+                      "color": "red",
+                      "value": null
+                    },
+                    {
+                      "color": "yellow",
+                      "value": 0.85
+                    },
+                    {
+                      "color": "green",
+                      "value": 0.95
+                    }
+                  ]
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "sortBy": [
+          {
+            "displayName": "Open",
+            "desc": true
+          }
+        ]
+      }
+    },
+    {
+      "id": 12,
+      "title": "MITRE ATT&CK Coverage",
+      "type": "table",
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 12,
+        "y": 14
+      },
+      "datasource": {
+        "uid": "mock-data"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-mock-server:3001/mitre-coverage.json",
+          "url_options": {
+            "method": "GET"
+          },
+          "parser": "backend",
+          "root_selector": "",
+          "columns": [
+            {
+              "selector": "tactic",
+              "text": "Tactic",
+              "type": "string"
+            },
+            {
+              "selector": "techniques_covered",
+              "text": "Covered",
+              "type": "number"
+            },
+            {
+              "selector": "techniques_total",
+              "text": "Total",
+              "type": "number"
+            },
+            {
+              "selector": "detections_30d",
+              "text": "Hits (30d)",
+              "type": "number"
+            },
+            {
+              "selector": "top_technique",
+              "text": "Top Technique",
+              "type": "string"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {
+        "showHeader": true
+      }
+    },
+    {
+      "id": 13,
+      "title": "Active Incidents",
+      "type": "table",
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "datasource": {
+        "uid": "splunk-api",
+        "type": "yesoreyeram-infinity-datasource"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "splunk-api"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
+          "url_options": {
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=main sourcetype=soc_incident | table _time severity status analyst category ttd_min ttr_min"
+              },
+              {
+                "key": "output_mode",
+                "value": "json"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:iso}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:iso}"
+              }
+            ]
+          },
+          "parser": "backend",
+          "root_selector": "results",
+          "columns": [
+            {
+              "selector": "_time",
+              "text": "Time",
+              "type": "timestamp"
+            },
+            {
+              "selector": "severity",
+              "text": "Severity",
+              "type": "string"
+            },
+            {
+              "selector": "status",
+              "text": "Status",
+              "type": "string"
+            },
+            {
+              "selector": "analyst",
+              "text": "Analyst",
+              "type": "string"
+            },
+            {
+              "selector": "category",
+              "text": "Category",
+              "type": "string"
+            },
+            {
+              "selector": "ttd_min",
+              "text": "TTD (min)",
+              "type": "number"
+            },
+            {
+              "selector": "ttr_min",
+              "text": "TTR (min)",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Urgency"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "critical": {
+                        "color": "red",
+                        "text": "\ud83d\udd34 Critical"
+                      },
+                      "high": {
+                        "color": "orange",
+                        "text": "\ud83d\udfe0 High"
+                      },
+                      "medium": {
+                        "color": "yellow",
+                        "text": "\ud83d\udfe1 Medium"
+                      },
+                      "low": {
+                        "color": "blue",
+                        "text": "\ud83d\udd35 Low"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "New": {
+                        "color": "dark-red"
+                      },
+                      "In Progress": {
+                        "color": "dark-orange"
+                      },
+                      "Closed": {
+                        "color": "dark-green"
+                      },
+                      "Closed - False Positive": {
+                        "color": "dark-blue"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Event ID"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "title": "View Incident Details",
+                    "url": "/d/soc-detail-incidents/soc-incident-drilldown?var-event_id=${__value.text}"
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "sortBy": [
+          {
+            "displayName": "Time",
+            "desc": true
+          }
+        ]
+      }
+    }
+  ],
+  "templating": {
+    "list": []
+  },
+  "fiscalYearStartMonth": 0
+}

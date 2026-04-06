@@ -1,0 +1,14 @@
+[
+  {"tactic": "Initial Access", "techniques_covered": 8, "techniques_total": 9, "detections_30d": 48, "top_technique": "T1566 Phishing"},
+  {"tactic": "Execution", "techniques_covered": 6, "techniques_total": 12, "detections_30d": 35, "top_technique": "T1059 Command Scripting"},
+  {"tactic": "Persistence", "techniques_covered": 5, "techniques_total": 19, "detections_30d": 12, "top_technique": "T1136 Create Account"},
+  {"tactic": "Privilege Escalation", "techniques_covered": 7, "techniques_total": 13, "detections_30d": 18, "top_technique": "T1134 Token Manipulation"},
+  {"tactic": "Defense Evasion", "techniques_covered": 9, "techniques_total": 42, "detections_30d": 22, "top_technique": "T1112 Modify Registry"},
+  {"tactic": "Credential Access", "techniques_covered": 6, "techniques_total": 15, "detections_30d": 65, "top_technique": "T1110 Brute Force"},
+  {"tactic": "Discovery", "techniques_covered": 4, "techniques_total": 30, "detections_30d": 8, "top_technique": "T1046 Network Scanning"},
+  {"tactic": "Lateral Movement", "techniques_covered": 5, "techniques_total": 9, "detections_30d": 15, "top_technique": "T1021 Remote Services"},
+  {"tactic": "Collection", "techniques_covered": 3, "techniques_total": 17, "detections_30d": 5, "top_technique": "T1114 Email Collection"},
+  {"tactic": "Command and Control", "techniques_covered": 7, "techniques_total": 16, "detections_30d": 28, "top_technique": "T1071 Application Layer"},
+  {"tactic": "Exfiltration", "techniques_covered": 4, "techniques_total": 9, "detections_30d": 10, "top_technique": "T1048 Non-App Protocol"},
+  {"tactic": "Impact", "techniques_covered": 3, "techniques_total": 13, "detections_30d": 4, "top_technique": "T1486 Data Encrypted"}
+]

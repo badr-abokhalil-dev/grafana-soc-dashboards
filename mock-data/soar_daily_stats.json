@@ -1,0 +1,1262 @@
+[
+  {
+    "date": "2025-10-07T00:00:00.000Z",
+    "total": 11,
+    "success": 10,
+    "failed": 1,
+    "success_rate": 0.909
+  },
+  {
+    "date": "2025-10-08T00:00:00.000Z",
+    "total": 25,
+    "success": 21,
+    "failed": 4,
+    "success_rate": 0.84
+  },
+  {
+    "date": "2025-10-09T00:00:00.000Z",
+    "total": 18,
+    "success": 15,
+    "failed": 3,
+    "success_rate": 0.833
+  },
+  {
+    "date": "2025-10-10T00:00:00.000Z",
+    "total": 25,
+    "success": 23,
+    "failed": 2,
+    "success_rate": 0.92
+  },
+  {
+    "date": "2025-10-11T00:00:00.000Z",
+    "total": 10,
+    "success": 9,
+    "failed": 1,
+    "success_rate": 0.9
+  },
+  {
+    "date": "2025-10-12T00:00:00.000Z",
+    "total": 6,
+    "success": 6,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-10-13T00:00:00.000Z",
+    "total": 23,
+    "success": 22,
+    "failed": 1,
+    "success_rate": 0.957
+  },
+  {
+    "date": "2025-10-14T00:00:00.000Z",
+    "total": 15,
+    "success": 13,
+    "failed": 2,
+    "success_rate": 0.867
+  },
+  {
+    "date": "2025-10-15T00:00:00.000Z",
+    "total": 15,
+    "success": 13,
+    "failed": 2,
+    "success_rate": 0.867
+  },
+  {
+    "date": "2025-10-16T00:00:00.000Z",
+    "total": 25,
+    "success": 22,
+    "failed": 3,
+    "success_rate": 0.88
+  },
+  {
+    "date": "2025-10-17T00:00:00.000Z",
+    "total": 16,
+    "success": 15,
+    "failed": 1,
+    "success_rate": 0.938
+  },
+  {
+    "date": "2025-10-18T00:00:00.000Z",
+    "total": 7,
+    "success": 7,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-10-19T00:00:00.000Z",
+    "total": 7,
+    "success": 5,
+    "failed": 2,
+    "success_rate": 0.714
+  },
+  {
+    "date": "2025-10-20T00:00:00.000Z",
+    "total": 12,
+    "success": 12,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-10-21T00:00:00.000Z",
+    "total": 19,
+    "success": 19,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-10-22T00:00:00.000Z",
+    "total": 21,
+    "success": 21,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-10-23T00:00:00.000Z",
+    "total": 20,
+    "success": 18,
+    "failed": 2,
+    "success_rate": 0.9
+  },
+  {
+    "date": "2025-10-24T00:00:00.000Z",
+    "total": 9,
+    "success": 8,
+    "failed": 1,
+    "success_rate": 0.889
+  },
+  {
+    "date": "2025-10-25T00:00:00.000Z",
+    "total": 3,
+    "success": 3,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-10-26T00:00:00.000Z",
+    "total": 6,
+    "success": 6,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-10-27T00:00:00.000Z",
+    "total": 16,
+    "success": 14,
+    "failed": 2,
+    "success_rate": 0.875
+  },
+  {
+    "date": "2025-10-28T00:00:00.000Z",
+    "total": 19,
+    "success": 16,
+    "failed": 3,
+    "success_rate": 0.842
+  },
+  {
+    "date": "2025-10-29T00:00:00.000Z",
+    "total": 23,
+    "success": 21,
+    "failed": 2,
+    "success_rate": 0.913
+  },
+  {
+    "date": "2025-10-30T00:00:00.000Z",
+    "total": 16,
+    "success": 15,
+    "failed": 1,
+    "success_rate": 0.938
+  },
+  {
+    "date": "2025-10-31T00:00:00.000Z",
+    "total": 15,
+    "success": 13,
+    "failed": 2,
+    "success_rate": 0.867
+  },
+  {
+    "date": "2025-11-01T00:00:00.000Z",
+    "total": 8,
+    "success": 8,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-11-02T00:00:00.000Z",
+    "total": 5,
+    "success": 5,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-11-03T00:00:00.000Z",
+    "total": 20,
+    "success": 17,
+    "failed": 3,
+    "success_rate": 0.85
+  },
+  {
+    "date": "2025-11-04T00:00:00.000Z",
+    "total": 23,
+    "success": 21,
+    "failed": 2,
+    "success_rate": 0.913
+  },
+  {
+    "date": "2025-11-05T00:00:00.000Z",
+    "total": 20,
+    "success": 18,
+    "failed": 2,
+    "success_rate": 0.9
+  },
+  {
+    "date": "2025-11-06T00:00:00.000Z",
+    "total": 24,
+    "success": 22,
+    "failed": 2,
+    "success_rate": 0.917
+  },
+  {
+    "date": "2025-11-07T00:00:00.000Z",
+    "total": 25,
+    "success": 24,
+    "failed": 1,
+    "success_rate": 0.96
+  },
+  {
+    "date": "2025-11-08T00:00:00.000Z",
+    "total": 9,
+    "success": 8,
+    "failed": 1,
+    "success_rate": 0.889
+  },
+  {
+    "date": "2025-11-09T00:00:00.000Z",
+    "total": 4,
+    "success": 4,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-11-10T00:00:00.000Z",
+    "total": 14,
+    "success": 12,
+    "failed": 2,
+    "success_rate": 0.857
+  },
+  {
+    "date": "2025-11-11T00:00:00.000Z",
+    "total": 9,
+    "success": 7,
+    "failed": 2,
+    "success_rate": 0.778
+  },
+  {
+    "date": "2025-11-12T00:00:00.000Z",
+    "total": 11,
+    "success": 10,
+    "failed": 1,
+    "success_rate": 0.909
+  },
+  {
+    "date": "2025-11-13T00:00:00.000Z",
+    "total": 19,
+    "success": 16,
+    "failed": 3,
+    "success_rate": 0.842
+  },
+  {
+    "date": "2025-11-14T00:00:00.000Z",
+    "total": 9,
+    "success": 6,
+    "failed": 3,
+    "success_rate": 0.667
+  },
+  {
+    "date": "2025-11-15T00:00:00.000Z",
+    "total": 7,
+    "success": 7,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-11-16T00:00:00.000Z",
+    "total": 9,
+    "success": 9,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-11-17T00:00:00.000Z",
+    "total": 9,
+    "success": 8,
+    "failed": 1,
+    "success_rate": 0.889
+  },
+  {
+    "date": "2025-11-18T00:00:00.000Z",
+    "total": 24,
+    "success": 23,
+    "failed": 1,
+    "success_rate": 0.958
+  },
+  {
+    "date": "2025-11-19T00:00:00.000Z",
+    "total": 16,
+    "success": 15,
+    "failed": 1,
+    "success_rate": 0.938
+  },
+  {
+    "date": "2025-11-20T00:00:00.000Z",
+    "total": 12,
+    "success": 12,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-11-21T00:00:00.000Z",
+    "total": 12,
+    "success": 12,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-11-22T00:00:00.000Z",
+    "total": 7,
+    "success": 5,
+    "failed": 2,
+    "success_rate": 0.714
+  },
+  {
+    "date": "2025-11-23T00:00:00.000Z",
+    "total": 10,
+    "success": 10,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-11-24T00:00:00.000Z",
+    "total": 19,
+    "success": 18,
+    "failed": 1,
+    "success_rate": 0.947
+  },
+  {
+    "date": "2025-11-25T00:00:00.000Z",
+    "total": 8,
+    "success": 7,
+    "failed": 1,
+    "success_rate": 0.875
+  },
+  {
+    "date": "2025-11-26T00:00:00.000Z",
+    "total": 14,
+    "success": 12,
+    "failed": 2,
+    "success_rate": 0.857
+  },
+  {
+    "date": "2025-11-27T00:00:00.000Z",
+    "total": 25,
+    "success": 24,
+    "failed": 1,
+    "success_rate": 0.96
+  },
+  {
+    "date": "2025-11-28T00:00:00.000Z",
+    "total": 24,
+    "success": 22,
+    "failed": 2,
+    "success_rate": 0.917
+  },
+  {
+    "date": "2025-11-29T00:00:00.000Z",
+    "total": 3,
+    "success": 3,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-11-30T00:00:00.000Z",
+    "total": 3,
+    "success": 3,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-12-01T00:00:00.000Z",
+    "total": 11,
+    "success": 11,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-12-02T00:00:00.000Z",
+    "total": 8,
+    "success": 6,
+    "failed": 2,
+    "success_rate": 0.75
+  },
+  {
+    "date": "2025-12-03T00:00:00.000Z",
+    "total": 17,
+    "success": 15,
+    "failed": 2,
+    "success_rate": 0.882
+  },
+  {
+    "date": "2025-12-04T00:00:00.000Z",
+    "total": 24,
+    "success": 23,
+    "failed": 1,
+    "success_rate": 0.958
+  },
+  {
+    "date": "2025-12-05T00:00:00.000Z",
+    "total": 11,
+    "success": 9,
+    "failed": 2,
+    "success_rate": 0.818
+  },
+  {
+    "date": "2025-12-06T00:00:00.000Z",
+    "total": 8,
+    "success": 7,
+    "failed": 1,
+    "success_rate": 0.875
+  },
+  {
+    "date": "2025-12-07T00:00:00.000Z",
+    "total": 7,
+    "success": 7,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-12-08T00:00:00.000Z",
+    "total": 17,
+    "success": 16,
+    "failed": 1,
+    "success_rate": 0.941
+  },
+  {
+    "date": "2025-12-09T00:00:00.000Z",
+    "total": 23,
+    "success": 21,
+    "failed": 2,
+    "success_rate": 0.913
+  },
+  {
+    "date": "2025-12-10T00:00:00.000Z",
+    "total": 20,
+    "success": 19,
+    "failed": 1,
+    "success_rate": 0.95
+  },
+  {
+    "date": "2025-12-11T00:00:00.000Z",
+    "total": 24,
+    "success": 20,
+    "failed": 4,
+    "success_rate": 0.833
+  },
+  {
+    "date": "2025-12-12T00:00:00.000Z",
+    "total": 9,
+    "success": 9,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-12-13T00:00:00.000Z",
+    "total": 8,
+    "success": 8,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-12-14T00:00:00.000Z",
+    "total": 6,
+    "success": 4,
+    "failed": 2,
+    "success_rate": 0.667
+  },
+  {
+    "date": "2025-12-15T00:00:00.000Z",
+    "total": 9,
+    "success": 8,
+    "failed": 1,
+    "success_rate": 0.889
+  },
+  {
+    "date": "2025-12-16T00:00:00.000Z",
+    "total": 13,
+    "success": 12,
+    "failed": 1,
+    "success_rate": 0.923
+  },
+  {
+    "date": "2025-12-17T00:00:00.000Z",
+    "total": 20,
+    "success": 20,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-12-18T00:00:00.000Z",
+    "total": 18,
+    "success": 16,
+    "failed": 2,
+    "success_rate": 0.889
+  },
+  {
+    "date": "2025-12-19T00:00:00.000Z",
+    "total": 23,
+    "success": 20,
+    "failed": 3,
+    "success_rate": 0.87
+  },
+  {
+    "date": "2025-12-20T00:00:00.000Z",
+    "total": 6,
+    "success": 5,
+    "failed": 1,
+    "success_rate": 0.833
+  },
+  {
+    "date": "2025-12-21T00:00:00.000Z",
+    "total": 4,
+    "success": 2,
+    "failed": 2,
+    "success_rate": 0.5
+  },
+  {
+    "date": "2025-12-22T00:00:00.000Z",
+    "total": 20,
+    "success": 18,
+    "failed": 2,
+    "success_rate": 0.9
+  },
+  {
+    "date": "2025-12-23T00:00:00.000Z",
+    "total": 10,
+    "success": 9,
+    "failed": 1,
+    "success_rate": 0.9
+  },
+  {
+    "date": "2025-12-24T00:00:00.000Z",
+    "total": 10,
+    "success": 10,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-12-25T00:00:00.000Z",
+    "total": 12,
+    "success": 10,
+    "failed": 2,
+    "success_rate": 0.833
+  },
+  {
+    "date": "2025-12-26T00:00:00.000Z",
+    "total": 19,
+    "success": 18,
+    "failed": 1,
+    "success_rate": 0.947
+  },
+  {
+    "date": "2025-12-27T00:00:00.000Z",
+    "total": 2,
+    "success": 2,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2025-12-28T00:00:00.000Z",
+    "total": 9,
+    "success": 7,
+    "failed": 2,
+    "success_rate": 0.778
+  },
+  {
+    "date": "2025-12-29T00:00:00.000Z",
+    "total": 23,
+    "success": 19,
+    "failed": 4,
+    "success_rate": 0.826
+  },
+  {
+    "date": "2025-12-30T00:00:00.000Z",
+    "total": 19,
+    "success": 18,
+    "failed": 1,
+    "success_rate": 0.947
+  },
+  {
+    "date": "2025-12-31T00:00:00.000Z",
+    "total": 25,
+    "success": 22,
+    "failed": 3,
+    "success_rate": 0.88
+  },
+  {
+    "date": "2026-01-01T00:00:00.000Z",
+    "total": 16,
+    "success": 14,
+    "failed": 2,
+    "success_rate": 0.875
+  },
+  {
+    "date": "2026-01-02T00:00:00.000Z",
+    "total": 25,
+    "success": 21,
+    "failed": 4,
+    "success_rate": 0.84
+  },
+  {
+    "date": "2026-01-03T00:00:00.000Z",
+    "total": 7,
+    "success": 7,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-01-04T00:00:00.000Z",
+    "total": 4,
+    "success": 4,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-01-05T00:00:00.000Z",
+    "total": 9,
+    "success": 9,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-01-06T00:00:00.000Z",
+    "total": 9,
+    "success": 8,
+    "failed": 1,
+    "success_rate": 0.889
+  },
+  {
+    "date": "2026-01-07T00:00:00.000Z",
+    "total": 9,
+    "success": 9,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-01-08T00:00:00.000Z",
+    "total": 22,
+    "success": 22,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-01-09T00:00:00.000Z",
+    "total": 12,
+    "success": 11,
+    "failed": 1,
+    "success_rate": 0.917
+  },
+  {
+    "date": "2026-01-10T00:00:00.000Z",
+    "total": 5,
+    "success": 3,
+    "failed": 2,
+    "success_rate": 0.6
+  },
+  {
+    "date": "2026-01-11T00:00:00.000Z",
+    "total": 10,
+    "success": 9,
+    "failed": 1,
+    "success_rate": 0.9
+  },
+  {
+    "date": "2026-01-12T00:00:00.000Z",
+    "total": 18,
+    "success": 16,
+    "failed": 2,
+    "success_rate": 0.889
+  },
+  {
+    "date": "2026-01-13T00:00:00.000Z",
+    "total": 25,
+    "success": 22,
+    "failed": 3,
+    "success_rate": 0.88
+  },
+  {
+    "date": "2026-01-14T00:00:00.000Z",
+    "total": 22,
+    "success": 20,
+    "failed": 2,
+    "success_rate": 0.909
+  },
+  {
+    "date": "2026-01-15T00:00:00.000Z",
+    "total": 23,
+    "success": 20,
+    "failed": 3,
+    "success_rate": 0.87
+  },
+  {
+    "date": "2026-01-16T00:00:00.000Z",
+    "total": 9,
+    "success": 9,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-01-17T00:00:00.000Z",
+    "total": 8,
+    "success": 6,
+    "failed": 2,
+    "success_rate": 0.75
+  },
+  {
+    "date": "2026-01-18T00:00:00.000Z",
+    "total": 5,
+    "success": 5,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-01-19T00:00:00.000Z",
+    "total": 13,
+    "success": 13,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-01-20T00:00:00.000Z",
+    "total": 13,
+    "success": 12,
+    "failed": 1,
+    "success_rate": 0.923
+  },
+  {
+    "date": "2026-01-21T00:00:00.000Z",
+    "total": 18,
+    "success": 18,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-01-22T00:00:00.000Z",
+    "total": 19,
+    "success": 17,
+    "failed": 2,
+    "success_rate": 0.895
+  },
+  {
+    "date": "2026-01-23T00:00:00.000Z",
+    "total": 13,
+    "success": 11,
+    "failed": 2,
+    "success_rate": 0.846
+  },
+  {
+    "date": "2026-01-24T00:00:00.000Z",
+    "total": 8,
+    "success": 7,
+    "failed": 1,
+    "success_rate": 0.875
+  },
+  {
+    "date": "2026-01-25T00:00:00.000Z",
+    "total": 5,
+    "success": 5,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-01-26T00:00:00.000Z",
+    "total": 25,
+    "success": 22,
+    "failed": 3,
+    "success_rate": 0.88
+  },
+  {
+    "date": "2026-01-27T00:00:00.000Z",
+    "total": 16,
+    "success": 14,
+    "failed": 2,
+    "success_rate": 0.875
+  },
+  {
+    "date": "2026-01-28T00:00:00.000Z",
+    "total": 10,
+    "success": 8,
+    "failed": 2,
+    "success_rate": 0.8
+  },
+  {
+    "date": "2026-01-29T00:00:00.000Z",
+    "total": 24,
+    "success": 19,
+    "failed": 5,
+    "success_rate": 0.792
+  },
+  {
+    "date": "2026-01-30T00:00:00.000Z",
+    "total": 13,
+    "success": 12,
+    "failed": 1,
+    "success_rate": 0.923
+  },
+  {
+    "date": "2026-01-31T00:00:00.000Z",
+    "total": 8,
+    "success": 8,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-02-01T00:00:00.000Z",
+    "total": 4,
+    "success": 4,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-02-02T00:00:00.000Z",
+    "total": 17,
+    "success": 15,
+    "failed": 2,
+    "success_rate": 0.882
+  },
+  {
+    "date": "2026-02-03T00:00:00.000Z",
+    "total": 19,
+    "success": 19,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-02-04T00:00:00.000Z",
+    "total": 16,
+    "success": 14,
+    "failed": 2,
+    "success_rate": 0.875
+  },
+  {
+    "date": "2026-02-05T00:00:00.000Z",
+    "total": 25,
+    "success": 25,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-02-06T00:00:00.000Z",
+    "total": 19,
+    "success": 19,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-02-07T00:00:00.000Z",
+    "total": 8,
+    "success": 8,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-02-08T00:00:00.000Z",
+    "total": 9,
+    "success": 7,
+    "failed": 2,
+    "success_rate": 0.778
+  },
+  {
+    "date": "2026-02-09T00:00:00.000Z",
+    "total": 8,
+    "success": 5,
+    "failed": 3,
+    "success_rate": 0.625
+  },
+  {
+    "date": "2026-02-10T00:00:00.000Z",
+    "total": 18,
+    "success": 17,
+    "failed": 1,
+    "success_rate": 0.944
+  },
+  {
+    "date": "2026-02-11T00:00:00.000Z",
+    "total": 10,
+    "success": 8,
+    "failed": 2,
+    "success_rate": 0.8
+  },
+  {
+    "date": "2026-02-12T00:00:00.000Z",
+    "total": 24,
+    "success": 23,
+    "failed": 1,
+    "success_rate": 0.958
+  },
+  {
+    "date": "2026-02-13T00:00:00.000Z",
+    "total": 8,
+    "success": 8,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-02-14T00:00:00.000Z",
+    "total": 10,
+    "success": 9,
+    "failed": 1,
+    "success_rate": 0.9
+  },
+  {
+    "date": "2026-02-15T00:00:00.000Z",
+    "total": 3,
+    "success": 3,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-02-16T00:00:00.000Z",
+    "total": 18,
+    "success": 18,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-02-17T00:00:00.000Z",
+    "total": 11,
+    "success": 11,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-02-18T00:00:00.000Z",
+    "total": 22,
+    "success": 22,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-02-19T00:00:00.000Z",
+    "total": 15,
+    "success": 12,
+    "failed": 3,
+    "success_rate": 0.8
+  },
+  {
+    "date": "2026-02-20T00:00:00.000Z",
+    "total": 16,
+    "success": 16,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-02-21T00:00:00.000Z",
+    "total": 9,
+    "success": 9,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-02-22T00:00:00.000Z",
+    "total": 7,
+    "success": 6,
+    "failed": 1,
+    "success_rate": 0.857
+  },
+  {
+    "date": "2026-02-23T00:00:00.000Z",
+    "total": 23,
+    "success": 22,
+    "failed": 1,
+    "success_rate": 0.957
+  },
+  {
+    "date": "2026-02-24T00:00:00.000Z",
+    "total": 8,
+    "success": 7,
+    "failed": 1,
+    "success_rate": 0.875
+  },
+  {
+    "date": "2026-02-25T00:00:00.000Z",
+    "total": 20,
+    "success": 19,
+    "failed": 1,
+    "success_rate": 0.95
+  },
+  {
+    "date": "2026-02-26T00:00:00.000Z",
+    "total": 16,
+    "success": 16,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-02-27T00:00:00.000Z",
+    "total": 24,
+    "success": 21,
+    "failed": 3,
+    "success_rate": 0.875
+  },
+  {
+    "date": "2026-02-28T00:00:00.000Z",
+    "total": 7,
+    "success": 6,
+    "failed": 1,
+    "success_rate": 0.857
+  },
+  {
+    "date": "2026-03-01T00:00:00.000Z",
+    "total": 8,
+    "success": 8,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-03-02T00:00:00.000Z",
+    "total": 23,
+    "success": 22,
+    "failed": 1,
+    "success_rate": 0.957
+  },
+  {
+    "date": "2026-03-03T00:00:00.000Z",
+    "total": 10,
+    "success": 10,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-03-04T00:00:00.000Z",
+    "total": 15,
+    "success": 14,
+    "failed": 1,
+    "success_rate": 0.933
+  },
+  {
+    "date": "2026-03-05T00:00:00.000Z",
+    "total": 14,
+    "success": 13,
+    "failed": 1,
+    "success_rate": 0.929
+  },
+  {
+    "date": "2026-03-06T00:00:00.000Z",
+    "total": 22,
+    "success": 21,
+    "failed": 1,
+    "success_rate": 0.955
+  },
+  {
+    "date": "2026-03-07T00:00:00.000Z",
+    "total": 4,
+    "success": 4,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-03-08T00:00:00.000Z",
+    "total": 4,
+    "success": 3,
+    "failed": 1,
+    "success_rate": 0.75
+  },
+  {
+    "date": "2026-03-09T00:00:00.000Z",
+    "total": 13,
+    "success": 11,
+    "failed": 2,
+    "success_rate": 0.846
+  },
+  {
+    "date": "2026-03-10T00:00:00.000Z",
+    "total": 10,
+    "success": 10,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-03-11T00:00:00.000Z",
+    "total": 13,
+    "success": 13,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-03-12T00:00:00.000Z",
+    "total": 11,
+    "success": 11,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-03-13T00:00:00.000Z",
+    "total": 16,
+    "success": 16,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-03-14T00:00:00.000Z",
+    "total": 8,
+    "success": 8,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-03-15T00:00:00.000Z",
+    "total": 9,
+    "success": 8,
+    "failed": 1,
+    "success_rate": 0.889
+  },
+  {
+    "date": "2026-03-16T00:00:00.000Z",
+    "total": 21,
+    "success": 19,
+    "failed": 2,
+    "success_rate": 0.905
+  },
+  {
+    "date": "2026-03-17T00:00:00.000Z",
+    "total": 12,
+    "success": 11,
+    "failed": 1,
+    "success_rate": 0.917
+  },
+  {
+    "date": "2026-03-18T00:00:00.000Z",
+    "total": 25,
+    "success": 21,
+    "failed": 4,
+    "success_rate": 0.84
+  },
+  {
+    "date": "2026-03-19T00:00:00.000Z",
+    "total": 21,
+    "success": 20,
+    "failed": 1,
+    "success_rate": 0.952
+  },
+  {
+    "date": "2026-03-20T00:00:00.000Z",
+    "total": 17,
+    "success": 17,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-03-21T00:00:00.000Z",
+    "total": 6,
+    "success": 5,
+    "failed": 1,
+    "success_rate": 0.833
+  },
+  {
+    "date": "2026-03-22T00:00:00.000Z",
+    "total": 6,
+    "success": 5,
+    "failed": 1,
+    "success_rate": 0.833
+  },
+  {
+    "date": "2026-03-23T00:00:00.000Z",
+    "total": 15,
+    "success": 15,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-03-24T00:00:00.000Z",
+    "total": 21,
+    "success": 21,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-03-25T00:00:00.000Z",
+    "total": 25,
+    "success": 21,
+    "failed": 4,
+    "success_rate": 0.84
+  },
+  {
+    "date": "2026-03-26T00:00:00.000Z",
+    "total": 11,
+    "success": 11,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-03-27T00:00:00.000Z",
+    "total": 25,
+    "success": 23,
+    "failed": 2,
+    "success_rate": 0.92
+  },
+  {
+    "date": "2026-03-28T00:00:00.000Z",
+    "total": 5,
+    "success": 3,
+    "failed": 2,
+    "success_rate": 0.6
+  },
+  {
+    "date": "2026-03-29T00:00:00.000Z",
+    "total": 3,
+    "success": 3,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-03-30T00:00:00.000Z",
+    "total": 14,
+    "success": 12,
+    "failed": 2,
+    "success_rate": 0.857
+  },
+  {
+    "date": "2026-03-31T00:00:00.000Z",
+    "total": 16,
+    "success": 14,
+    "failed": 2,
+    "success_rate": 0.875
+  },
+  {
+    "date": "2026-04-01T00:00:00.000Z",
+    "total": 14,
+    "success": 12,
+    "failed": 2,
+    "success_rate": 0.857
+  },
+  {
+    "date": "2026-04-02T00:00:00.000Z",
+    "total": 17,
+    "success": 17,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-04-03T00:00:00.000Z",
+    "total": 16,
+    "success": 16,
+    "failed": 0,
+    "success_rate": 1.0
+  },
+  {
+    "date": "2026-04-04T00:00:00.000Z",
+    "total": 4,
+    "success": 4,
+    "failed": 0,
+    "success_rate": 1.0
+  }
+]

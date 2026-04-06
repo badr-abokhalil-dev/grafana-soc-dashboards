@@ -1,0 +1,742 @@
+{
+  "uid": "soc-detail-incidents",
+  "title": "SOC Incident Drilldown",
+  "tags": [
+    "soc",
+    "detailed"
+  ],
+  "timezone": "browser",
+  "editable": true,
+  "graphTooltip": 2,
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "5m",
+  "time": {
+    "from": "now-7d",
+    "to": "now"
+  },
+  "links": [
+    {
+      "title": "\u2190 Back to Overview",
+      "type": "link",
+      "url": "/d/soc-mgmt-overview/soc-management-overview",
+      "keepTime": true,
+      "icon": "arrow-left"
+    },
+    {
+      "title": "Alert Analysis",
+      "type": "link",
+      "url": "/d/soc-detail-alerts/soc-alert-analysis",
+      "keepTime": true
+    },
+    {
+      "title": "SOAR Drilldown",
+      "type": "link",
+      "url": "/d/soc-detail-soar/soar-playbook-drilldown",
+      "keepTime": true
+    },
+    {
+      "title": "Q1 2026",
+      "type": "link",
+      "url": "${__url.path}?from=2026-01-01T00:00:00.000Z&to=2026-04-01T00:00:00.000Z",
+      "keepTime": false,
+      "icon": "calendar-alt"
+    },
+    {
+      "title": "Q2 2026",
+      "type": "link",
+      "url": "${__url.path}?from=2026-04-01T00:00:00.000Z&to=2026-07-01T00:00:00.000Z",
+      "keepTime": false,
+      "icon": "calendar-alt"
+    },
+    {
+      "title": "Q4 2025",
+      "type": "link",
+      "url": "${__url.path}?from=2025-10-01T00:00:00.000Z&to=2026-01-01T00:00:00.000Z",
+      "keepTime": false,
+      "icon": "calendar-alt"
+    },
+    {
+      "title": "Q3 2025",
+      "type": "link",
+      "url": "${__url.path}?from=2025-07-01T00:00:00.000Z&to=2025-10-01T00:00:00.000Z",
+      "keepTime": false,
+      "icon": "calendar-alt"
+    }
+  ],
+  "templating": {
+    "list": [
+      {
+        "name": "event_id",
+        "type": "textbox",
+        "label": "\ud83d\udd0d Event ID",
+        "current": {
+          "text": "",
+          "value": ""
+        },
+        "description": "Filter by specific Event ID"
+      }
+    ]
+  },
+  "panels": [
+    {
+      "id": 1,
+      "title": "",
+      "type": "text",
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 0
+      },
+      "options": {
+        "mode": "markdown",
+        "content": "# \ud83d\udd0d Incident Drilldown\nFilter by Event ID variable above, or click an incident from the Overview"
+      }
+    },
+    {
+      "id": 2,
+      "title": "Incidents by Category",
+      "type": "barchart",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 2
+      },
+      "datasource": {
+        "uid": "mock-data",
+        "type": "yesoreyeram-infinity-datasource"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-mock-server:3001/incidents/by_category?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          },
+          "parser": "backend",
+          "root_selector": "",
+          "columns": [
+            {
+              "selector": "category",
+              "text": "Category",
+              "type": "string"
+            },
+            {
+              "selector": "count",
+              "text": "Count",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "transformations": [],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          }
+        }
+      },
+      "options": {
+        "orientation": "horizontal",
+        "showValue": "always",
+        "barWidth": 0.7
+      }
+    },
+    {
+      "id": 3,
+      "title": "MITRE ATT&CK Coverage",
+      "type": "table",
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 2
+      },
+      "datasource": {
+        "uid": "mock-data",
+        "type": "yesoreyeram-infinity-datasource"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-mock-server:3001/mitre-coverage.json",
+          "url_options": {
+            "method": "GET"
+          },
+          "parser": "backend",
+          "root_selector": "",
+          "columns": [
+            {
+              "selector": "tactic",
+              "text": "Tactic",
+              "type": "string"
+            },
+            {
+              "selector": "techniques_covered",
+              "text": "Covered",
+              "type": "number"
+            },
+            {
+              "selector": "techniques_total",
+              "text": "Total",
+              "type": "number"
+            },
+            {
+              "selector": "detections_30d",
+              "text": "Detections",
+              "type": "number"
+            },
+            {
+              "selector": "top_technique",
+              "text": "Top Hit",
+              "type": "string"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
+      "options": {
+        "showHeader": true
+      }
+    },
+    {
+      "id": 4,
+      "title": "Incidents by Urgency",
+      "type": "piechart",
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 10
+      },
+      "datasource": {
+        "uid": "mock-data",
+        "type": "yesoreyeram-infinity-datasource"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-mock-server:3001/incidents/by_severity?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          },
+          "parser": "backend",
+          "root_selector": "",
+          "columns": [
+            {
+              "selector": "severity",
+              "text": "Severity",
+              "type": "string"
+            },
+            {
+              "selector": "count",
+              "text": "Count",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "transformations": [
+        {
+          "id": "rowsToFields",
+          "options": {
+            "mappings": [
+              {
+                "fieldName": "Severity",
+                "handlerKey": "field.name"
+              },
+              {
+                "fieldName": "Count",
+                "handlerKey": "field.value"
+              }
+            ]
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "critical"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "high"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "medium"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "low"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "pieType": "donut",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        }
+      }
+    },
+    {
+      "id": 5,
+      "title": "Incidents by Owner",
+      "type": "barchart",
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 10
+      },
+      "datasource": {
+        "uid": "mock-data",
+        "type": "yesoreyeram-infinity-datasource"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-mock-server:3001/incidents/by_owner?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          },
+          "parser": "backend",
+          "root_selector": "",
+          "columns": [
+            {
+              "selector": "analyst",
+              "text": "Analyst",
+              "type": "string"
+            },
+            {
+              "selector": "count",
+              "text": "Count",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "transformations": [],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          }
+        }
+      },
+      "options": {
+        "orientation": "horizontal",
+        "showValue": "always",
+        "barWidth": 0.6
+      }
+    },
+    {
+      "id": 6,
+      "title": "Incidents by MITRE Tactic",
+      "type": "piechart",
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 12,
+        "y": 10
+      },
+      "datasource": {
+        "uid": "mock-data",
+        "type": "yesoreyeram-infinity-datasource"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-mock-server:3001/incidents/by_source?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          },
+          "parser": "backend",
+          "root_selector": "",
+          "columns": [
+            {
+              "selector": "tactic",
+              "text": "Tactic",
+              "type": "string"
+            },
+            {
+              "selector": "count",
+              "text": "Count",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "transformations": [
+        {
+          "id": "rowsToFields",
+          "options": {
+            "mappings": [
+              {
+                "fieldName": "Tactic",
+                "handlerKey": "field.name"
+              },
+              {
+                "fieldName": "Count",
+                "handlerKey": "field.value"
+              }
+            ]
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          }
+        }
+      },
+      "options": {
+        "pieType": "donut",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        }
+      }
+    },
+    {
+      "id": 7,
+      "title": "Incidents by Status",
+      "type": "piechart",
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 10
+      },
+      "datasource": {
+        "uid": "mock-data",
+        "type": "yesoreyeram-infinity-datasource"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-mock-server:3001/incidents/by_status?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          },
+          "parser": "backend",
+          "root_selector": "",
+          "columns": [
+            {
+              "selector": "status",
+              "text": "Status",
+              "type": "string"
+            },
+            {
+              "selector": "count",
+              "text": "Count",
+              "type": "number"
+            }
+          ]
+        }
+      ],
+      "transformations": [
+        {
+          "id": "rowsToFields",
+          "options": {
+            "mappings": [
+              {
+                "fieldName": "Status",
+                "handlerKey": "field.name"
+              },
+              {
+                "fieldName": "Count",
+                "handlerKey": "field.value"
+              }
+            ]
+          }
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          }
+        }
+      },
+      "options": {
+        "pieType": "donut",
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        }
+      }
+    },
+    {
+      "id": 8,
+      "title": "All Incidents (Full Detail)",
+      "type": "table",
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "datasource": {
+        "uid": "mock-data",
+        "type": "yesoreyeram-infinity-datasource"
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "type": "json",
+          "source": "url",
+          "url": "http://soc-mock-server:3001/incidents?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          },
+          "parser": "backend",
+          "root_selector": "",
+          "columns": [
+            {
+              "selector": "_time",
+              "text": "Time",
+              "type": "timestamp"
+            },
+            {
+              "selector": "severity",
+              "text": "Severity",
+              "type": "string"
+            },
+            {
+              "selector": "status_label",
+              "text": "Status",
+              "type": "string"
+            },
+            {
+              "selector": "owner",
+              "text": "Analyst",
+              "type": "string"
+            },
+            {
+              "selector": "security_domain",
+              "text": "Category",
+              "type": "string"
+            },
+            {
+              "selector": "rule_name",
+              "text": "Rule",
+              "type": "string"
+            },
+            {
+              "selector": "mitre_attack_tactic",
+              "text": "MITRE Tactic",
+              "type": "string"
+            }
+          ]
+        }
+      ],
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Severity"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "critical": {
+                        "color": "red",
+                        "text": "\ud83d\udd34 Critical"
+                      },
+                      "high": {
+                        "color": "orange",
+                        "text": "\ud83d\udfe0 High"
+                      },
+                      "medium": {
+                        "color": "yellow",
+                        "text": "\ud83d\udfe1 Medium"
+                      },
+                      "low": {
+                        "color": "blue",
+                        "text": "\ud83d\udd35 Low"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "type": "value",
+                    "options": {
+                      "New": {
+                        "color": "dark-red"
+                      },
+                      "In Progress": {
+                        "color": "dark-orange"
+                      },
+                      "Closed": {
+                        "color": "dark-green"
+                      },
+                      "Closed - False Positive": {
+                        "color": "dark-blue"
+                      }
+                    }
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "options": {
+        "showHeader": true,
+        "sortBy": [
+          {
+            "displayName": "Time",
+            "desc": true
+          }
+        ],
+        "footer": {
+          "show": true,
+          "reducer": [
+            "count"
+          ],
+          "fields": [
+            "Time"
+          ]
+        }
+      }
+    }
+  ],
+  "fiscalYearStartMonth": 0
+}
