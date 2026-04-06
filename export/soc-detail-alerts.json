@@ -1,0 +1,872 @@
+{
+  "dashboard": {
+    "editable": true,
+    "graphTooltip": 2,
+    "links": [
+      {
+        "icon": "arrow-left",
+        "keepTime": true,
+        "title": "\u2190 Back to Overview",
+        "type": "link",
+        "url": "/d/soc-mgmt-overview/soc-management-overview"
+      },
+      {
+        "keepTime": true,
+        "title": "Incident Drilldown",
+        "type": "link",
+        "url": "/d/soc-detail-incidents/soc-incident-drilldown"
+      },
+      {
+        "keepTime": true,
+        "title": "SOAR Drilldown",
+        "type": "link",
+        "url": "/d/soc-detail-soar/soar-playbook-drilldown"
+      }
+    ],
+    "panels": [
+      {
+        "gridPos": {
+          "h": 2,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 1,
+        "options": {
+          "content": "# \ud83d\udea8 Alert Analysis\nRule performance, alert volume, response actions, and source intelligence",
+          "mode": "markdown"
+        },
+        "title": "",
+        "type": "text"
+      },
+      {
+        "datasource": {
+          "uid": "mock-data"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "blue",
+              "mode": "fixed"
+            }
+          }
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 0,
+          "y": 2
+        },
+        "id": 2,
+        "options": {
+          "colorMode": "background",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ]
+          },
+          "textMode": "value"
+        },
+        "targets": [
+          {
+            "columns": [
+              {
+                "selector": "count",
+                "text": "Count",
+                "type": "number"
+              }
+            ],
+            "datasource": {
+              "uid": "mock-data"
+            },
+            "parser": "backend",
+            "refId": "A",
+            "source": "url",
+            "type": "json",
+            "url": "http://soc-mock-server/alerts.json",
+            "url_options": {
+              "method": "GET"
+            }
+          }
+        ],
+        "title": "Total Alerts",
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "uid": "mock-data"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "green",
+              "mode": "fixed"
+            }
+          }
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 6,
+          "y": 2
+        },
+        "id": 3,
+        "options": {
+          "colorMode": "background",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "/^Count$/"
+          },
+          "textMode": "value"
+        },
+        "targets": [
+          {
+            "columns": [
+              {
+                "selector": "vendor_action",
+                "text": "Action",
+                "type": "string"
+              },
+              {
+                "selector": "count",
+                "text": "Count",
+                "type": "number"
+              }
+            ],
+            "datasource": {
+              "uid": "mock-data"
+            },
+            "parser": "backend",
+            "refId": "A",
+            "source": "url",
+            "type": "json",
+            "url": "http://soc-mock-server/alerts.json",
+            "url_options": {
+              "method": "GET"
+            }
+          }
+        ],
+        "title": "Alerts Blocked",
+        "transformations": [
+          {
+            "id": "filterByValue",
+            "options": {
+              "filters": [
+                {
+                  "config": {
+                    "id": "equal",
+                    "options": {
+                      "value": "blocked"
+                    }
+                  },
+                  "fieldName": "Action"
+                }
+              ],
+              "match": "all",
+              "type": "include"
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "uid": "mock-data"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "fixedColor": "orange",
+              "mode": "fixed"
+            }
+          }
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 12,
+          "y": 2
+        },
+        "id": 4,
+        "options": {
+          "colorMode": "background",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "/^Count$/"
+          },
+          "textMode": "value"
+        },
+        "targets": [
+          {
+            "columns": [
+              {
+                "selector": "vendor_action",
+                "text": "Action",
+                "type": "string"
+              },
+              {
+                "selector": "count",
+                "text": "Count",
+                "type": "number"
+              }
+            ],
+            "datasource": {
+              "uid": "mock-data"
+            },
+            "parser": "backend",
+            "refId": "A",
+            "source": "url",
+            "type": "json",
+            "url": "http://soc-mock-server/alerts.json",
+            "url_options": {
+              "method": "GET"
+            }
+          }
+        ],
+        "title": "Alerts Quarantined",
+        "transformations": [
+          {
+            "id": "filterByValue",
+            "options": {
+              "filters": [
+                {
+                  "config": {
+                    "id": "equal",
+                    "options": {
+                      "value": "quarantined"
+                    }
+                  },
+                  "fieldName": "Action"
+                }
+              ],
+              "match": "all",
+              "type": "include"
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "uid": "mock-data"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "thresholds": {
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "yellow",
+                  "value": 5
+                },
+                {
+                  "color": "red",
+                  "value": 10
+                }
+              ]
+            }
+          }
+        },
+        "gridPos": {
+          "h": 4,
+          "w": 6,
+          "x": 18,
+          "y": 2
+        },
+        "id": 5,
+        "options": {
+          "colorMode": "background",
+          "reduceOptions": {
+            "calcs": [
+              "sum"
+            ],
+            "fields": "/^Count$/"
+          },
+          "textMode": "value"
+        },
+        "targets": [
+          {
+            "columns": [
+              {
+                "selector": "vendor_action",
+                "text": "Action",
+                "type": "string"
+              },
+              {
+                "selector": "count",
+                "text": "Count",
+                "type": "number"
+              }
+            ],
+            "datasource": {
+              "uid": "mock-data"
+            },
+            "parser": "backend",
+            "refId": "A",
+            "source": "url",
+            "type": "json",
+            "url": "http://soc-mock-server/alerts.json",
+            "url_options": {
+              "method": "GET"
+            }
+          }
+        ],
+        "title": "Alerts Pending Review",
+        "transformations": [
+          {
+            "id": "filterByValue",
+            "options": {
+              "filters": [
+                {
+                  "config": {
+                    "id": "equal",
+                    "options": {
+                      "value": "alerted"
+                    }
+                  },
+                  "fieldName": "Action"
+                }
+              ],
+              "match": "all",
+              "type": "include"
+            }
+          }
+        ],
+        "type": "stat"
+      },
+      {
+        "datasource": {
+          "uid": "mock-data"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            }
+          }
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 12,
+          "x": 0,
+          "y": 6
+        },
+        "id": 6,
+        "options": {
+          "barWidth": 0.6,
+          "orientation": "horizontal",
+          "showValue": "always"
+        },
+        "targets": [
+          {
+            "columns": [
+              {
+                "selector": "rule_name",
+                "text": "Rule",
+                "type": "string"
+              },
+              {
+                "selector": "count",
+                "text": "Count",
+                "type": "number"
+              }
+            ],
+            "datasource": {
+              "uid": "mock-data"
+            },
+            "parser": "backend",
+            "refId": "A",
+            "source": "url",
+            "type": "json",
+            "url": "http://soc-mock-server/alerts.json",
+            "url_options": {
+              "method": "GET"
+            }
+          }
+        ],
+        "title": "Alerts by Rule",
+        "transformations": [
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Rule": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                }
+              }
+            }
+          }
+        ],
+        "type": "barchart"
+      },
+      {
+        "datasource": {
+          "uid": "mock-data"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "blocked"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "green",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "quarantined"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "orange",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "alerted"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "yellow",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 12,
+          "y": 6
+        },
+        "id": 7,
+        "options": {
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "pieType": "donut",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/^Count \\(sum\\)$/"
+          }
+        },
+        "targets": [
+          {
+            "columns": [
+              {
+                "selector": "vendor_action",
+                "text": "Action",
+                "type": "string"
+              },
+              {
+                "selector": "count",
+                "text": "Count",
+                "type": "number"
+              }
+            ],
+            "datasource": {
+              "uid": "mock-data"
+            },
+            "parser": "backend",
+            "refId": "A",
+            "source": "url",
+            "type": "json",
+            "url": "http://soc-mock-server/alerts.json",
+            "url_options": {
+              "method": "GET"
+            }
+          }
+        ],
+        "title": "Actions Taken",
+        "transformations": [
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Action": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                },
+                "Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                }
+              }
+            }
+          }
+        ],
+        "type": "piechart"
+      },
+      {
+        "datasource": {
+          "uid": "mock-data"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "palette-classic"
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "critical"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "red",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "high"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "orange",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "medium"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "yellow",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "low"
+              },
+              "properties": [
+                {
+                  "id": "color",
+                  "value": {
+                    "fixedColor": "blue",
+                    "mode": "fixed"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 18,
+          "y": 6
+        },
+        "id": 8,
+        "options": {
+          "legend": {
+            "displayMode": "list",
+            "placement": "bottom"
+          },
+          "pieType": "donut",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "/^Count \\(sum\\)$/"
+          }
+        },
+        "targets": [
+          {
+            "columns": [
+              {
+                "selector": "severity",
+                "text": "Severity",
+                "type": "string"
+              },
+              {
+                "selector": "count",
+                "text": "Count",
+                "type": "number"
+              }
+            ],
+            "datasource": {
+              "uid": "mock-data"
+            },
+            "parser": "backend",
+            "refId": "A",
+            "source": "url",
+            "type": "json",
+            "url": "http://soc-mock-server/alerts.json",
+            "url_options": {
+              "method": "GET"
+            }
+          }
+        ],
+        "title": "Alerts by Severity",
+        "transformations": [
+          {
+            "id": "groupBy",
+            "options": {
+              "fields": {
+                "Count": {
+                  "aggregations": [
+                    "sum"
+                  ],
+                  "operation": "aggregate"
+                },
+                "Severity": {
+                  "aggregations": [],
+                  "operation": "groupby"
+                }
+              }
+            }
+          }
+        ],
+        "type": "piechart"
+      },
+      {
+        "datasource": {
+          "uid": "mock-data"
+        },
+        "fieldConfig": {
+          "defaults": {},
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Severity"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "critical": {
+                          "color": "red",
+                          "text": "\ud83d\udd34 Critical"
+                        },
+                        "high": {
+                          "color": "orange",
+                          "text": "\ud83d\udfe0 High"
+                        },
+                        "low": {
+                          "color": "blue",
+                          "text": "\ud83d\udd35 Low"
+                        },
+                        "medium": {
+                          "color": "yellow",
+                          "text": "\ud83d\udfe1 Medium"
+                        }
+                      },
+                      "type": "value"
+                    }
+                  ]
+                },
+                {
+                  "id": "custom.cellOptions",
+                  "value": {
+                    "type": "color-text"
+                  }
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "Action"
+              },
+              "properties": [
+                {
+                  "id": "mappings",
+                  "value": [
+                    {
+                      "options": {
+                        "alerted": {
+                          "color": "yellow",
+                          "text": "\u26a0\ufe0f Alerted"
+                        },
+                        "blocked": {
+                          "color": "green",
+                          "text": "\ud83d\udee1\ufe0f Blocked"
+                        },
+                        "quarantined": {
+                          "color": "orange",
+                          "text": "\ud83d\udd12 Quarantined"
+                        }
+                      },
+                      "type": "value"
+                    }
+                  ]
+                },
+                {
+                  "id": "custom.cellOptions",
+                  "value": {
+                    "type": "color-text"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 10,
+          "w": 24,
+          "x": 0,
+          "y": 14
+        },
+        "id": 9,
+        "options": {
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": true,
+              "displayName": "Time"
+            }
+          ]
+        },
+        "targets": [
+          {
+            "columns": [
+              {
+                "selector": "_time",
+                "text": "Time",
+                "type": "timestamp"
+              },
+              {
+                "selector": "rule_name",
+                "text": "Rule",
+                "type": "string"
+              },
+              {
+                "selector": "severity",
+                "text": "Severity",
+                "type": "string"
+              },
+              {
+                "selector": "src",
+                "text": "Source IP",
+                "type": "string"
+              },
+              {
+                "selector": "dest",
+                "text": "Dest IP",
+                "type": "string"
+              },
+              {
+                "selector": "user",
+                "text": "User",
+                "type": "string"
+              },
+              {
+                "selector": "app",
+                "text": "App",
+                "type": "string"
+              },
+              {
+                "selector": "vendor_action",
+                "text": "Action",
+                "type": "string"
+              },
+              {
+                "selector": "count",
+                "text": "Hits",
+                "type": "number"
+              }
+            ],
+            "datasource": {
+              "uid": "mock-data"
+            },
+            "parser": "backend",
+            "refId": "A",
+            "source": "url",
+            "type": "json",
+            "url": "http://soc-mock-server/alerts.json",
+            "url_options": {
+              "method": "GET"
+            }
+          }
+        ],
+        "title": "Full Alert Log",
+        "type": "table"
+      }
+    ],
+    "refresh": "5m",
+    "schemaVersion": 39,
+    "tags": [
+      "soc",
+      "detailed"
+    ],
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "timezone": "browser",
+    "title": "SOC Alert Analysis",
+    "uid": "soc-detail-alerts",
+    "version": 1
+  },
+  "overwrite": true,
+  "folderId": 0
+}
