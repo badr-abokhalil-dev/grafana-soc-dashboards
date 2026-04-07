@@ -15,7 +15,7 @@ datasources:
     uid: splunk-api
     access: proxy
     url: http://soc-splunk:8089
-    isDefault: false
+    isDefault: true
     # Grafana core TLS skip
     tls_skip_verify_insecure: true
     jsonData:
@@ -58,7 +58,7 @@ datasources:
     uid: mock-data
     access: proxy
     url: http://soc-mock-server:3001
-    isDefault: true
+    isDefault: false
     jsonData:
       authType: none
       tlsSkipVerify: true
