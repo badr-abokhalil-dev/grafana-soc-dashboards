@@ -5,7 +5,7 @@
     {
       "icon": "arrow-left",
       "keepTime": true,
-      "title": "\u2190 Back to Overview",
+      "title": "← Back to Overview",
       "type": "link",
       "url": "/d/soc-mgmt-overview/soc-management-overview"
     },
@@ -32,7 +32,7 @@
       },
       "id": 1,
       "options": {
-        "content": "# \ud83d\udea8 Alert Analysis\nRule performance, alert volume, response actions, and source intelligence",
+        "content": "# 🚨 Alert Analysis\nRule performance, alert volume, response actions, and source intelligence",
         "mode": "markdown"
       },
       "title": "",
@@ -40,7 +40,7 @@
     },
     {
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "fieldConfig": {
         "defaults": {
@@ -76,15 +76,22 @@
             }
           ],
           "datasource": {
-            "uid": "mock-data"
+            "uid": "splunk-api"
           },
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "json",
-          "url": "http://soc-mock-server:3001/alerts.json?start_time=${__from}&end_time=${__to}",
+          "type": "csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
           "url_options": {
-            "method": "GET"
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=alerts | table count"
+              }
+            ]
           }
         }
       ],
@@ -93,7 +100,7 @@
     },
     {
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "fieldConfig": {
         "defaults": {
@@ -135,15 +142,22 @@
             }
           ],
           "datasource": {
-            "uid": "mock-data"
+            "uid": "splunk-api"
           },
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "json",
-          "url": "http://soc-mock-server:3001/alerts.json?start_time=${__from}&end_time=${__to}",
+          "type": "csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
           "url_options": {
-            "method": "GET"
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=alerts | table vendor_action count"
+              }
+            ]
           }
         }
       ],
@@ -172,7 +186,7 @@
     },
     {
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "fieldConfig": {
         "defaults": {
@@ -214,15 +228,22 @@
             }
           ],
           "datasource": {
-            "uid": "mock-data"
+            "uid": "splunk-api"
           },
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "json",
-          "url": "http://soc-mock-server:3001/alerts.json?start_time=${__from}&end_time=${__to}",
+          "type": "csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
           "url_options": {
-            "method": "GET"
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=alerts | table vendor_action count"
+              }
+            ]
           }
         }
       ],
@@ -251,7 +272,7 @@
     },
     {
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "fieldConfig": {
         "defaults": {
@@ -308,15 +329,22 @@
             }
           ],
           "datasource": {
-            "uid": "mock-data"
+            "uid": "splunk-api"
           },
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "json",
-          "url": "http://soc-mock-server:3001/alerts.json?start_time=${__from}&end_time=${__to}",
+          "type": "csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
           "url_options": {
-            "method": "GET"
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=alerts | table vendor_action count"
+              }
+            ]
           }
         }
       ],
@@ -345,7 +373,7 @@
     },
     {
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "fieldConfig": {
         "defaults": {
@@ -381,15 +409,22 @@
             }
           ],
           "datasource": {
-            "uid": "mock-data"
+            "uid": "splunk-api"
           },
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "json",
-          "url": "http://soc-mock-server:3001/alerts.json?start_time=${__from}&end_time=${__to}",
+          "type": "csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
           "url_options": {
-            "method": "GET"
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=alerts | table rule_name count"
+              }
+            ]
           }
         }
       ],
@@ -417,7 +452,7 @@
     },
     {
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "fieldConfig": {
         "defaults": {
@@ -508,15 +543,22 @@
             }
           ],
           "datasource": {
-            "uid": "mock-data"
+            "uid": "splunk-api"
           },
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "json",
-          "url": "http://soc-mock-server:3001/alerts.json?start_time=${__from}&end_time=${__to}",
+          "type": "csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
           "url_options": {
-            "method": "GET"
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=alerts | table vendor_action count"
+              }
+            ]
           }
         }
       ],
@@ -544,7 +586,7 @@
     },
     {
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "fieldConfig": {
         "defaults": {
@@ -650,15 +692,22 @@
             }
           ],
           "datasource": {
-            "uid": "mock-data"
+            "uid": "splunk-api"
           },
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "json",
-          "url": "http://soc-mock-server:3001/alerts.json?start_time=${__from}&end_time=${__to}",
+          "type": "csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
           "url_options": {
-            "method": "GET"
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=alerts | table severity count"
+              }
+            ]
           }
         }
       ],
@@ -686,7 +735,7 @@
     },
     {
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "fieldConfig": {
         "defaults": {},
@@ -704,19 +753,19 @@
                     "options": {
                       "critical": {
                         "color": "red",
-                        "text": "\ud83d\udd34 Critical"
+                        "text": "🔴 Critical"
                       },
                       "high": {
                         "color": "orange",
-                        "text": "\ud83d\udfe0 High"
+                        "text": "🟠 High"
                       },
                       "low": {
                         "color": "blue",
-                        "text": "\ud83d\udd35 Low"
+                        "text": "🔵 Low"
                       },
                       "medium": {
                         "color": "yellow",
-                        "text": "\ud83d\udfe1 Medium"
+                        "text": "🟡 Medium"
                       }
                     },
                     "type": "value"
@@ -744,15 +793,15 @@
                     "options": {
                       "alerted": {
                         "color": "yellow",
-                        "text": "\u26a0\ufe0f Alerted"
+                        "text": "⚠️ Alerted"
                       },
                       "blocked": {
                         "color": "green",
-                        "text": "\ud83d\udee1\ufe0f Blocked"
+                        "text": "🛡️ Blocked"
                       },
                       "quarantined": {
                         "color": "orange",
-                        "text": "\ud83d\udd12 Quarantined"
+                        "text": "🔒 Quarantined"
                       }
                     },
                     "type": "value"
@@ -835,15 +884,22 @@
             }
           ],
           "datasource": {
-            "uid": "mock-data"
+            "uid": "splunk-api"
           },
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "json",
-          "url": "http://soc-mock-server:3001/alerts.json?start_time=${__from}&end_time=${__to}",
+          "type": "csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
           "url_options": {
-            "method": "GET"
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=alerts | table _time rule_name severity src dest user app vendor_action count"
+              }
+            ]
           }
         }
       ],

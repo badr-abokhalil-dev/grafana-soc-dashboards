@@ -1,24 +1,24 @@
 {
-  "description": "Detailed SOAR metrics \u2014 playbook success/failure, execution times, automation coverage",
+  "description": "Detailed SOAR metrics — playbook success/failure, execution times, automation coverage",
   "editable": true,
   "graphTooltip": 2,
   "links": [
     {
-      "title": "\ud83d\udcca Back to Overview",
+      "title": "📊 Back to Overview",
       "type": "link",
       "url": "/d/soc-mgmt-overview/soc-management-overview",
       "icon": "apps",
       "keepTime": true
     },
     {
-      "title": "\ud83d\udd0d Incident Drilldown",
+      "title": "🔍 Incident Drilldown",
       "type": "link",
       "url": "/d/soc-detail-incidents/soc-incident-drilldown",
       "icon": "apps",
       "keepTime": true
     },
     {
-      "title": "\ud83d\udea8 Alert Analysis",
+      "title": "🚨 Alert Analysis",
       "type": "link",
       "url": "/d/soc-detail-alerts/soc-alert-analysis",
       "icon": "apps",
@@ -35,7 +35,7 @@
       },
       "id": 1,
       "options": {
-        "content": "# \u2699\ufe0f SOAR Playbook Analytics\nAutomation efficiency, execution trends, and failure analysis",
+        "content": "# ⚙️ SOAR Playbook Analytics\nAutomation efficiency, execution trends, and failure analysis",
         "mode": "markdown"
       },
       "title": "",
@@ -43,7 +43,7 @@
     },
     {
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "fieldConfig": {
         "defaults": {
@@ -98,7 +98,7 @@
     },
     {
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "fieldConfig": {
         "defaults": {
@@ -169,7 +169,7 @@
     },
     {
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "fieldConfig": {
         "defaults": {
@@ -239,7 +239,7 @@
     },
     {
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "fieldConfig": {
         "defaults": {
@@ -295,7 +295,7 @@
     },
     {
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "fieldConfig": {
         "overrides": [
@@ -381,7 +381,7 @@
     },
     {
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "fieldConfig": {
         "defaults": {
@@ -435,7 +435,7 @@
     },
     {
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "gridPos": {
         "h": 8,
@@ -488,7 +488,7 @@
     },
     {
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "fieldConfig": {
         "overrides": [
@@ -505,11 +505,11 @@
                     "options": {
                       "false": {
                         "color": "red",
-                        "text": "\u274c Disabled"
+                        "text": "❌ Disabled"
                       },
                       "true": {
                         "color": "green",
-                        "text": "\u2705 Active"
+                        "text": "✅ Active"
                       }
                     },
                     "type": "value"

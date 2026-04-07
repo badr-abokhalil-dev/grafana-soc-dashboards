@@ -17,21 +17,21 @@
   },
   "links": [
     {
-      "title": "\ud83d\udcca Back to Overview",
+      "title": "📊 Back to Overview",
       "type": "link",
       "url": "/d/soc-mgmt-overview/soc-management-overview",
       "icon": "apps",
       "keepTime": true
     },
     {
-      "title": "\ud83d\ude80 SOAR Analytics",
+      "title": "🚀 SOAR Analytics",
       "type": "link",
       "url": "/d/soc-detail-soar/soc-soar-drilldown",
       "icon": "apps",
       "keepTime": true
     },
     {
-      "title": "\ud83d\udea8 Alert Analysis",
+      "title": "🚨 Alert Analysis",
       "type": "link",
       "url": "/d/soc-detail-alerts/soc-alert-analysis",
       "icon": "apps",
@@ -43,7 +43,7 @@
       {
         "name": "event_id",
         "type": "textbox",
-        "label": "\ud83d\udd0d Event ID",
+        "label": "🔍 Event ID",
         "current": {
           "text": "",
           "value": ""
@@ -65,7 +65,7 @@
       },
       "options": {
         "mode": "markdown",
-        "content": "# \ud83d\udd0d Incident Drilldown\nFilter by Event ID variable above, or click an incident from the Overview"
+        "content": "# 🔍 Incident Drilldown\nFilter by Event ID variable above, or click an incident from the Overview"
       }
     },
     {
@@ -79,20 +79,26 @@
         "y": 2
       },
       "datasource": {
-        "uid": "mock-data",
-        "type": "yesoreyeram-infinity-datasource"
+        "uid": "splunk-api"
       },
       "targets": [
         {
           "refId": "A",
           "datasource": {
-            "uid": "mock-data"
+            "uid": "splunk-api"
           },
-          "type": "json",
+          "type": "csv",
           "source": "url",
-          "url": "http://soc-mock-server:3001/incidents/by_category?start_time=${__from}&end_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
           "url_options": {
-            "method": "GET"
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=incidents | table category count"
+              }
+            ]
           },
           "parser": "backend",
           "root_selector": "",
@@ -135,20 +141,26 @@
         "y": 2
       },
       "datasource": {
-        "uid": "mock-data",
-        "type": "yesoreyeram-infinity-datasource"
+        "uid": "splunk-api"
       },
       "targets": [
         {
           "refId": "A",
           "datasource": {
-            "uid": "mock-data"
+            "uid": "splunk-api"
           },
-          "type": "json",
+          "type": "csv",
           "source": "url",
-          "url": "http://soc-mock-server:3001/mitre-coverage.json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
           "url_options": {
-            "method": "GET"
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=mitre | table tactic techniques_covered techniques_total detections_30d top_technique"
+              }
+            ]
           },
           "parser": "backend",
           "root_selector": "",
@@ -200,20 +212,26 @@
         "y": 10
       },
       "datasource": {
-        "uid": "mock-data",
-        "type": "yesoreyeram-infinity-datasource"
+        "uid": "splunk-api"
       },
       "targets": [
         {
           "refId": "A",
           "datasource": {
-            "uid": "mock-data"
+            "uid": "splunk-api"
           },
-          "type": "json",
+          "type": "csv",
           "source": "url",
-          "url": "http://soc-mock-server:3001/incidents/by_severity?start_time=${__from}&end_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
           "url_options": {
-            "method": "GET"
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=incidents | table severity count"
+              }
+            ]
           },
           "parser": "backend",
           "root_selector": "",
@@ -341,20 +359,26 @@
         "y": 10
       },
       "datasource": {
-        "uid": "mock-data",
-        "type": "yesoreyeram-infinity-datasource"
+        "uid": "splunk-api"
       },
       "targets": [
         {
           "refId": "A",
           "datasource": {
-            "uid": "mock-data"
+            "uid": "splunk-api"
           },
-          "type": "json",
+          "type": "csv",
           "source": "url",
-          "url": "http://soc-mock-server:3001/incidents/by_owner?start_time=${__from}&end_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
           "url_options": {
-            "method": "GET"
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=incidents | table analyst count"
+              }
+            ]
           },
           "parser": "backend",
           "root_selector": "",
@@ -397,20 +421,26 @@
         "y": 10
       },
       "datasource": {
-        "uid": "mock-data",
-        "type": "yesoreyeram-infinity-datasource"
+        "uid": "splunk-api"
       },
       "targets": [
         {
           "refId": "A",
           "datasource": {
-            "uid": "mock-data"
+            "uid": "splunk-api"
           },
-          "type": "json",
+          "type": "csv",
           "source": "url",
-          "url": "http://soc-mock-server:3001/incidents/by_source?start_time=${__from}&end_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
           "url_options": {
-            "method": "GET"
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=incidents | table tactic count"
+              }
+            ]
           },
           "parser": "backend",
           "root_selector": "",
@@ -476,20 +506,26 @@
         "y": 10
       },
       "datasource": {
-        "uid": "mock-data",
-        "type": "yesoreyeram-infinity-datasource"
+        "uid": "splunk-api"
       },
       "targets": [
         {
           "refId": "A",
           "datasource": {
-            "uid": "mock-data"
+            "uid": "splunk-api"
           },
-          "type": "json",
+          "type": "csv",
           "source": "url",
-          "url": "http://soc-mock-server:3001/incidents/by_status?start_time=${__from}&end_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
           "url_options": {
-            "method": "GET"
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=incidents | table status count"
+              }
+            ]
           },
           "parser": "backend",
           "root_selector": "",
@@ -555,20 +591,26 @@
         "y": 17
       },
       "datasource": {
-        "uid": "mock-data",
-        "type": "yesoreyeram-infinity-datasource"
+        "uid": "splunk-api"
       },
       "targets": [
         {
           "refId": "A",
           "datasource": {
-            "uid": "mock-data"
+            "uid": "splunk-api"
           },
-          "type": "json",
+          "type": "csv",
           "source": "url",
-          "url": "http://soc-mock-server:3001/incidents?start_time=${__from}&end_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
           "url_options": {
-            "method": "GET"
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=incidents | table _time severity status_label owner security_domain rule_name mitre_attack_tactic"
+              }
+            ]
           },
           "parser": "backend",
           "root_selector": "",
@@ -628,19 +670,19 @@
                     "options": {
                       "critical": {
                         "color": "red",
-                        "text": "\ud83d\udd34 Critical"
+                        "text": "🔴 Critical"
                       },
                       "high": {
                         "color": "orange",
-                        "text": "\ud83d\udfe0 High"
+                        "text": "🟠 High"
                       },
                       "medium": {
                         "color": "yellow",
-                        "text": "\ud83d\udfe1 Medium"
+                        "text": "🟡 Medium"
                       },
                       "low": {
                         "color": "blue",
-                        "text": "\ud83d\udd35 Low"
+                        "text": "🔵 Low"
                       }
                     }
                   }

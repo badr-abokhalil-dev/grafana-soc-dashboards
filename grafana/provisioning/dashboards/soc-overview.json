@@ -1,7 +1,7 @@
 {
   "uid": "soc-mgmt-overview",
   "title": "SOC Management Overview",
-  "description": "Executive view \u2014 KPIs, SLA compliance, incident trends, SOAR efficiency",
+  "description": "Executive view — KPIs, SLA compliance, incident trends, SOAR efficiency",
   "tags": [
     "soc",
     "management"
@@ -18,21 +18,21 @@
   },
   "links": [
     {
-      "title": "\ud83d\udd0d Incident Drilldown",
+      "title": "🔍 Incident Drilldown",
       "type": "link",
       "url": "/d/soc-detail-incidents/soc-incident-drilldown",
       "icon": "apps",
       "keepTime": true
     },
     {
-      "title": "\ud83d\ude80 SOAR Analytics",
+      "title": "🚀 SOAR Analytics",
       "type": "link",
       "url": "/d/soc-detail-soar/soc-soar-drilldown",
       "icon": "apps",
       "keepTime": true
     },
     {
-      "title": "\ud83d\udea8 Alert Analysis",
+      "title": "🚨 Alert Analysis",
       "type": "link",
       "url": "/d/soc-detail-alerts/soc-alert-analysis",
       "icon": "apps",
@@ -63,7 +63,7 @@
       },
       "options": {
         "mode": "markdown",
-        "content": "# \ud83d\udee1\ufe0f SOC Command Center\n**Management Overview** \u2014 Real-time operational status"
+        "content": "# 🛡️ SOC Command Center\n**Management Overview** — Real-time operational status"
       }
     },
     {
@@ -433,7 +433,7 @@
     {
       "id": 50,
       "title": "Avg MTTA",
-      "description": "Mean Time to Acknowledge (minutes) \u2014 time from detection to analyst assignment",
+      "description": "Mean Time to Acknowledge (minutes) — time from detection to analyst assignment",
       "type": "stat",
       "gridPos": {
         "h": 4,
@@ -525,7 +525,7 @@
     {
       "id": 51,
       "title": "Avg MTTC",
-      "description": "Mean Time to Contain (minutes) \u2014 time from detection to threat containment",
+      "description": "Mean Time to Contain (minutes) — time from detection to threat containment",
       "type": "stat",
       "gridPos": {
         "h": 4,
@@ -946,19 +946,26 @@
         "y": 6
       },
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "targets": [
         {
           "refId": "A",
           "datasource": {
-            "uid": "mock-data"
+            "uid": "splunk-api"
           },
-          "type": "json",
+          "type": "csv",
           "source": "url",
-          "url": "http://soc-mock-server:3001/playbooks.json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
           "url_options": {
-            "method": "GET"
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=soar | table name success_rate"
+              }
+            ]
           },
           "parser": "backend",
           "root_selector": "",
@@ -1147,19 +1154,26 @@
         "y": 14
       },
       "datasource": {
-        "uid": "mock-data"
+        "uid": "splunk-api"
       },
       "targets": [
         {
           "refId": "A",
           "datasource": {
-            "uid": "mock-data"
+            "uid": "splunk-api"
           },
-          "type": "json",
+          "type": "csv",
           "source": "url",
-          "url": "http://soc-mock-server:3001/mitre-coverage.json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
           "url_options": {
-            "method": "GET"
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=mitre | table tactic techniques_covered techniques_total detections_30d top_technique"
+              }
+            ]
           },
           "parser": "backend",
           "root_selector": "",
@@ -1303,19 +1317,19 @@
                     "options": {
                       "critical": {
                         "color": "red",
-                        "text": "\ud83d\udd34 Critical"
+                        "text": "🔴 Critical"
                       },
                       "high": {
                         "color": "orange",
-                        "text": "\ud83d\udfe0 High"
+                        "text": "🟠 High"
                       },
                       "medium": {
                         "color": "yellow",
-                        "text": "\ud83d\udfe1 Medium"
+                        "text": "🟡 Medium"
                       },
                       "low": {
                         "color": "blue",
-                        "text": "\ud83d\udd35 Low"
+                        "text": "🔵 Low"
                       }
                     }
                   }
