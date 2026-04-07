@@ -3,6 +3,7 @@
 ## What's Included
 - `yesoreyeram-infinity-datasource/` — Infinity plugin (48MB)
 - `datasources.yml` — Datasource configuration
+- `infosec-home.json` — **Home dashboard** (entry point with navigation cards)
 - `soc-mgmt-overview.json` — Management dashboard
 - `soc-detail-incidents.json` — Incident drilldown
 - `soc-detail-soar.json` — SOAR analytics
@@ -38,6 +39,7 @@ In Grafana UI: **Connections → Data Sources → Add**
 ## Step 3: Import Dashboards
 
 **Dashboards → New → Import** — upload each `.json` file:
+- `infosec-home.json` (import first — this is your entry point)
 - `soc-mgmt-overview.json`
 - `soc-detail-incidents.json`
 - `soc-detail-soar.json`

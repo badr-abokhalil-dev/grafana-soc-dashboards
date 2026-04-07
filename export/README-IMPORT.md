@@ -2,6 +2,7 @@
 
 ## What's Included
 - `datasources.yml` — Infinity datasource configuration
+- `infosec-home.json` — **Home dashboard** (entry point with navigation cards)
 - `soc-mgmt-overview.json` — Management dashboard
 - `soc-detail-incidents.json` — Incident drilldown
 - `soc-detail-soar.json` — SOAR analytics

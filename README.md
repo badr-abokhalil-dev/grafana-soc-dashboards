@@ -4,7 +4,13 @@ A portable, self-contained SOC (Security Operations Center) dashboard built with
 
 ## Home Dashboard
 
-Open **`index.html`** in any browser to access the InfoSec home dashboard — the single entry point for all security domains. The SOC Dashboard card links to the live Grafana instance at `https://soc-grafana.abokhalil.dev/d/soc-mgmt-overview`; other domains (GRC, Vulnerability Management, Endpoint, Cloud, Threat Intel) are placeholders for future expansion.
+The project ships two home dashboard options:
+
+1. **`index.html`** — Standalone HTML page (no Grafana required), deployable on any web server. The SOC Dashboard card links to `https://soc-grafana.abokhalil.dev/d/soc-mgmt-overview`.
+
+2. **`grafana/dashboards/management/infosec-home.json`** — Native Grafana dashboard (import into any Grafana OSS instance). Features a 6-card cyber-themed navigation grid with inline styles and clickable cards.
+
+Both serve as the entry point for all security domain dashboards.
 
 ## Architecture
 
