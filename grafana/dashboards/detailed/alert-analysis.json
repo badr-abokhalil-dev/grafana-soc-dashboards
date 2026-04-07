@@ -1,115 +1,47 @@
 {
-  "uid": "soc-detail-alerts",
-  "title": "SOC Alert Analysis",
-  "tags": [
-    "soc",
-    "detailed"
-  ],
-  "timezone": "browser",
   "editable": true,
   "graphTooltip": 2,
-  "schemaVersion": 39,
-  "version": 1,
-  "refresh": "5m",
-  "time": {
-    "from": "now-24h",
-    "to": "now"
-  },
   "links": [
     {
-      "title": "\ud83d\udcca Back to Overview",
+      "icon": "arrow-left",
+      "keepTime": true,
+      "title": "\u2190 Back to Overview",
       "type": "link",
-      "url": "/d/soc-mgmt-overview/soc-management-overview",
-      "icon": "apps",
-      "keepTime": true
+      "url": "/d/soc-mgmt-overview/soc-management-overview"
     },
     {
-      "title": "\ud83d\udd0d Incident Drilldown",
+      "keepTime": true,
+      "title": "Incident Drilldown",
       "type": "link",
-      "url": "/d/soc-detail-incidents/soc-incident-drilldown",
-      "icon": "apps",
-      "keepTime": true
+      "url": "/d/soc-detail-incidents/soc-incident-drilldown"
     },
     {
-      "title": "\ud83d\ude80 SOAR Analytics",
+      "keepTime": true,
+      "title": "SOAR Drilldown",
       "type": "link",
-      "url": "/d/soc-detail-soar/soc-soar-drilldown",
-      "icon": "apps",
-      "keepTime": true
+      "url": "/d/soc-detail-soar/soar-playbook-drilldown"
     }
   ],
   "panels": [
     {
-      "id": 1,
-      "title": "",
-      "type": "text",
       "gridPos": {
         "h": 2,
         "w": 24,
         "x": 0,
         "y": 0
       },
+      "id": 1,
       "options": {
-        "mode": "markdown",
-        "content": "# \ud83d\udea8 Alert Analysis\nRule performance, alert volume, response actions, and source intelligence"
-      }
+        "content": "# \ud83d\udea8 Alert Analysis\nRule performance, alert volume, response actions, and source intelligence",
+        "mode": "markdown"
+      },
+      "title": "",
+      "type": "text"
     },
     {
-      "id": 2,
-      "title": "Total Alerts",
-      "type": "stat",
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 0,
-        "y": 2
-      },
       "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
+        "uid": "mock-data"
       },
-      "targets": [
-        {
-          "refId": "A",
-          "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_alert | stats sum(count) as total"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
-          },
-          "parser": "backend",
-          "root_selector": "results",
-          "columns": [
-            {
-              "selector": "total",
-              "text": "Total",
-              "type": "number"
-            }
-          ]
-        }
-      ],
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -118,73 +50,51 @@
           }
         }
       },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 0,
+        "y": 2
+      },
+      "id": 2,
       "options": {
+        "colorMode": "background",
         "reduceOptions": {
           "calcs": [
             "sum"
           ]
         },
-        "colorMode": "background",
         "textMode": "value"
-      }
-    },
-    {
-      "id": 3,
-      "title": "Alerts Blocked",
-      "type": "stat",
-      "gridPos": {
-        "h": 4,
-        "w": 6,
-        "x": 6,
-        "y": 2
-      },
-      "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
       },
       "targets": [
         {
-          "refId": "A",
-          "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_alert action=blocked | stats sum(count) as blocked"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
-          },
-          "parser": "backend",
-          "root_selector": "results",
           "columns": [
             {
-              "selector": "blocked",
-              "text": "Blocked",
+              "selector": "count",
+              "text": "Count",
               "type": "number"
             }
-          ]
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/alerts.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
         }
       ],
-      "transformations": [],
+      "title": "Total Alerts",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -193,73 +103,77 @@
           }
         }
       },
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ]
-        },
-        "colorMode": "background",
-        "textMode": "value"
-      }
-    },
-    {
-      "id": 4,
-      "title": "Alerts Quarantined",
-      "type": "stat",
       "gridPos": {
         "h": 4,
         "w": 6,
-        "x": 12,
+        "x": 6,
         "y": 2
       },
-      "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
+      "id": 3,
+      "options": {
+        "colorMode": "background",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "/^Count$/"
+        },
+        "textMode": "value"
       },
       "targets": [
         {
-          "refId": "A",
-          "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_alert action=quarantined | stats sum(count) as quarantined"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
-          },
-          "parser": "backend",
-          "root_selector": "results",
           "columns": [
             {
-              "selector": "quarantined",
-              "text": "Quarantined",
+              "selector": "vendor_action",
+              "text": "Action",
+              "type": "string"
+            },
+            {
+              "selector": "count",
+              "text": "Count",
               "type": "number"
             }
-          ]
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/alerts.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
         }
       ],
-      "transformations": [],
+      "title": "Alerts Blocked",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "blocked"
+                  }
+                },
+                "fieldName": "Action"
+              }
+            ],
+            "match": "all",
+            "type": "include"
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -268,73 +182,77 @@
           }
         }
       },
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ]
-        },
-        "colorMode": "background",
-        "textMode": "value"
-      }
-    },
-    {
-      "id": 5,
-      "title": "Alerts Pending Review",
-      "type": "stat",
       "gridPos": {
         "h": 4,
         "w": 6,
-        "x": 18,
+        "x": 12,
         "y": 2
       },
-      "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
+      "id": 4,
+      "options": {
+        "colorMode": "background",
+        "reduceOptions": {
+          "calcs": [
+            "sum"
+          ],
+          "fields": "/^Count$/"
+        },
+        "textMode": "value"
       },
       "targets": [
         {
-          "refId": "A",
-          "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_alert action=alerted | stats sum(count) as pending"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
-          },
-          "parser": "backend",
-          "root_selector": "results",
           "columns": [
             {
-              "selector": "pending",
-              "text": "Pending",
+              "selector": "vendor_action",
+              "text": "Action",
+              "type": "string"
+            },
+            {
+              "selector": "count",
+              "text": "Count",
               "type": "number"
             }
-          ]
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/alerts.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
         }
       ],
-      "transformations": [],
+      "title": "Alerts Quarantined",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "quarantined"
+                  }
+                },
+                "fieldName": "Action"
+              }
+            ],
+            "match": "all",
+            "type": "include"
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -358,141 +276,28 @@
           }
         }
       },
+      "gridPos": {
+        "h": 4,
+        "w": 6,
+        "x": 18,
+        "y": 2
+      },
+      "id": 5,
       "options": {
+        "colorMode": "background",
         "reduceOptions": {
           "calcs": [
-            "lastNotNull"
-          ]
+            "sum"
+          ],
+          "fields": "/^Count$/"
         },
-        "colorMode": "background",
         "textMode": "value"
-      }
-    },
-    {
-      "id": 6,
-      "title": "Alerts by Rule",
-      "type": "barchart",
-      "gridPos": {
-        "h": 8,
-        "w": 12,
-        "x": 0,
-        "y": 6
-      },
-      "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
       },
       "targets": [
         {
-          "refId": "A",
-          "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_alert | stats sum(count) as total_hits by rule | sort -total_hits"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
-          },
-          "parser": "backend",
-          "root_selector": "results",
           "columns": [
             {
-              "selector": "rule",
-              "text": "Rule",
-              "type": "string"
-            },
-            {
-              "selector": "total_hits",
-              "text": "Hits",
-              "type": "number"
-            }
-          ]
-        }
-      ],
-      "transformations": [],
-      "fieldConfig": {
-        "defaults": {
-          "color": {
-            "mode": "palette-classic"
-          }
-        }
-      },
-      "options": {
-        "orientation": "horizontal",
-        "showValue": "always",
-        "barWidth": 0.6
-      }
-    },
-    {
-      "id": 7,
-      "title": "Actions Taken",
-      "type": "piechart",
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 12,
-        "y": 6
-      },
-      "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
-      },
-      "targets": [
-        {
-          "refId": "A",
-          "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_alert | stats count by action"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
-          },
-          "parser": "backend",
-          "root_selector": "results",
-          "columns": [
-            {
-              "selector": "action",
+              "selector": "vendor_action",
               "text": "Action",
               "type": "string"
             },
@@ -501,26 +306,119 @@
               "text": "Count",
               "type": "number"
             }
-          ]
-        }
-      ],
-      "transformations": [
-        {
-          "id": "rowsToFields",
-          "options": {
-            "mappings": [
-              {
-                "fieldName": "Action",
-                "handlerKey": "field.name"
-              },
-              {
-                "fieldName": "Count",
-                "handlerKey": "field.value"
-              }
-            ]
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/alerts.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
           }
         }
       ],
+      "title": "Alerts Pending Review",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "alerted"
+                  }
+                },
+                "fieldName": "Action"
+              }
+            ],
+            "match": "all",
+            "type": "include"
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          }
+        }
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 6
+      },
+      "id": 6,
+      "options": {
+        "barWidth": 0.6,
+        "orientation": "horizontal",
+        "showValue": "always"
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "rule_name",
+              "text": "Rule",
+              "type": "string"
+            },
+            {
+              "selector": "count",
+              "text": "Count",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/alerts.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Alerts by Rule",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Count": {
+                "aggregations": [
+                  "sum"
+                ],
+                "operation": "aggregate"
+              },
+              "Rule": {
+                "aggregations": [],
+                "operation": "groupby"
+              }
+            }
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -575,70 +473,32 @@
           }
         ]
       },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 12,
+        "y": 6
+      },
+      "id": 7,
       "options": {
-        "pieType": "donut",
         "legend": {
           "displayMode": "list",
           "placement": "bottom"
         },
+        "pieType": "donut",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
-          ]
+          ],
+          "fields": "/^Count \\(sum\\)$/"
         }
-      }
-    },
-    {
-      "id": 8,
-      "title": "Alerts by Severity",
-      "type": "piechart",
-      "gridPos": {
-        "h": 8,
-        "w": 6,
-        "x": 18,
-        "y": 6
-      },
-      "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
       },
       "targets": [
         {
-          "refId": "A",
-          "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_alert | stats count by severity"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
-          },
-          "parser": "backend",
-          "root_selector": "results",
           "columns": [
             {
-              "selector": "severity",
-              "text": "Severity",
+              "selector": "vendor_action",
+              "text": "Action",
               "type": "string"
             },
             {
@@ -646,26 +506,46 @@
               "text": "Count",
               "type": "number"
             }
-          ]
-        }
-      ],
-      "transformations": [
-        {
-          "id": "rowsToFields",
-          "options": {
-            "mappings": [
-              {
-                "fieldName": "Severity",
-                "handlerKey": "field.name"
-              },
-              {
-                "fieldName": "Count",
-                "handlerKey": "field.value"
-              }
-            ]
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/alerts.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
           }
         }
       ],
+      "title": "Actions Taken",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Action": {
+                "aggregations": [],
+                "operation": "groupby"
+              },
+              "Count": {
+                "aggregations": [
+                  "sum"
+                ],
+                "operation": "aggregate"
+              }
+            }
+          }
+        }
+      ],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -735,105 +615,79 @@
           }
         ]
       },
+      "gridPos": {
+        "h": 8,
+        "w": 6,
+        "x": 18,
+        "y": 6
+      },
+      "id": 8,
       "options": {
-        "pieType": "donut",
         "legend": {
           "displayMode": "list",
           "placement": "bottom"
         },
+        "pieType": "donut",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
-          ]
+          ],
+          "fields": "/^Count \\(sum\\)$/"
         }
-      }
-    },
-    {
-      "id": 9,
-      "title": "Full Alert Log",
-      "type": "table",
-      "gridPos": {
-        "h": 10,
-        "w": 24,
-        "x": 0,
-        "y": 14
-      },
-      "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
       },
       "targets": [
         {
-          "refId": "A",
-          "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_alert | table _time rule severity src_ip dst_ip action count | sort -_time | head 100"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
-          },
-          "parser": "backend",
-          "root_selector": "results",
           "columns": [
-            {
-              "selector": "_time",
-              "text": "Time",
-              "type": "timestamp"
-            },
-            {
-              "selector": "rule",
-              "text": "Rule",
-              "type": "string"
-            },
             {
               "selector": "severity",
               "text": "Severity",
               "type": "string"
             },
             {
-              "selector": "src_ip",
-              "text": "Source IP",
-              "type": "string"
-            },
-            {
-              "selector": "dst_ip",
-              "text": "Dest IP",
-              "type": "string"
-            },
-            {
-              "selector": "action",
-              "text": "Action",
-              "type": "string"
-            },
-            {
               "selector": "count",
-              "text": "Hits",
+              "text": "Count",
               "type": "number"
             }
-          ]
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/alerts.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
         }
       ],
+      "title": "Alerts by Severity",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Count": {
+                "aggregations": [
+                  "sum"
+                ],
+                "operation": "aggregate"
+              },
+              "Severity": {
+                "aggregations": [],
+                "operation": "groupby"
+              }
+            }
+          }
+        }
+      ],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
       "fieldConfig": {
         "defaults": {},
         "overrides": [
@@ -847,7 +701,6 @@
                 "id": "mappings",
                 "value": [
                   {
-                    "type": "value",
                     "options": {
                       "critical": {
                         "color": "red",
@@ -857,15 +710,16 @@
                         "color": "orange",
                         "text": "\ud83d\udfe0 High"
                       },
-                      "medium": {
-                        "color": "yellow",
-                        "text": "\ud83d\udfe1 Medium"
-                      },
                       "low": {
                         "color": "blue",
                         "text": "\ud83d\udd35 Low"
+                      },
+                      "medium": {
+                        "color": "yellow",
+                        "text": "\ud83d\udfe1 Medium"
                       }
-                    }
+                    },
+                    "type": "value"
                   }
                 ]
               },
@@ -887,8 +741,11 @@
                 "id": "mappings",
                 "value": [
                   {
-                    "type": "value",
                     "options": {
+                      "alerted": {
+                        "color": "yellow",
+                        "text": "\u26a0\ufe0f Alerted"
+                      },
                       "blocked": {
                         "color": "green",
                         "text": "\ud83d\udee1\ufe0f Blocked"
@@ -896,12 +753,9 @@
                       "quarantined": {
                         "color": "orange",
                         "text": "\ud83d\udd12 Quarantined"
-                      },
-                      "alerted": {
-                        "color": "yellow",
-                        "text": "\u26a0\ufe0f Alerted"
                       }
-                    }
+                    },
+                    "type": "value"
                   }
                 ]
               },
@@ -915,30 +769,100 @@
           }
         ]
       },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 14
+      },
+      "id": 9,
       "options": {
         "showHeader": true,
         "sortBy": [
           {
-            "displayName": "Time",
-            "desc": true
+            "desc": true,
+            "displayName": "Time"
           }
         ]
-      }
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "_time",
+              "text": "Time",
+              "type": "timestamp"
+            },
+            {
+              "selector": "rule_name",
+              "text": "Rule",
+              "type": "string"
+            },
+            {
+              "selector": "severity",
+              "text": "Severity",
+              "type": "string"
+            },
+            {
+              "selector": "src",
+              "text": "Source IP",
+              "type": "string"
+            },
+            {
+              "selector": "dest",
+              "text": "Dest IP",
+              "type": "string"
+            },
+            {
+              "selector": "user",
+              "text": "User",
+              "type": "string"
+            },
+            {
+              "selector": "app",
+              "text": "App",
+              "type": "string"
+            },
+            {
+              "selector": "vendor_action",
+              "text": "Action",
+              "type": "string"
+            },
+            {
+              "selector": "count",
+              "text": "Hits",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/alerts.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Full Alert Log",
+      "type": "table"
     }
   ],
-  "templating": {
-    "list": [
-      {
-        "name": "event_id",
-        "type": "textbox",
-        "label": "\ud83d\udd0d Event ID",
-        "current": {
-          "text": "",
-          "value": ""
-        },
-        "description": "Filter by specific Event ID"
-      }
-    ]
+  "refresh": "5m",
+  "schemaVersion": 39,
+  "tags": [
+    "soc",
+    "detailed"
+  ],
+  "time": {
+    "from": "now-24h",
+    "to": "now"
   },
-  "fiscalYearStartMonth": 0
+  "timezone": "browser",
+  "title": "SOC Alert Analysis",
+  "uid": "soc-detail-alerts",
+  "version": 1
 }

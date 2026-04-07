@@ -16,6 +16,8 @@ let soarDailyStats = [];
 let soarActionSummary = [];
 let playbooks = [];
 let incidents = [];
+let alerts = [];
+let slaMetrics = [];
 
 try {
   actionRuns = JSON.parse(fs.readFileSync(path.join(__dirname, 'mock-data/action_runs.json')));
@@ -24,7 +26,9 @@ try {
   soarActionSummary = JSON.parse(fs.readFileSync(path.join(__dirname, 'mock-data/soar_action_summary.json')));
   playbooks = JSON.parse(fs.readFileSync(path.join(__dirname, 'mock-data/playbooks.json')));
   incidents = JSON.parse(fs.readFileSync(path.join(__dirname, 'mock-data/incidents.json')));
-  console.log(`Loaded ${actionRuns.length} action runs, ${playbookRuns.length} playbook runs, ${playbooks.length} playbooks, ${incidents.length} incidents`);
+  alerts = JSON.parse(fs.readFileSync(path.join(__dirname, 'mock-data/alerts.json')));
+  slaMetrics = JSON.parse(fs.readFileSync(path.join(__dirname, 'mock-data/sla-metrics.json')));
+  console.log(`Loaded ${actionRuns.length} action runs, ${playbookRuns.length} playbook runs, ${playbooks.length} playbooks, ${incidents.length} incidents, ${alerts.length} alerts`);
 } catch (error) {
   console.error('Error loading mock data:', error);
   process.exit(1);
@@ -419,12 +423,129 @@ app.get('/incidents/by_status', (req, res) => {
   res.json(result);
 });
 
+// ========== Alert Endpoints ==========
+
+// GET /alerts - Time-filtered alerts list
+app.get('/alerts', (req, res) => {
+  const { start_time, end_time } = req.query;
+  const looksUnsubstituted = (p) => !p || p.includes('${__') || p === '';
+  let filtered;
+  if (looksUnsubstituted(start_time) || looksUnsubstituted(end_time)) {
+    filtered = alerts;
+  } else {
+    filtered = filterByTimeRange(alerts, start_time, end_time, '_time');
+  }
+  console.log(`[/alerts] start=${start_time} end=${end_time} -> ${filtered.length} alerts`);
+  res.json(filtered);
+});
+
+// GET /alerts.json - Time-filtered alerts (legacy)
+app.get('/alerts.json', (req, res) => {
+  const { start_time, end_time } = req.query;
+  const looksUnsubstituted = (p) => !p || p.includes('${__') || p === '';
+  let filtered;
+  if (looksUnsubstituted(start_time) || looksUnsubstituted(end_time)) {
+    filtered = alerts;
+  } else {
+    filtered = filterByTimeRange(alerts, start_time, end_time, '_time');
+  }
+  console.log(`[/alerts.json] start=${start_time} end=${end_time} -> ${filtered.length} alerts`);
+  res.json(filtered);
+});
+
+// ========== SLA Metrics Endpoints ==========
+
+// Helper: parse ISO week string like "2026-W13" to a Date range
+function parseISOWeek(weekStr) {
+  const match = weekStr.match(/^(\d{4})-W(\d{2})$/);
+  if (!match) return null;
+  const year = parseInt(match[1]);
+  const week = parseInt(match[2]);
+  // ISO week 1 contains Jan 4; find Monday of that week
+  const jan4 = new Date(year, 0, 4);
+  const dayOfWeek = jan4.getDay() || 7; // Mon=1..Sun=7
+  const monday = new Date(jan4);
+  monday.setDate(jan4.getDate() - dayOfWeek + 1 + (week - 1) * 7);
+  const sunday = new Date(monday);
+  sunday.setDate(monday.getDate() + 6);
+  sunday.setHours(23, 59, 59, 999);
+  return { start: monday, end: sunday };
+}
+
+// GET /sla-metrics - Time-filtered SLA metrics
+app.get('/sla-metrics', (req, res) => {
+  const { start_time, end_time } = req.query;
+  const looksUnsubstituted = (p) => !p || p.includes('${__') || p === '';
+  let filtered;
+  if (looksUnsubstituted(start_time) || looksUnsubstituted(end_time)) {
+    filtered = slaMetrics;
+  } else {
+    const start = parseDate(start_time);
+    const end = parseDate(end_time);
+    filtered = slaMetrics.filter(item => {
+      const weekRange = parseISOWeek(item.period);
+      if (!weekRange) return true;
+      // Include if the week overlaps with the requested range
+      return weekRange.end >= start && weekRange.start <= end;
+    });
+  }
+  console.log(`[/sla-metrics] start=${start_time} end=${end_time} -> ${filtered.length} metrics`);
+  res.json(filtered);
+});
+
+// GET /sla-metrics.json - Time-filtered SLA metrics (legacy)
+app.get('/sla-metrics.json', (req, res) => {
+  const { start_time, end_time } = req.query;
+  const looksUnsubstituted = (p) => !p || p.includes('${__') || p === '';
+  let filtered;
+  if (looksUnsubstituted(start_time) || looksUnsubstituted(end_time)) {
+    filtered = slaMetrics;
+  } else {
+    const start = parseDate(start_time);
+    const end = parseDate(end_time);
+    filtered = slaMetrics.filter(item => {
+      const weekRange = parseISOWeek(item.period);
+      if (!weekRange) return true;
+      return weekRange.end >= start && weekRange.start <= end;
+    });
+  }
+  console.log(`[/sla-metrics.json] start=${start_time} end=${end_time} -> ${filtered.length} metrics`);
+  res.json(filtered);
+});
+
+// GET /incidents.json - Time-filtered incidents (legacy, takes precedence over static)
+app.get('/incidents.json', (req, res) => {
+  const { start_time, end_time } = req.query;
+  const filtered = filterIncidents(start_time, end_time);
+  console.log(`[/incidents.json] start=${start_time} end=${end_time} -> ${filtered.length} incidents`);
+  res.json(filtered);
+});
+
 // Static endpoints (unchanged)
 app.get('/soar_action_summary.json', (req, res) => {
   res.json(soarActionSummary);
 });
 
-// Serve other static files
+// Playbooks catalog endpoint
+app.get('/playbooks.json', (req, res) => {
+  const { start_time, end_time } = req.query;
+
+  let filtered = playbooks;
+
+  // Filter by last_run_time if time range provided
+  if (start_time && end_time) {
+    const start = parseDate(start_time);
+    const end = parseDate(end_time);
+    filtered = playbooks.filter(p => {
+      const runTime = parseDate(p.last_run_time);
+      return runTime >= start && runTime <= end;
+    });
+  }
+
+  res.json(filtered);
+});
+
+// Serve other static files (fallback for files without time-aware endpoints)
 app.use(express.static(path.join(__dirname, 'mock-data')));
 
 app.listen(PORT, () => {

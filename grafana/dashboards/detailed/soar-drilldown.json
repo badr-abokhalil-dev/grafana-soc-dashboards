@@ -4,25 +4,23 @@
   "graphTooltip": 2,
   "links": [
     {
-      "title": "\ud83d\udcca Back to Overview",
+      "icon": "arrow-left",
+      "keepTime": true,
+      "title": "\u2190 Back to Overview",
       "type": "link",
-      "url": "/d/soc-mgmt-overview/soc-management-overview",
-      "icon": "apps",
-      "keepTime": true
+      "url": "/d/soc-mgmt-overview/soc-management-overview"
     },
     {
-      "title": "\ud83d\udd0d Incident Drilldown",
+      "keepTime": true,
+      "title": "Incident Drilldown",
       "type": "link",
-      "url": "/d/soc-detail-incidents/soc-incident-drilldown",
-      "icon": "apps",
-      "keepTime": true
+      "url": "/d/soc-detail-incidents/soc-incident-drilldown"
     },
     {
-      "title": "\ud83d\udea8 Alert Analysis",
+      "keepTime": true,
+      "title": "Alert Analysis",
       "type": "link",
-      "url": "/d/soc-detail-alerts/soc-alert-analysis",
-      "icon": "apps",
-      "keepTime": true
+      "url": "/d/soc-detail-alerts/soc-alert-analysis"
     }
   ],
   "panels": [
@@ -65,14 +63,19 @@
         "reduceOptions": {
           "calcs": [
             "sum"
-          ],
-          "fields": "",
-          "values": false
+          ]
         },
         "textMode": "value"
       },
       "targets": [
         {
+          "columns": [
+            {
+              "selector": "playbook_run_count",
+              "text": "Runs",
+              "type": "number"
+            }
+          ],
           "datasource": {
             "uid": "mock-data"
           },
@@ -80,17 +83,10 @@
           "refId": "A",
           "source": "url",
           "type": "json",
-          "url": "http://soc-mock-server:3001/rest/playbook_run/stats?start_time=${__from}&end_time=${__to}",
+          "url": "http://soc-mock-server:3001/playbooks.json?start_time=${__from}&end_time=${__to}",
           "url_options": {
             "method": "GET"
-          },
-          "columns": [
-            {
-              "selector": "total_runs",
-              "text": "Runs",
-              "type": "number"
-            }
-          ]
+          }
         }
       ],
       "title": "Total Playbook Runs",
@@ -137,13 +133,18 @@
         "reduceOptions": {
           "calcs": [
             "mean"
-          ],
-          "fields": "",
-          "values": false
+          ]
         }
       },
       "targets": [
         {
+          "columns": [
+            {
+              "selector": "success_rate",
+              "text": "Success Rate",
+              "type": "number"
+            }
+          ],
           "datasource": {
             "uid": "mock-data"
           },
@@ -151,17 +152,10 @@
           "refId": "A",
           "source": "url",
           "type": "json",
-          "url": "http://soc-mock-server:3001/rest/playbook_run/stats?start_time=${__from}&end_time=${__to}",
+          "url": "http://soc-mock-server:3001/playbooks.json?start_time=${__from}&end_time=${__to}",
           "url_options": {
             "method": "GET"
-          },
-          "columns": [
-            {
-              "selector": "success_rate",
-              "text": "Success Rate",
-              "type": "number"
-            }
-          ]
+          }
         }
       ],
       "title": "Overall Success Rate",
@@ -206,14 +200,19 @@
         "reduceOptions": {
           "calcs": [
             "sum"
-          ],
-          "fields": "",
-          "values": false
+          ]
         },
         "textMode": "value"
       },
       "targets": [
         {
+          "columns": [
+            {
+              "selector": "failed_run_count",
+              "text": "Failed",
+              "type": "number"
+            }
+          ],
           "datasource": {
             "uid": "mock-data"
           },
@@ -221,17 +220,10 @@
           "refId": "A",
           "source": "url",
           "type": "json",
-          "url": "http://soc-mock-server:3001/rest/playbook_run/stats?start_time=${__from}&end_time=${__to}",
+          "url": "http://soc-mock-server:3001/playbooks.json?start_time=${__from}&end_time=${__to}",
           "url_options": {
             "method": "GET"
-          },
-          "columns": [
-            {
-              "selector": "failed_runs",
-              "text": "Failed",
-              "type": "number"
-            }
-          ]
+          }
         }
       ],
       "title": "Total Failed Runs",
@@ -262,14 +254,19 @@
         "reduceOptions": {
           "calcs": [
             "mean"
-          ],
-          "fields": "",
-          "values": false
+          ]
         },
         "textMode": "value"
       },
       "targets": [
         {
+          "columns": [
+            {
+              "selector": "avg_duration_seconds",
+              "text": "Duration",
+              "type": "number"
+            }
+          ],
           "datasource": {
             "uid": "mock-data"
           },
@@ -277,17 +274,10 @@
           "refId": "A",
           "source": "url",
           "type": "json",
-          "url": "http://soc-mock-server:3001/rest/playbook_run/stats?start_time=${__from}&end_time=${__to}",
+          "url": "http://soc-mock-server:3001/playbooks.json?start_time=${__from}&end_time=${__to}",
           "url_options": {
             "method": "GET"
-          },
-          "columns": [
-            {
-              "selector": "avg_duration_seconds",
-              "text": "Duration",
-              "type": "number"
-            }
-          ]
+          }
         }
       ],
       "title": "Avg Execution Time",
@@ -370,7 +360,7 @@
           "refId": "A",
           "source": "url",
           "type": "json",
-          "url": "http://soc-mock-server:3001/rest/playbook_run/per_playbook?start_time=${__from}&end_time=${__to}",
+          "url": "http://soc-mock-server:3001/playbooks.json?start_time=${__from}&end_time=${__to}",
           "url_options": {
             "method": "GET"
           }
@@ -424,7 +414,7 @@
           "refId": "A",
           "source": "url",
           "type": "json",
-          "url": "http://soc-mock-server:3001/rest/playbook_run/per_playbook?start_time=${__from}&end_time=${__to}",
+          "url": "http://soc-mock-server:3001/playbooks.json?start_time=${__from}&end_time=${__to}",
           "url_options": {
             "method": "GET"
           }
@@ -477,7 +467,7 @@
           "refId": "A",
           "source": "url",
           "type": "json",
-          "url": "http://soc-mock-server:3001/rest/playbook_run/by_category?start_time=${__from}&end_time=${__to}",
+          "url": "http://soc-mock-server:3001/playbooks.json?start_time=${__from}&end_time=${__to}",
           "url_options": {
             "method": "GET"
           }
@@ -607,7 +597,7 @@
             },
             {
               "selector": "active",
-              "text": "Active",
+              "text": "Status",
               "type": "string"
             },
             {
@@ -629,6 +619,11 @@
               "selector": "avg_duration_seconds",
               "text": "Avg Time",
               "type": "number"
+            },
+            {
+              "selector": "last_run_time",
+              "text": "Last Run",
+              "type": "timestamp"
             }
           ],
           "datasource": {
@@ -638,7 +633,7 @@
           "refId": "A",
           "source": "url",
           "type": "json",
-          "url": "http://soc-mock-server:3001/rest/playbook_run/per_playbook?start_time=${__from}&end_time=${__to}",
+          "url": "http://soc-mock-server:3001/playbooks.json?start_time=${__from}&end_time=${__to}",
           "url_options": {
             "method": "GET"
           }
@@ -661,8 +656,5 @@
   "timezone": "browser",
   "title": "SOAR Playbook Drilldown",
   "uid": "soc-detail-soar",
-  "version": 1,
-  "templating": {
-    "list": []
-  }
+  "version": 1
 }

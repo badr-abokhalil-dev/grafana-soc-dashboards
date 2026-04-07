@@ -1,128 +1,40 @@
 {
-  "uid": "soc-mgmt-overview",
-  "title": "SOC Management Overview",
   "description": "Executive view \u2014 KPIs, SLA compliance, incident trends, SOAR efficiency",
-  "tags": [
-    "soc",
-    "management"
-  ],
-  "timezone": "browser",
   "editable": true,
   "graphTooltip": 1,
-  "schemaVersion": 39,
-  "version": 1,
-  "refresh": "5m",
-  "time": {
-    "from": "now-7d",
-    "to": "now"
-  },
   "links": [
     {
-      "title": "\ud83d\udd0d Incident Drilldown",
-      "type": "link",
-      "url": "/d/soc-detail-incidents/soc-incident-drilldown",
-      "icon": "apps",
-      "keepTime": true
-    },
-    {
-      "title": "\ud83d\ude80 SOAR Analytics",
-      "type": "link",
-      "url": "/d/soc-detail-soar/soc-soar-drilldown",
-      "icon": "apps",
-      "keepTime": true
-    },
-    {
-      "title": "\ud83d\udea8 Alert Analysis",
-      "type": "link",
-      "url": "/d/soc-detail-alerts/soc-alert-analysis",
-      "icon": "apps",
-      "keepTime": true
-    },
-    {
-      "title": "Detailed Views",
-      "type": "dashboards",
+      "asDropdown": true,
+      "includeVars": true,
+      "keepTime": true,
       "tags": [
         "soc",
         "detailed"
       ],
-      "asDropdown": true,
-      "includeVars": true,
-      "keepTime": true
+      "title": "Detailed Views",
+      "type": "dashboards"
     }
   ],
   "panels": [
     {
-      "id": 1,
-      "title": "",
-      "type": "text",
       "gridPos": {
         "h": 2,
         "w": 24,
         "x": 0,
         "y": 0
       },
+      "id": 1,
       "options": {
-        "mode": "markdown",
-        "content": "# \ud83d\udee1\ufe0f SOC Command Center\n**Management Overview** \u2014 Real-time operational status"
-      }
+        "content": "# \ud83d\udee1\ufe0f SOC Command Center\n**Management Overview** \u2014 Real-time operational status",
+        "mode": "markdown"
+      },
+      "title": "",
+      "type": "text"
     },
     {
-      "id": 2,
-      "title": "Open Incidents",
-      "type": "stat",
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 0,
-        "y": 2
-      },
       "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
+        "uid": "mock-data"
       },
-      "targets": [
-        {
-          "refId": "A",
-          "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_incident (status=open OR status=in_progress) | stats count as open_count"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
-          },
-          "parser": "backend",
-          "root_selector": "results",
-          "columns": [
-            {
-              "selector": "open_count",
-              "text": "Open",
-              "type": "number"
-            }
-          ]
-        }
-      ],
-      "transformations": [],
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -146,74 +58,88 @@
           }
         }
       },
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ]
-        },
-        "colorMode": "background",
-        "graphMode": "none",
-        "textMode": "value"
-      }
-    },
-    {
-      "id": 3,
-      "title": "Critical Open",
-      "type": "stat",
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 4,
+        "x": 0,
         "y": 2
       },
-      "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
+      "id": 2,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "reduceOptions": {
+          "calcs": [
+            "count"
+          ],
+          "fields": "/^ID$/"
+        },
+        "textMode": "value"
       },
       "targets": [
         {
-          "refId": "A",
-          "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_incident severity=critical (status=open OR status=in_progress) | stats count as critical_count"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
-          },
-          "parser": "backend",
-          "root_selector": "results",
           "columns": [
             {
-              "selector": "critical_count",
-              "text": "Critical",
-              "type": "number"
+              "selector": "event_id",
+              "text": "ID",
+              "type": "string"
+            },
+            {
+              "selector": "status",
+              "text": "Status",
+              "type": "string"
             }
-          ]
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/incidents.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
         }
       ],
-      "transformations": [],
+      "title": "Open Incidents",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "1"
+                  }
+                },
+                "fieldName": "Status"
+              },
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "2"
+                  }
+                },
+                "fieldName": "Status"
+              }
+            ],
+            "match": "any",
+            "type": "include"
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -237,76 +163,113 @@
           }
         }
       },
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ]
-        },
-        "colorMode": "background",
-        "graphMode": "none",
-        "textMode": "value"
-      }
-    },
-    {
-      "id": 4,
-      "title": "Avg MTTD",
-      "type": "stat",
       "gridPos": {
         "h": 4,
         "w": 4,
-        "x": 8,
+        "x": 4,
         "y": 2
       },
-      "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
+      "id": 3,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "reduceOptions": {
+          "calcs": [
+            "count"
+          ],
+          "fields": "/^ID$/"
+        },
+        "textMode": "value"
       },
       "targets": [
         {
-          "refId": "A",
-          "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_incident | stats avg(ttd_min) as avg_mttd"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
-          },
-          "parser": "backend",
-          "root_selector": "results",
           "columns": [
             {
-              "selector": "avg_mttd",
-              "text": "MTTD",
-              "type": "number"
+              "selector": "event_id",
+              "text": "ID",
+              "type": "string"
+            },
+            {
+              "selector": "urgency",
+              "text": "Urgency",
+              "type": "string"
+            },
+            {
+              "selector": "status",
+              "text": "Status",
+              "type": "string"
             }
-          ]
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/incidents.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
         }
       ],
+      "title": "Critical Open",
+      "transformations": [
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "1"
+                  }
+                },
+                "fieldName": "Status"
+              },
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "2"
+                  }
+                },
+                "fieldName": "Status"
+              }
+            ],
+            "match": "any",
+            "type": "include"
+          }
+        },
+        {
+          "id": "filterByValue",
+          "options": {
+            "filters": [
+              {
+                "config": {
+                  "id": "equal",
+                  "options": {
+                    "value": "critical"
+                  }
+                },
+                "fieldName": "Urgency"
+              }
+            ],
+            "match": "all",
+            "type": "include"
+          }
+        }
+      ],
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
       "fieldConfig": {
         "defaults": {
-          "unit": "m",
           "color": {
             "mode": "thresholds"
           },
@@ -325,79 +288,59 @@
                 "value": 20
               }
             ]
-          }
+          },
+          "unit": "m"
         }
       },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 8,
+        "y": 2
+      },
+      "id": 4,
       "options": {
+        "colorMode": "value",
+        "graphMode": "area",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ]
         },
-        "colorMode": "value",
-        "graphMode": "area",
         "textMode": "value"
-      }
-    },
-    {
-      "id": 5,
-      "title": "Avg MTTR",
-      "type": "stat",
-      "gridPos": {
-        "h": 4,
-        "w": 4,
-        "x": 12,
-        "y": 2
-      },
-      "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
       },
       "targets": [
         {
-          "refId": "A",
-          "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_incident | stats avg(ttr_min) as avg_mttr"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
-          },
-          "parser": "backend",
-          "root_selector": "results",
           "columns": [
             {
-              "selector": "avg_mttr",
-              "text": "MTTR",
+              "selector": "avg_mttd_min",
+              "text": "MTTD",
               "type": "number"
             }
-          ]
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/sla-metrics.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
         }
       ],
+      "title": "Avg MTTD",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
       "fieldConfig": {
         "defaults": {
-          "unit": "m",
           "color": {
             "mode": "thresholds"
           },
@@ -416,83 +359,137 @@
                 "value": 120
               }
             ]
-          }
+          },
+          "unit": "m"
         }
       },
+      "gridPos": {
+        "h": 4,
+        "w": 4,
+        "x": 12,
+        "y": 2
+      },
+      "id": 5,
       "options": {
+        "colorMode": "value",
+        "graphMode": "area",
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ]
         },
-        "colorMode": "value",
-        "graphMode": "area",
         "textMode": "value"
-      }
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "avg_mttr_min",
+              "text": "MTTR",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/sla-metrics.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Avg MTTR",
+      "type": "stat"
     },
     {
-      "id": 50,
-      "title": "Avg MTTA",
-      "description": "Mean Time to Acknowledge (minutes) \u2014 time from detection to analyst assignment",
-      "type": "stat",
+      "datasource": {
+        "uid": "mock-data"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "thresholds"
+          },
+          "max": 1,
+          "min": 0,
+          "thresholds": {
+            "steps": [
+              {
+                "color": "red",
+                "value": null
+              },
+              {
+                "color": "yellow",
+                "value": 0.85
+              },
+              {
+                "color": "green",
+                "value": 0.95
+              }
+            ]
+          },
+          "unit": "percentunit"
+        }
+      },
       "gridPos": {
         "h": 4,
         "w": 4,
         "x": 16,
         "y": 2
       },
-      "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
+      "id": 6,
+      "options": {
+        "colorMode": "background",
+        "graphMode": "none",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ]
+        },
+        "textMode": "value"
       },
       "targets": [
         {
-          "refId": "A",
-          "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_incident | eval mtta=ttd_min*0.6 | stats avg(mtta) as avg_mtta"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
-          },
-          "parser": "backend",
-          "root_selector": "results",
           "columns": [
             {
-              "selector": "avg_mtta",
-              "text": "MTTA",
+              "selector": "sla_compliance",
+              "text": "SLA Compliance",
               "type": "number"
             }
-          ]
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/sla-metrics.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
         }
       ],
+      "title": "SLA Compliance",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
       "fieldConfig": {
         "defaults": {
-          "unit": "m",
           "color": {
             "mode": "thresholds"
           },
+          "max": 0.5,
+          "min": 0,
           "thresholds": {
             "steps": [
               {
@@ -501,197 +498,61 @@
               },
               {
                 "color": "yellow",
-                "value": 5
+                "value": 0.15
               },
               {
                 "color": "red",
-                "value": 15
+                "value": 0.25
               }
             ]
-          }
+          },
+          "unit": "percentunit"
         }
       },
-      "options": {
-        "reduceOptions": {
-          "calcs": [
-            "lastNotNull"
-          ]
-        },
-        "colorMode": "value",
-        "graphMode": "area",
-        "textMode": "value"
-      }
-    },
-    {
-      "id": 51,
-      "title": "Avg MTTC",
-      "description": "Mean Time to Contain (minutes) \u2014 time from detection to threat containment",
-      "type": "stat",
       "gridPos": {
         "h": 4,
         "w": 4,
         "x": 20,
         "y": 2
       },
-      "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
-      },
-      "targets": [
-        {
-          "refId": "A",
-          "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_incident | eval mttc=ttr_min*0.7 | stats avg(mttc) as avg_mttc"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
-          },
-          "parser": "backend",
-          "root_selector": "results",
-          "columns": [
-            {
-              "selector": "avg_mttc",
-              "text": "MTTC",
-              "type": "number"
-            }
-          ]
-        }
-      ],
-      "fieldConfig": {
-        "defaults": {
-          "unit": "m",
-          "color": {
-            "mode": "thresholds"
-          },
-          "thresholds": {
-            "steps": [
-              {
-                "color": "green",
-                "value": null
-              },
-              {
-                "color": "yellow",
-                "value": 45
-              },
-              {
-                "color": "red",
-                "value": 90
-              }
-            ]
-          }
-        }
-      },
+      "id": 7,
       "options": {
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
           ]
-        },
-        "colorMode": "value",
-        "graphMode": "area",
-        "textMode": "value"
-      }
-    },
-    {
-      "id": 8,
-      "title": "Incidents by Severity",
-      "type": "piechart",
-      "gridPos": {
-        "h": 8,
-        "w": 8,
-        "x": 0,
-        "y": 6
-      },
-      "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
+        }
       },
       "targets": [
         {
-          "refId": "A",
-          "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_incident | stats count by severity"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
-          },
-          "parser": "backend",
-          "root_selector": "results",
           "columns": [
             {
-              "selector": "severity",
-              "text": "Severity",
-              "type": "string"
-            },
-            {
-              "selector": "count",
-              "text": "Count",
+              "selector": "false_positive_rate",
+              "text": "FP Rate",
               "type": "number"
             }
-          ]
-        }
-      ],
-      "transformations": [
-        {
-          "id": "rowsToFields",
-          "options": {
-            "mappings": [
-              {
-                "fieldName": "Severity",
-                "handlerKey": "field.name"
-              },
-              {
-                "fieldName": "Count",
-                "handlerKey": "field.value"
-              }
-            ]
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/sla-metrics.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
           }
         }
       ],
+      "title": "False Positive Rate",
+      "type": "gauge"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
       "fieldConfig": {
         "defaults": {
           "color": {
@@ -761,6 +622,13 @@
           }
         ]
       },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 0,
+        "y": 6
+      },
+      "id": 8,
       "options": {
         "legend": {
           "displayMode": "table",
@@ -774,86 +642,60 @@
         "reduceOptions": {
           "calcs": [
             "lastNotNull"
-          ]
+          ],
+          "fields": "/^Urgency \\(count\\)$/"
         }
-      }
-    },
-    {
-      "id": 9,
-      "title": "SLA Trends (Weekly)",
-      "type": "barchart",
-      "gridPos": {
-        "h": 8,
-        "w": 8,
-        "x": 8,
-        "y": 6
-      },
-      "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
       },
       "targets": [
         {
-          "refId": "A",
-          "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_incident | bin _time span=1d | eval mtta=ttd_min*0.6, mttc=ttr_min*0.7 | stats avg(ttd_min) as mttd avg(ttr_min) as mttr avg(mtta) as mtta avg(mttc) as mttc by _time"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
-          },
-          "parser": "backend",
-          "root_selector": "results",
           "columns": [
             {
-              "selector": "_time",
-              "text": "Time",
+              "selector": "event_id",
+              "text": "ID",
               "type": "string"
             },
             {
-              "selector": "mttd",
-              "text": "MTTD (min)",
-              "type": "number"
-            },
-            {
-              "selector": "mttr",
-              "text": "MTTR (min)",
-              "type": "number"
-            },
-            {
-              "selector": "mtta",
-              "text": "MTTA (min)",
-              "type": "number"
-            },
-            {
-              "selector": "mttc",
-              "text": "MTTC (min)",
-              "type": "number"
+              "selector": "urgency",
+              "text": "Urgency",
+              "type": "string"
             }
-          ]
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/incidents.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
         }
       ],
+      "title": "Incidents by Severity",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Urgency": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "groupby"
+              }
+            }
+          }
+        }
+      ],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
       "fieldConfig": {
         "defaults": {
           "custom": {
@@ -890,98 +732,74 @@
                 }
               }
             ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "MTTA (min)"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "green",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "MTTC (min)"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "purple",
-                  "mode": "fixed"
-                }
-              }
-            ]
           }
         ]
       },
-      "options": {
-        "orientation": "vertical",
-        "showValue": "always",
-        "barWidth": 0.6,
-        "groupWidth": 0.7,
-        "stacking": "none",
-        "legend": {
-          "displayMode": "list",
-          "placement": "bottom"
-        }
-      }
-    },
-    {
-      "id": 10,
-      "title": "SOAR Playbook Efficiency",
-      "type": "bargauge",
       "gridPos": {
         "h": 8,
         "w": 8,
-        "x": 16,
+        "x": 8,
         "y": 6
       },
-      "datasource": {
-        "uid": "mock-data"
+      "id": 9,
+      "options": {
+        "barWidth": 0.6,
+        "groupWidth": 0.7,
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "orientation": "vertical",
+        "showValue": "always",
+        "stacking": "none"
       },
       "targets": [
         {
-          "refId": "A",
-          "datasource": {
-            "uid": "mock-data"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-mock-server:3001/playbooks.json",
-          "url_options": {
-            "method": "GET"
-          },
-          "parser": "backend",
-          "root_selector": "",
           "columns": [
             {
-              "selector": "name",
-              "text": "Playbook",
+              "selector": "period",
+              "text": "Week",
               "type": "string"
             },
             {
-              "selector": "success_rate",
-              "text": "Success Rate",
+              "selector": "avg_mttd_min",
+              "text": "MTTD (min)",
+              "type": "number"
+            },
+            {
+              "selector": "avg_mttr_min",
+              "text": "MTTR (min)",
               "type": "number"
             }
-          ]
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/sla-metrics.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
         }
       ],
+      "title": "SLA Trends (Weekly)",
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
       "fieldConfig": {
         "defaults": {
-          "unit": "percentunit",
           "color": {
             "mode": "thresholds"
           },
+          "max": 1,
+          "min": 0,
           "thresholds": {
             "steps": [
               {
@@ -998,10 +816,16 @@
               }
             ]
           },
-          "min": 0,
-          "max": 1
+          "unit": "percentunit"
         }
       },
+      "gridPos": {
+        "h": 8,
+        "w": 8,
+        "x": 16,
+        "y": 6
+      },
+      "id": 10,
       "options": {
         "displayMode": "gradient",
         "orientation": "horizontal",
@@ -1011,79 +835,42 @@
           ]
         },
         "showUnfilled": true
-      }
-    },
-    {
-      "id": 11,
-      "title": "Analyst Workload",
-      "type": "table",
-      "gridPos": {
-        "h": 6,
-        "w": 12,
-        "x": 0,
-        "y": 14
-      },
-      "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
       },
       "targets": [
         {
-          "refId": "A",
-          "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_incident | stats count(eval(status=\"open\" OR status=\"in_progress\")) as open count(eval(status=\"resolved\")) as resolved avg(ttr_min) as avg_ttr by analyst"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
-          },
-          "parser": "backend",
-          "root_selector": "results",
           "columns": [
             {
-              "selector": "analyst",
-              "text": "Analyst",
+              "selector": "name",
+              "text": "Playbook",
               "type": "string"
             },
             {
-              "selector": "open",
-              "text": "Open",
-              "type": "number"
-            },
-            {
-              "selector": "resolved",
-              "text": "Resolved",
-              "type": "number"
-            },
-            {
-              "selector": "avg_ttr",
-              "text": "Avg TTR (min)",
+              "selector": "success_rate",
+              "text": "Success Rate",
               "type": "number"
             }
-          ]
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/playbooks.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
         }
       ],
+      "title": "SOAR Playbook Efficiency",
+      "type": "bargauge"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
       "fieldConfig": {
         "defaults": {},
         "overrides": [
@@ -1126,43 +913,88 @@
           }
         ]
       },
+      "gridPos": {
+        "h": 6,
+        "w": 12,
+        "x": 0,
+        "y": 14
+      },
+      "id": 11,
       "options": {
         "showHeader": true,
         "sortBy": [
           {
-            "displayName": "Open",
-            "desc": true
+            "desc": true,
+            "displayName": "Open"
           }
         ]
-      }
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "analyst",
+              "text": "Analyst",
+              "type": "string"
+            },
+            {
+              "selector": "open_incidents",
+              "text": "Open",
+              "type": "number"
+            },
+            {
+              "selector": "resolved_week",
+              "text": "Resolved (7d)",
+              "type": "number"
+            },
+            {
+              "selector": "avg_ttr_min",
+              "text": "Avg TTR (min)",
+              "type": "number"
+            },
+            {
+              "selector": "sla_compliance",
+              "text": "SLA %",
+              "type": "number"
+            }
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/analyst-workload.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Analyst Workload",
+      "type": "table"
     },
     {
-      "id": 12,
-      "title": "MITRE ATT&CK Coverage",
-      "type": "table",
+      "datasource": {
+        "uid": "mock-data"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": []
+      },
       "gridPos": {
         "h": 6,
         "w": 12,
         "x": 12,
         "y": 14
       },
-      "datasource": {
-        "uid": "mock-data"
+      "id": 12,
+      "options": {
+        "showHeader": true
       },
       "targets": [
         {
-          "refId": "A",
-          "datasource": {
-            "uid": "mock-data"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-mock-server:3001/mitre-coverage.json",
-          "url_options": {
-            "method": "GET"
-          },
-          "parser": "backend",
-          "root_selector": "",
           "columns": [
             {
               "selector": "tactic",
@@ -1189,103 +1021,28 @@
               "text": "Top Technique",
               "type": "string"
             }
-          ]
-        }
-      ],
-      "fieldConfig": {
-        "defaults": {},
-        "overrides": []
-      },
-      "options": {
-        "showHeader": true
-      }
-    },
-    {
-      "id": 13,
-      "title": "Active Incidents",
-      "type": "table",
-      "gridPos": {
-        "h": 8,
-        "w": 24,
-        "x": 0,
-        "y": 20
-      },
-      "datasource": {
-        "uid": "splunk-api",
-        "type": "yesoreyeram-infinity-datasource"
-      },
-      "targets": [
-        {
-          "refId": "A",
+          ],
           "datasource": {
-            "uid": "splunk-api"
-          },
-          "type": "json",
-          "source": "url",
-          "url": "http://soc-splunk:8089/services/search/jobs/oneshot",
-          "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=main sourcetype=soc_incident | table _time severity status analyst category ttd_min ttr_min"
-              },
-              {
-                "key": "output_mode",
-                "value": "json"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:iso}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:iso}"
-              }
-            ]
+            "uid": "mock-data"
           },
           "parser": "backend",
-          "root_selector": "results",
-          "columns": [
-            {
-              "selector": "_time",
-              "text": "Time",
-              "type": "timestamp"
-            },
-            {
-              "selector": "severity",
-              "text": "Severity",
-              "type": "string"
-            },
-            {
-              "selector": "status",
-              "text": "Status",
-              "type": "string"
-            },
-            {
-              "selector": "analyst",
-              "text": "Analyst",
-              "type": "string"
-            },
-            {
-              "selector": "category",
-              "text": "Category",
-              "type": "string"
-            },
-            {
-              "selector": "ttd_min",
-              "text": "TTD (min)",
-              "type": "number"
-            },
-            {
-              "selector": "ttr_min",
-              "text": "TTR (min)",
-              "type": "number"
-            }
-          ]
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/mitre-coverage.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
         }
       ],
+      "title": "MITRE ATT&CK Coverage",
+      "type": "table"
+    },
+    {
+      "datasource": {
+        "uid": "mock-data"
+      },
       "fieldConfig": {
         "defaults": {},
         "overrides": [
@@ -1299,7 +1056,6 @@
                 "id": "mappings",
                 "value": [
                   {
-                    "type": "value",
                     "options": {
                       "critical": {
                         "color": "red",
@@ -1309,15 +1065,16 @@
                         "color": "orange",
                         "text": "\ud83d\udfe0 High"
                       },
-                      "medium": {
-                        "color": "yellow",
-                        "text": "\ud83d\udfe1 Medium"
-                      },
                       "low": {
                         "color": "blue",
                         "text": "\ud83d\udd35 Low"
+                      },
+                      "medium": {
+                        "color": "yellow",
+                        "text": "\ud83d\udfe1 Medium"
                       }
-                    }
+                    },
+                    "type": "value"
                   }
                 ]
               },
@@ -1339,21 +1096,21 @@
                 "id": "mappings",
                 "value": [
                   {
-                    "type": "value",
                     "options": {
-                      "New": {
-                        "color": "dark-red"
-                      },
-                      "In Progress": {
-                        "color": "dark-orange"
-                      },
                       "Closed": {
                         "color": "dark-green"
                       },
                       "Closed - False Positive": {
                         "color": "dark-blue"
+                      },
+                      "In Progress": {
+                        "color": "dark-orange"
+                      },
+                      "New": {
+                        "color": "dark-red"
                       }
-                    }
+                    },
+                    "type": "value"
                   }
                 ]
               },
@@ -1384,19 +1141,111 @@
           }
         ]
       },
+      "gridPos": {
+        "h": 8,
+        "w": 24,
+        "x": 0,
+        "y": 20
+      },
+      "id": 13,
       "options": {
         "showHeader": true,
         "sortBy": [
           {
-            "displayName": "Time",
-            "desc": true
+            "desc": true,
+            "displayName": "Time"
           }
         ]
-      }
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "event_id",
+              "text": "Event ID",
+              "type": "string"
+            },
+            {
+              "selector": "rule_name",
+              "text": "Rule",
+              "type": "string"
+            },
+            {
+              "selector": "urgency",
+              "text": "Urgency",
+              "type": "string"
+            },
+            {
+              "selector": "status_label",
+              "text": "Status",
+              "type": "string"
+            },
+            {
+              "selector": "owner",
+              "text": "Owner",
+              "type": "string"
+            },
+            {
+              "selector": "src",
+              "text": "Source",
+              "type": "string"
+            },
+            {
+              "selector": "dest",
+              "text": "Destination",
+              "type": "string"
+            },
+            {
+              "selector": "user",
+              "text": "User",
+              "type": "string"
+            },
+            {
+              "selector": "security_domain",
+              "text": "Domain",
+              "type": "string"
+            },
+            {
+              "selector": "mitre_attack_technique",
+              "text": "MITRE",
+              "type": "string"
+            },
+            {
+              "selector": "_time",
+              "text": "Time",
+              "type": "timestamp"
+            }
+          ],
+          "datasource": {
+            "uid": "mock-data"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/incidents.json?start_time=${__from}&end_time=${__to}",
+          "url_options": {
+            "method": "GET"
+          }
+        }
+      ],
+      "title": "Active Incidents",
+      "type": "table"
     }
   ],
-  "templating": {
-    "list": []
+  "refresh": "5m",
+  "schemaVersion": 39,
+  "tags": [
+    "soc",
+    "management"
+  ],
+  "time": {
+    "from": "now-7d",
+    "to": "now"
   },
-  "fiscalYearStartMonth": 0
+  "timezone": "browser",
+  "title": "SOC Management Overview",
+  "uid": "soc-mgmt-overview",
+  "version": 1
 }
