@@ -40,7 +40,7 @@ services:
       - GF_SECURITY_ADMIN_USER=${GF_ADMIN_USER:-admin}
       - GF_SECURITY_ADMIN_PASSWORD=${GF_ADMIN_PASSWORD:-SocDash2026!}
       - GF_INSTALL_PLUGINS=yesoreyeram-infinity-datasource
-      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/management/soc-overview.json
+      - GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH=/var/lib/grafana/dashboards/management/infosec-home.json
       - GF_SERVER_ROOT_URL=https://soc-grafana.abokhalil.dev
       # Disable all telemetry/analytics
       - GF_ANALYTICS_REPORTING_ENABLED=false
@@ -58,8 +58,8 @@ services:
       # Disable Infinity security restrictions for development
       - GF_INFINITY_ALLOW_ALL_HOSTS=true
       - GF_FEATURE_TOGGLES_ENABLE=publicDashboards
-    expose:
-      - "3000"
+    ports:
+      - "3033:3000"   # Grafana UI (local fallback)
     volumes:
       - ./grafana/provisioning:/etc/grafana/provisioning
       - ./grafana/dashboards:/var/lib/grafana/dashboards
@@ -69,25 +69,15 @@ services:
       default:
       services-net:
         ipv4_address: 172.21.0.61
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.soc-grafana.rule=Host(`soc-grafana.abokhalil.dev`)"
+      - "traefik.http.routers.soc-grafana.entrypoints=websecure"
+      - "traefik.http.routers.soc-grafana.tls=true"
+      - "traefik.http.services.soc-grafana.loadbalancer.server.port=3000"
     depends_on:
       - splunk
     restart: unless-stopped
-
-  landing:
-    image: nginx:alpine
-    container_name: soc-landing
-    volumes:
-      - ./static/index.html:/usr/share/nginx/html/index.html:ro
-      - ./landing.conf:/etc/nginx/conf.d/default.conf:ro
-    networks:
-      default:
-    restart: unless-stopped
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.soc-landing.entrypoints=websecure"
-      - "traefik.http.routers.soc-landing.rule=Host(`soc-grafana.abokhalil.dev`)"
-      - "traefik.http.routers.soc-landing.tls=true"
-      - "traefik.http.services.soc-landing.loadbalancer.server.port=80"
 
   mock-server:
     build:
