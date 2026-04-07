@@ -2,6 +2,10 @@
 
 A portable, self-contained SOC (Security Operations Center) dashboard built with **Grafana OSS** + **Splunk Trial** + **Infinity Plugin**. No Enterprise licensing needed. No middleware.
 
+## Home Dashboard
+
+Open **`index.html`** in any browser to access the InfoSec home dashboard — the single entry point for all security domains. The SOC Dashboard card links to the live Grafana instance; other domains (GRC, Vulnerability Management, Endpoint, Cloud, Threat Intel) are placeholders for future expansion.
+
 ## Architecture
 
 ```
