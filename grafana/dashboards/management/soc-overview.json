@@ -1,5 +1,5 @@
 {
-  "description": "Executive view — KPIs, SLA compliance, incident trends, SOAR efficiency",
+  "description": "Executive view \u2014 KPIs, SLA compliance, incident trends, SOAR efficiency",
   "editable": true,
   "graphTooltip": 1,
   "links": [
@@ -25,7 +25,7 @@
       },
       "id": 1,
       "options": {
-        "content": "# 🛡️ SOC Command Center\n**Management Overview** — Real-time operational status",
+        "content": "# \ud83d\udee1\ufe0f SOC Command Center\n**Management Overview** \u2014 Real-time operational status",
         "mode": "markdown"
       },
       "title": "",
@@ -97,15 +97,15 @@
           "refId": "A",
           "root_selector": "",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=incidents | table event_id status"
+                "value": "search index=incidents | table event_id status earliest=-1w latest=now"
               }
             ]
           }
@@ -214,15 +214,15 @@
           "refId": "A",
           "root_selector": "",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=incidents | table event_id urgency status"
+                "value": "search index=incidents | table event_id urgency status earliest=-1w latest=now"
               }
             ]
           }
@@ -339,15 +339,15 @@
           "refId": "A",
           "root_selector": "",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=sla | table avg_mttd_min"
+                "value": "search index=sla | table avg_mttd_min earliest=-1w latest=now"
               }
             ]
           }
@@ -417,15 +417,15 @@
           "refId": "A",
           "root_selector": "",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=sla | table avg_mttr_min"
+                "value": "search index=sla | table avg_mttr_min earliest=-1w latest=now"
               }
             ]
           }
@@ -497,15 +497,15 @@
           "refId": "A",
           "root_selector": "",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=sla | table sla_compliance"
+                "value": "search index=sla | table sla_compliance earliest=-1w latest=now"
               }
             ]
           }
@@ -574,15 +574,15 @@
           "refId": "A",
           "root_selector": "",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=sla | table false_positive_rate"
+                "value": "search index=sla | table false_positive_rate earliest=-1w latest=now"
               }
             ]
           }
@@ -709,15 +709,15 @@
           "refId": "A",
           "root_selector": "",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=incidents | table event_id urgency"
+                "value": "search index=incidents | table event_id urgency earliest=-1w latest=now"
               }
             ]
           }
@@ -828,15 +828,15 @@
           "refId": "A",
           "root_selector": "",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=sla | table period avg_mttd_min avg_mttr_min"
+                "value": "search index=sla | table period avg_mttd_min avg_mttr_min earliest=-1w latest=now"
               }
             ]
           }
@@ -913,15 +913,15 @@
           "refId": "A",
           "root_selector": "",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=soar | table name success_rate"
+                "value": "search index=soar | table name success_rate earliest=-1w latest=now"
               }
             ]
           }
@@ -1028,15 +1028,15 @@
           "refId": "A",
           "root_selector": "",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=workload | table analyst open_incidents resolved_week avg_ttr_min sla_compliance"
+                "value": "search index=workload | table analyst open_incidents resolved_week avg_ttr_min sla_compliance earliest=-1w latest=now"
               }
             ]
           }
@@ -1099,15 +1099,15 @@
           "refId": "A",
           "root_selector": "",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=mitre | table tactic techniques_covered techniques_total detections_30d top_technique"
+                "value": "search index=mitre | table tactic techniques_covered techniques_total detections_30d top_technique earliest=-1w latest=now"
               }
             ]
           }
@@ -1136,19 +1136,19 @@
                     "options": {
                       "critical": {
                         "color": "red",
-                        "text": "🔴 Critical"
+                        "text": "\ud83d\udd34 Critical"
                       },
                       "high": {
                         "color": "orange",
-                        "text": "🟠 High"
+                        "text": "\ud83d\udfe0 High"
                       },
                       "low": {
                         "color": "blue",
-                        "text": "🔵 Low"
+                        "text": "\ud83d\udd35 Low"
                       },
                       "medium": {
                         "color": "yellow",
-                        "text": "🟡 Medium"
+                        "text": "\ud83d\udfe1 Medium"
                       }
                     },
                     "type": "value"
@@ -1300,15 +1300,15 @@
           "refId": "A",
           "root_selector": "",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=incidents | table event_id rule_name urgency status_label owner src dest user security_domain mitre_attack_technique _time"
+                "value": "search index=incidents | table event_id rule_name urgency status_label owner src dest user security_domain mitre_attack_technique _time earliest=-1w latest=now"
               }
             ]
           }

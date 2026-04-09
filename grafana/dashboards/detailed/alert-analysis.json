@@ -5,7 +5,7 @@
     {
       "icon": "arrow-left",
       "keepTime": true,
-      "title": "← Back to Overview",
+      "title": "\u2190 Back to Overview",
       "type": "link",
       "url": "/d/soc-mgmt-overview/soc-management-overview"
     },
@@ -32,7 +32,7 @@
       },
       "id": 1,
       "options": {
-        "content": "# 🚨 Alert Analysis\nRule performance, alert volume, response actions, and source intelligence",
+        "content": "# \ud83d\udea8 Alert Analysis\nRule performance, alert volume, response actions, and source intelligence",
         "mode": "markdown"
       },
       "title": "",
@@ -81,15 +81,15 @@
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=alerts | table count"
+                "value": "search index=alerts | table count earliest=-1w latest=now"
               }
             ]
           }
@@ -147,15 +147,15 @@
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=alerts | table vendor_action count"
+                "value": "search index=alerts | table vendor_action count earliest=-1w latest=now"
               }
             ]
           }
@@ -233,15 +233,15 @@
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=alerts | table vendor_action count"
+                "value": "search index=alerts | table vendor_action count earliest=-1w latest=now"
               }
             ]
           }
@@ -334,15 +334,15 @@
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=alerts | table vendor_action count"
+                "value": "search index=alerts | table vendor_action count earliest=-1w latest=now"
               }
             ]
           }
@@ -414,15 +414,15 @@
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=alerts | table rule_name count"
+                "value": "search index=alerts | table rule_name count earliest=-1w latest=now"
               }
             ]
           }
@@ -548,15 +548,15 @@
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=alerts | table vendor_action count"
+                "value": "search index=alerts | table vendor_action count earliest=-1w latest=now"
               }
             ]
           }
@@ -697,15 +697,15 @@
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=alerts | table severity count"
+                "value": "search index=alerts | table severity count earliest=-1w latest=now"
               }
             ]
           }
@@ -753,19 +753,19 @@
                     "options": {
                       "critical": {
                         "color": "red",
-                        "text": "🔴 Critical"
+                        "text": "\ud83d\udd34 Critical"
                       },
                       "high": {
                         "color": "orange",
-                        "text": "🟠 High"
+                        "text": "\ud83d\udfe0 High"
                       },
                       "low": {
                         "color": "blue",
-                        "text": "🔵 Low"
+                        "text": "\ud83d\udd35 Low"
                       },
                       "medium": {
                         "color": "yellow",
-                        "text": "🟡 Medium"
+                        "text": "\ud83d\udfe1 Medium"
                       }
                     },
                     "type": "value"
@@ -793,15 +793,15 @@
                     "options": {
                       "alerted": {
                         "color": "yellow",
-                        "text": "⚠️ Alerted"
+                        "text": "\u26a0\ufe0f Alerted"
                       },
                       "blocked": {
                         "color": "green",
-                        "text": "🛡️ Blocked"
+                        "text": "\ud83d\udee1\ufe0f Blocked"
                       },
                       "quarantined": {
                         "color": "orange",
-                        "text": "🔒 Quarantined"
+                        "text": "\ud83d\udd12 Quarantined"
                       }
                     },
                     "type": "value"
@@ -889,15 +889,15 @@
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=0&latest_time=now",
+          "type": "json",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=json",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=alerts | table _time rule_name severity src dest user app vendor_action count"
+                "value": "search index=alerts | table _time rule_name severity src dest user app vendor_action count earliest=-1w latest=now"
               }
             ]
           }
