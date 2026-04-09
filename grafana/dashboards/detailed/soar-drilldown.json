@@ -41,7 +41,7 @@
     },
     {
       "datasource": {
-        "uid": "splunk-api"
+        "uid": "mock-data"
       },
       "fieldConfig": {
         "defaults": {
@@ -71,36 +71,21 @@
         {
           "columns": [
             {
-              "selector": "playbook_run_count",
+              "selector": "total_runs",
               "text": "Runs",
               "type": "number"
             }
           ],
           "datasource": {
-            "uid": "splunk-api"
+            "uid": "mock-data"
           },
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/rest/playbook_run/stats?start_time=${__from:date:seconds}&end_time=${__to:date:seconds}",
           "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=soar | table playbook_run_count"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:seconds}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:seconds}"
-              }
-            ]
+            "method": "GET"
           },
           "root_selector": ""
         }
@@ -110,7 +95,7 @@
     },
     {
       "datasource": {
-        "uid": "splunk-api"
+        "uid": "mock-data"
       },
       "fieldConfig": {
         "defaults": {
@@ -162,30 +147,15 @@
             }
           ],
           "datasource": {
-            "uid": "splunk-api"
+            "uid": "mock-data"
           },
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/rest/playbook_run/stats?start_time=${__from:date:seconds}&end_time=${__to:date:seconds}",
           "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=soar | table success_rate"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:seconds}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:seconds}"
-              }
-            ]
+            "method": "GET"
           },
           "root_selector": ""
         }
@@ -195,7 +165,7 @@
     },
     {
       "datasource": {
-        "uid": "splunk-api"
+        "uid": "mock-data"
       },
       "fieldConfig": {
         "defaults": {
@@ -240,36 +210,21 @@
         {
           "columns": [
             {
-              "selector": "failed_run_count",
+              "selector": "failed_runs",
               "text": "Failed",
               "type": "number"
             }
           ],
           "datasource": {
-            "uid": "splunk-api"
+            "uid": "mock-data"
           },
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/rest/playbook_run/stats?start_time=${__from:date:seconds}&end_time=${__to:date:seconds}",
           "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=soar | table failed_run_count"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:seconds}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:seconds}"
-              }
-            ]
+            "method": "GET"
           },
           "root_selector": ""
         }
@@ -279,7 +234,7 @@
     },
     {
       "datasource": {
-        "uid": "splunk-api"
+        "uid": "mock-data"
       },
       "fieldConfig": {
         "defaults": {
@@ -316,30 +271,15 @@
             }
           ],
           "datasource": {
-            "uid": "splunk-api"
+            "uid": "mock-data"
           },
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/rest/playbook_run/stats?start_time=${__from:date:seconds}&end_time=${__to:date:seconds}",
           "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=soar | table avg_duration_seconds"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:seconds}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:seconds}"
-              }
-            ]
+            "method": "GET"
           },
           "root_selector": ""
         }
@@ -349,7 +289,7 @@
     },
     {
       "datasource": {
-        "uid": "splunk-api"
+        "uid": "mock-data"
       },
       "fieldConfig": {
         "overrides": [
@@ -418,30 +358,15 @@
             }
           ],
           "datasource": {
-            "uid": "splunk-api"
+            "uid": "mock-data"
           },
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/rest/playbook_run/per_playbook?start_time=${__from:date:seconds}&end_time=${__to:date:seconds}",
           "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=soar | table name successful_run_count failed_run_count"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:seconds}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:seconds}"
-              }
-            ]
+            "method": "GET"
           },
           "root_selector": ""
         }
@@ -451,7 +376,7 @@
     },
     {
       "datasource": {
-        "uid": "splunk-api"
+        "uid": "mock-data"
       },
       "fieldConfig": {
         "defaults": {
@@ -488,30 +413,15 @@
             }
           ],
           "datasource": {
-            "uid": "splunk-api"
+            "uid": "mock-data"
           },
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/rest/playbook_run/per_playbook?start_time=${__from:date:seconds}&end_time=${__to:date:seconds}",
           "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=soar | table name avg_duration_seconds"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:seconds}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:seconds}"
-              }
-            ]
+            "method": "GET"
           },
           "root_selector": ""
         }
@@ -521,7 +431,7 @@
     },
     {
       "datasource": {
-        "uid": "splunk-api"
+        "uid": "mock-data"
       },
       "gridPos": {
         "h": 8,
@@ -557,30 +467,15 @@
             }
           ],
           "datasource": {
-            "uid": "splunk-api"
+            "uid": "mock-data"
           },
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/rest/playbook_run/by_category?start_time=${__from:date:seconds}&end_time=${__to:date:seconds}",
           "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=soar | table category playbook_run_count"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:seconds}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:seconds}"
-              }
-            ]
+            "method": "GET"
           },
           "root_selector": ""
         }
@@ -590,7 +485,7 @@
     },
     {
       "datasource": {
-        "uid": "splunk-api"
+        "uid": "mock-data"
       },
       "fieldConfig": {
         "overrides": [
@@ -739,30 +634,15 @@
             }
           ],
           "datasource": {
-            "uid": "splunk-api"
+            "uid": "mock-data"
           },
           "parser": "backend",
           "refId": "A",
           "source": "url",
-          "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
+          "type": "json",
+          "url": "http://soc-mock-server:3001/rest/playbook_run/per_playbook?start_time=${__from:date:seconds}&end_time=${__to:date:seconds}",
           "url_options": {
-            "method": "POST",
-            "body_type": "x-www-form-urlencoded",
-            "body_form": [
-              {
-                "key": "search",
-                "value": "search index=soar | table id name category active playbook_run_count successful_run_count failed_run_count avg_duration_seconds last_run_time"
-              },
-              {
-                "key": "earliest_time",
-                "value": "${__from:date:seconds}"
-              },
-              {
-                "key": "latest_time",
-                "value": "${__to:date:seconds}"
-              }
-            ]
+            "method": "GET"
           },
           "root_selector": ""
         }
