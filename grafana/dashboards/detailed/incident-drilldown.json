@@ -91,6 +91,14 @@
               {
                 "key": "search",
                 "value": "search index=incidents | table event_id security_domain"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
@@ -196,6 +204,14 @@
               {
                 "key": "search",
                 "value": "search index=mitre | table tactic techniques_covered techniques_total detections_30d top_technique"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
@@ -327,6 +343,14 @@
               {
                 "key": "search",
                 "value": "search index=incidents | table event_id urgency"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
@@ -403,6 +427,14 @@
               {
                 "key": "search",
                 "value": "search index=incidents | table event_id owner"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
@@ -487,6 +519,14 @@
               {
                 "key": "search",
                 "value": "search index=incidents | table event_id mitre_attack_tactic"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
@@ -571,6 +611,14 @@
               {
                 "key": "search",
                 "value": "search index=incidents | table event_id status_label"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
@@ -803,6 +851,14 @@
               {
                 "key": "search",
                 "value": "search index=incidents | table event_id rule_name urgency status_label owner src dest user security_domain mitre_attack_tactic mitre_attack_technique _time"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }

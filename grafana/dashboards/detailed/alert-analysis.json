@@ -90,6 +90,14 @@
               {
                 "key": "search",
                 "value": "search index=alerts | table count"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           },
@@ -157,6 +165,14 @@
               {
                 "key": "search",
                 "value": "search index=alerts | table vendor_action count"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           },
@@ -244,6 +260,14 @@
               {
                 "key": "search",
                 "value": "search index=alerts | table vendor_action count"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           },
@@ -346,6 +370,14 @@
               {
                 "key": "search",
                 "value": "search index=alerts | table vendor_action count"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           },
@@ -427,6 +459,14 @@
               {
                 "key": "search",
                 "value": "search index=alerts | table rule_name count"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           },
@@ -562,6 +602,14 @@
               {
                 "key": "search",
                 "value": "search index=alerts | table vendor_action count"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           },
@@ -712,6 +760,14 @@
               {
                 "key": "search",
                 "value": "search index=alerts | table severity count"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           },
@@ -905,6 +961,14 @@
               {
                 "key": "search",
                 "value": "search index=alerts | table _time rule_name severity src dest user app vendor_action count"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           },
@@ -922,7 +986,7 @@
     "detailed"
   ],
   "time": {
-    "from": "now-24h",
+    "from": "now-7d",
     "to": "now"
   },
   "timezone": "browser",

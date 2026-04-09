@@ -91,6 +91,14 @@
               {
                 "key": "search",
                 "value": "search index=soar | table playbook_run_count"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           },
@@ -168,6 +176,14 @@
               {
                 "key": "search",
                 "value": "search index=soar | table success_rate"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           },
@@ -244,6 +260,14 @@
               {
                 "key": "search",
                 "value": "search index=soar | table failed_run_count"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           },
@@ -306,6 +330,14 @@
               {
                 "key": "search",
                 "value": "search index=soar | table avg_duration_seconds"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           },
@@ -400,6 +432,14 @@
               {
                 "key": "search",
                 "value": "search index=soar | table name successful_run_count failed_run_count"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           },
@@ -462,6 +502,14 @@
               {
                 "key": "search",
                 "value": "search index=soar | table name avg_duration_seconds"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           },
@@ -523,6 +571,14 @@
               {
                 "key": "search",
                 "value": "search index=soar | table category playbook_run_count"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           },
@@ -697,6 +753,14 @@
               {
                 "key": "search",
                 "value": "search index=soar | table id name category active playbook_run_count successful_run_count failed_run_count avg_duration_seconds last_run_time"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           },

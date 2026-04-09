@@ -106,6 +106,14 @@
               {
                 "key": "search",
                 "value": "search index=incidents | table event_id status"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
@@ -223,6 +231,14 @@
               {
                 "key": "search",
                 "value": "search index=incidents | table event_id urgency status"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
@@ -348,6 +364,14 @@
               {
                 "key": "search",
                 "value": "search index=sla | table avg_mttd_min"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
@@ -426,6 +450,14 @@
               {
                 "key": "search",
                 "value": "search index=sla | table avg_mttr_min"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
@@ -506,6 +538,14 @@
               {
                 "key": "search",
                 "value": "search index=sla | table sla_compliance"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
@@ -583,6 +623,14 @@
               {
                 "key": "search",
                 "value": "search index=sla | table false_positive_rate"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
@@ -718,6 +766,14 @@
               {
                 "key": "search",
                 "value": "search index=incidents | table event_id urgency"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
@@ -837,6 +893,14 @@
               {
                 "key": "search",
                 "value": "search index=sla | table period avg_mttd_min avg_mttr_min"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
@@ -922,6 +986,14 @@
               {
                 "key": "search",
                 "value": "search index=soar | table name success_rate"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
@@ -1037,6 +1109,14 @@
               {
                 "key": "search",
                 "value": "search index=workload | table analyst open_incidents resolved_week avg_ttr_min sla_compliance"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
@@ -1108,6 +1188,14 @@
               {
                 "key": "search",
                 "value": "search index=mitre | table tactic techniques_covered techniques_total detections_30d top_technique"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
@@ -1309,6 +1397,14 @@
               {
                 "key": "search",
                 "value": "search index=incidents | table event_id rule_name urgency status_label owner src dest user security_domain mitre_attack_technique _time"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
               }
             ]
           }
