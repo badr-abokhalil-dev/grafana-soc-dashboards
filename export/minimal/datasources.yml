@@ -14,17 +14,28 @@ datasources:
     type: yesoreyeram-infinity-datasource
     uid: splunk-api
     access: proxy
-    isDefault: false
+    url: http://soc-splunk:8089
+    isDefault: true
     # Grafana core TLS skip
     tls_skip_verify_insecure: true
+    basicAuth: true
+    basicAuthUser: admin
     jsonData:
-      auth_method: "bearerToken"
+      authType: basicAuth
       # Infinity plugin TLS skip
       tlsSkipVerify: true
       allowedHosts:
-        - "http://soc-splunk:8089"
+        - http://soc-splunk
+        - http://soc-splunk:8089
+        - https://soc-splunk
+        - https://soc-splunk:8089
+        - soc-splunk
+        - soc-splunk:8089
+        - localhost
+        - 127.0.0.1
+        - 172.21.0.60
     secureJsonData:
-      bearerToken: "${SPLUNK_API_TOKEN}"
+      basicAuthPassword: "${SPLUNK_PASSWORD}"
     editable: true
 
   # --- Infinity: SOAR REST API ---
@@ -34,10 +45,11 @@ datasources:
     access: proxy
     isDefault: false
     jsonData:
-      auth_method: "bearerToken"
+      authType: bearerToken
       tlsSkipVerify: true
       allowedHosts:
         - "${SOAR_API_URL}"
+        - localhost
     secureJsonData:
       bearerToken: "${SOAR_API_TOKEN}"
     editable: true
@@ -47,18 +59,19 @@ datasources:
     type: yesoreyeram-infinity-datasource
     uid: mock-data
     access: proxy
-    isDefault: true
+    url: http://soc-mock-server:3001
+    isDefault: false
     jsonData:
-      auth_method: "none"
+      authType: none
       tlsSkipVerify: true
       allowedHosts:
-        - "soc-mock-proxy"
-        - "http://soc-mock-proxy"
-        - "soc-mock-proxy:80"
-        - "soc-mock-server"
-        - "http://soc-mock-server"
-        - "soc-mock-server:3001"
-        - "soc-mock-server:80"
-      # Relaxed security for development/testing
-      securityLevel: "relaxed"
+        - http://soc-mock-server
+        - http://soc-mock-server:3001
+        - https://soc-mock-server
+        - https://soc-mock-server:3001
+        - soc-mock-server
+        - soc-mock-server:3001
+        - localhost
+        - 127.0.0.1
+        - 172.24.0.4
     editable: true

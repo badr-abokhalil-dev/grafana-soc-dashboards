@@ -1,760 +1,899 @@
 {
-  "dashboard": {
-    "editable": true,
-    "graphTooltip": 2,
-    "links": [
-      {
-        "icon": "arrow-left",
-        "keepTime": true,
-        "title": "\u2190 Back to Overview",
-        "type": "link",
-        "url": "/d/soc-mgmt-overview/soc-management-overview"
+  "editable": true,
+  "graphTooltip": 2,
+  "links": [
+    {
+      "icon": "arrow-left",
+      "keepTime": true,
+      "title": "\u2190 Back to Overview",
+      "type": "link",
+      "url": "/d/soc-mgmt-overview/soc-management-overview"
+    },
+    {
+      "keepTime": true,
+      "title": "Alert Analysis",
+      "type": "link",
+      "url": "/d/soc-detail-alerts/soc-alert-analysis"
+    },
+    {
+      "keepTime": true,
+      "title": "SOAR Drilldown",
+      "type": "link",
+      "url": "/d/soc-detail-soar/soar-playbook-drilldown"
+    }
+  ],
+  "panels": [
+    {
+      "gridPos": {
+        "h": 2,
+        "w": 24,
+        "x": 0,
+        "y": 0
       },
-      {
-        "keepTime": true,
-        "title": "Alert Analysis",
-        "type": "link",
-        "url": "/d/soc-detail-alerts/soc-alert-analysis"
+      "id": 1,
+      "options": {
+        "content": "# \ud83d\udd0d Incident Drilldown\nFilter by Event ID variable above, or click an incident from the Overview",
+        "mode": "markdown"
       },
-      {
-        "keepTime": true,
-        "title": "SOAR Drilldown",
-        "type": "link",
-        "url": "/d/soc-detail-soar/soar-playbook-drilldown"
-      }
-    ],
-    "panels": [
-      {
-        "gridPos": {
-          "h": 2,
-          "w": 24,
-          "x": 0,
-          "y": 0
-        },
-        "id": 1,
-        "options": {
-          "content": "# \ud83d\udd0d Incident Drilldown\nFilter by Event ID variable above, or click an incident from the Overview",
-          "mode": "markdown"
-        },
-        "title": "",
-        "type": "text"
+      "title": "",
+      "type": "text"
+    },
+    {
+      "datasource": {
+        "uid": "splunk-api"
       },
-      {
-        "datasource": {
-          "uid": "mock-data"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            }
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
           }
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 0,
-          "y": 2
-        },
-        "id": 2,
-        "options": {
-          "barWidth": 0.7,
-          "orientation": "horizontal",
-          "showValue": "always"
-        },
-        "targets": [
-          {
-            "columns": [
-              {
-                "selector": "event_id",
-                "text": "ID",
-                "type": "string"
-              },
-              {
-                "selector": "security_domain",
-                "text": "Domain",
-                "type": "string"
-              }
-            ],
-            "datasource": {
-              "uid": "mock-data"
-            },
-            "parser": "backend",
-            "refId": "A",
-            "root_selector": "",
-            "source": "url",
-            "type": "json",
-            "url": "http://soc-mock-server/incidents.json",
-            "url_options": {
-              "method": "GET"
-            }
-          }
-        ],
-        "title": "Incidents by Category",
-        "transformations": [
-          {
-            "id": "groupBy",
-            "options": {
-              "fields": {
-                "Domain": {
-                  "aggregations": [
-                    "count"
-                  ],
-                  "operation": "groupby"
-                }
-              }
-            }
-          }
-        ],
-        "type": "barchart"
-      },
-      {
-        "datasource": {
-          "uid": "mock-data"
-        },
-        "fieldConfig": {
-          "defaults": {},
-          "overrides": []
-        },
-        "gridPos": {
-          "h": 8,
-          "w": 12,
-          "x": 12,
-          "y": 2
-        },
-        "id": 3,
-        "options": {
-          "showHeader": true
-        },
-        "targets": [
-          {
-            "columns": [
-              {
-                "selector": "tactic",
-                "text": "Tactic",
-                "type": "string"
-              },
-              {
-                "selector": "techniques_covered",
-                "text": "Covered",
-                "type": "number"
-              },
-              {
-                "selector": "techniques_total",
-                "text": "Total",
-                "type": "number"
-              },
-              {
-                "selector": "detections_30d",
-                "text": "Detections",
-                "type": "number"
-              },
-              {
-                "selector": "top_technique",
-                "text": "Top Hit",
-                "type": "string"
-              }
-            ],
-            "datasource": {
-              "uid": "mock-data"
-            },
-            "parser": "backend",
-            "refId": "A",
-            "root_selector": "",
-            "source": "url",
-            "type": "json",
-            "url": "http://soc-mock-server/mitre-coverage.json",
-            "url_options": {
-              "method": "GET"
-            }
-          }
-        ],
-        "title": "MITRE ATT&CK Coverage",
-        "type": "table"
-      },
-      {
-        "datasource": {
-          "uid": "mock-data"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            }
-          },
-          "overrides": [
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "critical"
-              },
-              "properties": [
-                {
-                  "id": "color",
-                  "value": {
-                    "fixedColor": "dark-red",
-                    "mode": "fixed"
-                  }
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "high"
-              },
-              "properties": [
-                {
-                  "id": "color",
-                  "value": {
-                    "fixedColor": "dark-orange",
-                    "mode": "fixed"
-                  }
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "medium"
-              },
-              "properties": [
-                {
-                  "id": "color",
-                  "value": {
-                    "fixedColor": "dark-yellow",
-                    "mode": "fixed"
-                  }
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "low"
-              },
-              "properties": [
-                {
-                  "id": "color",
-                  "value": {
-                    "fixedColor": "dark-blue",
-                    "mode": "fixed"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 6,
-          "x": 0,
-          "y": 10
-        },
-        "id": 4,
-        "options": {
-          "legend": {
-            "displayMode": "list",
-            "placement": "bottom"
-          },
-          "pieType": "donut",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "/^Urgency \\(count\\)$/"
-          }
-        },
-        "targets": [
-          {
-            "columns": [
-              {
-                "selector": "event_id",
-                "text": "ID",
-                "type": "string"
-              },
-              {
-                "selector": "urgency",
-                "text": "Urgency",
-                "type": "string"
-              }
-            ],
-            "datasource": {
-              "uid": "mock-data"
-            },
-            "parser": "backend",
-            "refId": "A",
-            "root_selector": "",
-            "source": "url",
-            "type": "json",
-            "url": "http://soc-mock-server/incidents.json",
-            "url_options": {
-              "method": "GET"
-            }
-          }
-        ],
-        "title": "Incidents by Urgency",
-        "transformations": [
-          {
-            "id": "groupBy",
-            "options": {
-              "fields": {
-                "Urgency": {
-                  "aggregations": [
-                    "count"
-                  ],
-                  "operation": "groupby"
-                }
-              }
-            }
-          }
-        ],
-        "type": "piechart"
-      },
-      {
-        "datasource": {
-          "uid": "mock-data"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            }
-          }
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 6,
-          "x": 6,
-          "y": 10
-        },
-        "id": 5,
-        "options": {
-          "barWidth": 0.6,
-          "orientation": "horizontal",
-          "showValue": "always"
-        },
-        "targets": [
-          {
-            "columns": [
-              {
-                "selector": "event_id",
-                "text": "ID",
-                "type": "string"
-              },
-              {
-                "selector": "owner",
-                "text": "Owner",
-                "type": "string"
-              }
-            ],
-            "datasource": {
-              "uid": "mock-data"
-            },
-            "parser": "backend",
-            "refId": "A",
-            "root_selector": "",
-            "source": "url",
-            "type": "json",
-            "url": "http://soc-mock-server/incidents.json",
-            "url_options": {
-              "method": "GET"
-            }
-          }
-        ],
-        "title": "Incidents by Owner",
-        "transformations": [
-          {
-            "id": "groupBy",
-            "options": {
-              "fields": {
-                "Owner": {
-                  "aggregations": [
-                    "count"
-                  ],
-                  "operation": "groupby"
-                }
-              }
-            }
-          }
-        ],
-        "type": "barchart"
-      },
-      {
-        "datasource": {
-          "uid": "mock-data"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            }
-          }
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 6,
-          "x": 12,
-          "y": 10
-        },
-        "id": 6,
-        "options": {
-          "legend": {
-            "displayMode": "list",
-            "placement": "bottom"
-          },
-          "pieType": "donut",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "/^MITRE Tactic \\(count\\)$/"
-          }
-        },
-        "targets": [
-          {
-            "columns": [
-              {
-                "selector": "event_id",
-                "text": "ID",
-                "type": "string"
-              },
-              {
-                "selector": "mitre_attack_tactic",
-                "text": "MITRE Tactic",
-                "type": "string"
-              }
-            ],
-            "datasource": {
-              "uid": "mock-data"
-            },
-            "parser": "backend",
-            "refId": "A",
-            "root_selector": "",
-            "source": "url",
-            "type": "json",
-            "url": "http://soc-mock-server/incidents.json",
-            "url_options": {
-              "method": "GET"
-            }
-          }
-        ],
-        "title": "Incidents by Source",
-        "transformations": [
-          {
-            "id": "groupBy",
-            "options": {
-              "fields": {
-                "MITRE Tactic": {
-                  "aggregations": [
-                    "count"
-                  ],
-                  "operation": "groupby"
-                }
-              }
-            }
-          }
-        ],
-        "type": "piechart"
-      },
-      {
-        "datasource": {
-          "uid": "mock-data"
-        },
-        "fieldConfig": {
-          "defaults": {
-            "color": {
-              "mode": "palette-classic"
-            }
-          }
-        },
-        "gridPos": {
-          "h": 7,
-          "w": 6,
-          "x": 18,
-          "y": 10
-        },
-        "id": 7,
-        "options": {
-          "legend": {
-            "displayMode": "list",
-            "placement": "bottom"
-          },
-          "pieType": "donut",
-          "reduceOptions": {
-            "calcs": [
-              "lastNotNull"
-            ],
-            "fields": "/^Status \\(count\\)$/"
-          }
-        },
-        "targets": [
-          {
-            "columns": [
-              {
-                "selector": "event_id",
-                "text": "ID",
-                "type": "string"
-              },
-              {
-                "selector": "status_label",
-                "text": "Status",
-                "type": "string"
-              }
-            ],
-            "datasource": {
-              "uid": "mock-data"
-            },
-            "parser": "backend",
-            "refId": "A",
-            "root_selector": "",
-            "source": "url",
-            "type": "json",
-            "url": "http://soc-mock-server/incidents.json",
-            "url_options": {
-              "method": "GET"
-            }
-          }
-        ],
-        "title": "Incidents by Status",
-        "transformations": [
-          {
-            "id": "groupBy",
-            "options": {
-              "fields": {
-                "Status": {
-                  "aggregations": [
-                    "count"
-                  ],
-                  "operation": "groupby"
-                }
-              }
-            }
-          }
-        ],
-        "type": "piechart"
-      },
-      {
-        "datasource": {
-          "uid": "mock-data"
-        },
-        "fieldConfig": {
-          "defaults": {},
-          "overrides": [
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Urgency"
-              },
-              "properties": [
-                {
-                  "id": "mappings",
-                  "value": [
-                    {
-                      "options": {
-                        "critical": {
-                          "color": "red",
-                          "text": "\ud83d\udd34 Critical"
-                        },
-                        "high": {
-                          "color": "orange",
-                          "text": "\ud83d\udfe0 High"
-                        },
-                        "low": {
-                          "color": "blue",
-                          "text": "\ud83d\udd35 Low"
-                        },
-                        "medium": {
-                          "color": "yellow",
-                          "text": "\ud83d\udfe1 Medium"
-                        }
-                      },
-                      "type": "value"
-                    }
-                  ]
-                },
-                {
-                  "id": "custom.cellOptions",
-                  "value": {
-                    "type": "color-text"
-                  }
-                }
-              ]
-            },
-            {
-              "matcher": {
-                "id": "byName",
-                "options": "Status"
-              },
-              "properties": [
-                {
-                  "id": "mappings",
-                  "value": [
-                    {
-                      "options": {
-                        "Closed": {
-                          "color": "dark-green"
-                        },
-                        "Closed - False Positive": {
-                          "color": "dark-blue"
-                        },
-                        "In Progress": {
-                          "color": "dark-orange"
-                        },
-                        "New": {
-                          "color": "dark-red"
-                        }
-                      },
-                      "type": "value"
-                    }
-                  ]
-                },
-                {
-                  "id": "custom.cellOptions",
-                  "value": {
-                    "type": "color-background"
-                  }
-                }
-              ]
-            }
-          ]
-        },
-        "gridPos": {
-          "h": 10,
-          "w": 24,
-          "x": 0,
-          "y": 17
-        },
-        "id": 8,
-        "options": {
-          "footer": {
-            "fields": [
-              "Event ID"
-            ],
-            "reducer": [
-              "count"
-            ],
-            "show": true
-          },
-          "showHeader": true,
-          "sortBy": [
-            {
-              "desc": true,
-              "displayName": "Time"
-            }
-          ]
-        },
-        "targets": [
-          {
-            "columns": [
-              {
-                "selector": "event_id",
-                "text": "Event ID",
-                "type": "string"
-              },
-              {
-                "selector": "rule_name",
-                "text": "Rule",
-                "type": "string"
-              },
-              {
-                "selector": "urgency",
-                "text": "Urgency",
-                "type": "string"
-              },
-              {
-                "selector": "status_label",
-                "text": "Status",
-                "type": "string"
-              },
-              {
-                "selector": "owner",
-                "text": "Owner",
-                "type": "string"
-              },
-              {
-                "selector": "src",
-                "text": "Source IP",
-                "type": "string"
-              },
-              {
-                "selector": "dest",
-                "text": "Dest",
-                "type": "string"
-              },
-              {
-                "selector": "user",
-                "text": "User",
-                "type": "string"
-              },
-              {
-                "selector": "security_domain",
-                "text": "Domain",
-                "type": "string"
-              },
-              {
-                "selector": "mitre_attack_tactic",
-                "text": "MITRE Tactic",
-                "type": "string"
-              },
-              {
-                "selector": "mitre_attack_technique",
-                "text": "MITRE Tech",
-                "type": "string"
-              },
-              {
-                "selector": "_time",
-                "text": "Time",
-                "type": "timestamp"
-              }
-            ],
-            "datasource": {
-              "uid": "mock-data"
-            },
-            "parser": "backend",
-            "refId": "A",
-            "root_selector": "",
-            "source": "url",
-            "type": "json",
-            "url": "http://soc-mock-server/incidents.json",
-            "url_options": {
-              "method": "GET"
-            }
-          }
-        ],
-        "title": "All Incidents (Full Detail)",
-        "type": "table"
-      }
-    ],
-    "refresh": "5m",
-    "schemaVersion": 39,
-    "tags": [
-      "soc",
-      "detailed"
-    ],
-    "templating": {
-      "list": [
-        {
-          "current": {
-            "text": "",
-            "value": ""
-          },
-          "description": "Filter to a specific incident by Event ID",
-          "label": "Event ID Filter",
-          "name": "event_id",
-          "type": "textbox"
         }
-      ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 0,
+        "y": 2
+      },
+      "id": 2,
+      "options": {
+        "barWidth": 0.7,
+        "orientation": "horizontal",
+        "showValue": "always"
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "event_id",
+              "text": "ID",
+              "type": "string"
+            },
+            {
+              "selector": "security_domain",
+              "text": "Domain",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "uid": "splunk-api"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
+          "url_options": {
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=incidents | table event_id security_domain"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Incidents by Category",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Domain": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "groupby"
+              }
+            }
+          }
+        }
+      ],
+      "type": "barchart"
     },
-    "time": {
-      "from": "now-7d",
-      "to": "now"
+    {
+      "datasource": {
+        "uid": "splunk-api"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "event_id"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "title": "View in Splunk",
+                    "url": "https://soc-splunk.abokhalil.dev/en-US/app/search/?q=search index=main | search event_id=\"${__data.fields.event_id}\"",
+                    "targetBlank": true
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 8,
+        "w": 12,
+        "x": 12,
+        "y": 2
+      },
+      "id": 3,
+      "options": {
+        "showHeader": true
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "tactic",
+              "text": "Tactic",
+              "type": "string"
+            },
+            {
+              "selector": "techniques_covered",
+              "text": "Covered",
+              "type": "number"
+            },
+            {
+              "selector": "techniques_total",
+              "text": "Total",
+              "type": "number"
+            },
+            {
+              "selector": "detections_30d",
+              "text": "Detections",
+              "type": "number"
+            },
+            {
+              "selector": "top_technique",
+              "text": "Top Hit",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "uid": "splunk-api"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
+          "url_options": {
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=mitre | table tactic techniques_covered techniques_total detections_30d top_technique"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
+              }
+            ]
+          }
+        }
+      ],
+      "title": "MITRE ATT&CK Coverage",
+      "type": "table"
     },
-    "timezone": "browser",
-    "title": "SOC Incident Drilldown",
-    "uid": "soc-detail-incidents",
-    "version": 1
+    {
+      "datasource": {
+        "uid": "splunk-api"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          }
+        },
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "critical"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-red",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "high"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-orange",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "medium"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-yellow",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "low"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "dark-blue",
+                  "mode": "fixed"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 0,
+        "y": 10
+      },
+      "id": 4,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Urgency \\(count\\)$/"
+        }
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "event_id",
+              "text": "ID",
+              "type": "string"
+            },
+            {
+              "selector": "urgency",
+              "text": "Urgency",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "uid": "splunk-api"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
+          "url_options": {
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=incidents | table event_id urgency"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Incidents by Urgency",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Urgency": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "groupby"
+              }
+            }
+          }
+        }
+      ],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "uid": "splunk-api"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          }
+        }
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 6,
+        "y": 10
+      },
+      "id": 5,
+      "options": {
+        "barWidth": 0.6,
+        "orientation": "horizontal",
+        "showValue": "always"
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "event_id",
+              "text": "ID",
+              "type": "string"
+            },
+            {
+              "selector": "owner",
+              "text": "Owner",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "uid": "splunk-api"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
+          "url_options": {
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=incidents | table event_id owner"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Incidents by Owner",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Owner": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "groupby"
+              }
+            }
+          }
+        }
+      ],
+      "type": "barchart"
+    },
+    {
+      "datasource": {
+        "uid": "splunk-api"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          }
+        }
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 12,
+        "y": 10
+      },
+      "id": 6,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^MITRE Tactic \\(count\\)$/"
+        }
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "event_id",
+              "text": "ID",
+              "type": "string"
+            },
+            {
+              "selector": "mitre_attack_tactic",
+              "text": "MITRE Tactic",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "uid": "splunk-api"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
+          "url_options": {
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=incidents | table event_id mitre_attack_tactic"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Incidents by Source",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "MITRE Tactic": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "groupby"
+              }
+            }
+          }
+        }
+      ],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "uid": "splunk-api"
+      },
+      "fieldConfig": {
+        "defaults": {
+          "color": {
+            "mode": "palette-classic"
+          }
+        }
+      },
+      "gridPos": {
+        "h": 7,
+        "w": 6,
+        "x": 18,
+        "y": 10
+      },
+      "id": 7,
+      "options": {
+        "legend": {
+          "displayMode": "list",
+          "placement": "bottom"
+        },
+        "pieType": "donut",
+        "reduceOptions": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "fields": "/^Status \\(count\\)$/"
+        }
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "event_id",
+              "text": "ID",
+              "type": "string"
+            },
+            {
+              "selector": "status_label",
+              "text": "Status",
+              "type": "string"
+            }
+          ],
+          "datasource": {
+            "uid": "splunk-api"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
+          "url_options": {
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=incidents | table event_id status_label"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
+              }
+            ]
+          }
+        }
+      ],
+      "title": "Incidents by Status",
+      "transformations": [
+        {
+          "id": "groupBy",
+          "options": {
+            "fields": {
+              "Status": {
+                "aggregations": [
+                  "count"
+                ],
+                "operation": "groupby"
+              }
+            }
+          }
+        }
+      ],
+      "type": "piechart"
+    },
+    {
+      "datasource": {
+        "uid": "splunk-api"
+      },
+      "fieldConfig": {
+        "defaults": {},
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Urgency"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "critical": {
+                        "color": "red",
+                        "text": "\ud83d\udd34 Critical"
+                      },
+                      "high": {
+                        "color": "orange",
+                        "text": "\ud83d\udfe0 High"
+                      },
+                      "low": {
+                        "color": "blue",
+                        "text": "\ud83d\udd35 Low"
+                      },
+                      "medium": {
+                        "color": "yellow",
+                        "text": "\ud83d\udfe1 Medium"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-text"
+                }
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "event_id"
+            },
+            "properties": [
+              {
+                "id": "links",
+                "value": [
+                  {
+                    "title": "View in Splunk",
+                    "targetBlank": true,
+                    "url": "https://soc-splunk.abokhalil.dev/en-US/app/search/?q=search index=main | search event_id=\"${__data.fields.event_id}\"",
+                    "tooltip": "Open incident in Splunk"
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Status"
+            },
+            "properties": [
+              {
+                "id": "mappings",
+                "value": [
+                  {
+                    "options": {
+                      "Closed": {
+                        "color": "dark-green"
+                      },
+                      "Closed - False Positive": {
+                        "color": "dark-blue"
+                      },
+                      "In Progress": {
+                        "color": "dark-orange"
+                      },
+                      "New": {
+                        "color": "dark-red"
+                      }
+                    },
+                    "type": "value"
+                  }
+                ]
+              },
+              {
+                "id": "custom.cellOptions",
+                "value": {
+                  "type": "color-background"
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "gridPos": {
+        "h": 10,
+        "w": 24,
+        "x": 0,
+        "y": 17
+      },
+      "id": 8,
+      "options": {
+        "footer": {
+          "fields": [
+            "Event ID"
+          ],
+          "reducer": [
+            "count"
+          ],
+          "show": true
+        },
+        "showHeader": true,
+        "sortBy": [
+          {
+            "desc": true,
+            "displayName": "Time"
+          }
+        ]
+      },
+      "targets": [
+        {
+          "columns": [
+            {
+              "selector": "event_id",
+              "text": "Event ID",
+              "type": "string"
+            },
+            {
+              "selector": "rule_name",
+              "text": "Rule",
+              "type": "string"
+            },
+            {
+              "selector": "urgency",
+              "text": "Urgency",
+              "type": "string"
+            },
+            {
+              "selector": "status_label",
+              "text": "Status",
+              "type": "string"
+            },
+            {
+              "selector": "owner",
+              "text": "Owner",
+              "type": "string"
+            },
+            {
+              "selector": "src",
+              "text": "Source IP",
+              "type": "string"
+            },
+            {
+              "selector": "dest",
+              "text": "Dest",
+              "type": "string"
+            },
+            {
+              "selector": "user",
+              "text": "User",
+              "type": "string"
+            },
+            {
+              "selector": "security_domain",
+              "text": "Domain",
+              "type": "string"
+            },
+            {
+              "selector": "mitre_attack_tactic",
+              "text": "MITRE Tactic",
+              "type": "string"
+            },
+            {
+              "selector": "mitre_attack_technique",
+              "text": "MITRE Tech",
+              "type": "string"
+            },
+            {
+              "selector": "_time",
+              "text": "Time",
+              "type": "timestamp"
+            }
+          ],
+          "datasource": {
+            "uid": "splunk-api"
+          },
+          "parser": "backend",
+          "refId": "A",
+          "root_selector": "",
+          "source": "url",
+          "type": "csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
+          "url_options": {
+            "method": "POST",
+            "body_type": "x-www-form-urlencoded",
+            "body_form": [
+              {
+                "key": "search",
+                "value": "search index=incidents | table event_id rule_name urgency status_label owner src dest user security_domain mitre_attack_tactic mitre_attack_technique _time"
+              },
+              {
+                "key": "earliest_time",
+                "value": "${__from:date:seconds}"
+              },
+              {
+                "key": "latest_time",
+                "value": "${__to:date:seconds}"
+              }
+            ]
+          }
+        }
+      ],
+      "title": "All Incidents (Full Detail)",
+      "type": "table"
+    }
+  ],
+  "refresh": "5m",
+  "schemaVersion": 39,
+  "tags": [
+    "soc",
+    "detailed"
+  ],
+  "templating": {
+    "list": [
+      {
+        "current": {
+          "text": "",
+          "value": ""
+        },
+        "description": "Filter to a specific incident by Event ID",
+        "label": "Event ID Filter",
+        "name": "event_id",
+        "type": "textbox"
+      }
+    ]
   },
-  "overwrite": true,
-  "folderId": 0
+  "time": {
+    "from": "now-7d",
+    "to": "now"
+  },
+  "timezone": "browser",
+  "title": "SOC Incident Drilldown",
+  "uid": "soc-detail-incidents",
+  "version": 1
 }
