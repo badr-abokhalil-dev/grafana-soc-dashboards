@@ -83,14 +83,14 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=-1w&latest_time=now",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=incidents | table event_id security_domain earliest=-1w latest=now"
+                "value": "search index=incidents | table event_id security_domain"
               }
             ]
           }
@@ -188,14 +188,14 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=-1w&latest_time=now",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=mitre | table tactic techniques_covered techniques_total detections_30d top_technique earliest=-1w latest=now"
+                "value": "search index=mitre | table tactic techniques_covered techniques_total detections_30d top_technique"
               }
             ]
           }
@@ -319,14 +319,14 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=-1w&latest_time=now",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=incidents | table event_id urgency earliest=-1w latest=now"
+                "value": "search index=incidents | table event_id urgency"
               }
             ]
           }
@@ -395,14 +395,14 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=-1w&latest_time=now",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=incidents | table event_id owner earliest=-1w latest=now"
+                "value": "search index=incidents | table event_id owner"
               }
             ]
           }
@@ -479,14 +479,14 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=-1w&latest_time=now",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=incidents | table event_id mitre_attack_tactic earliest=-1w latest=now"
+                "value": "search index=incidents | table event_id mitre_attack_tactic"
               }
             ]
           }
@@ -563,14 +563,14 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=-1w&latest_time=now",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=incidents | table event_id status_label earliest=-1w latest=now"
+                "value": "search index=incidents | table event_id status_label"
               }
             ]
           }
@@ -795,14 +795,14 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=-1w&latest_time=now",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=incidents | table event_id rule_name urgency status_label owner src dest user security_domain mitre_attack_tactic mitre_attack_technique _time earliest=-1w latest=now"
+                "value": "search index=incidents | table event_id rule_name urgency status_label owner src dest user security_domain mitre_attack_tactic mitre_attack_technique _time"
               }
             ]
           }

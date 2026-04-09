@@ -83,14 +83,14 @@
           "refId": "A",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=-1w&latest_time=now",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=soar | table playbook_run_count earliest=-1w latest=now"
+                "value": "search index=soar | table playbook_run_count"
               }
             ]
           },
@@ -160,14 +160,14 @@
           "refId": "A",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=-1w&latest_time=now",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=soar | table success_rate earliest=-1w latest=now"
+                "value": "search index=soar | table success_rate"
               }
             ]
           },
@@ -236,14 +236,14 @@
           "refId": "A",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=-1w&latest_time=now",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=soar | table failed_run_count earliest=-1w latest=now"
+                "value": "search index=soar | table failed_run_count"
               }
             ]
           },
@@ -298,14 +298,14 @@
           "refId": "A",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=-1w&latest_time=now",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=soar | table avg_duration_seconds earliest=-1w latest=now"
+                "value": "search index=soar | table avg_duration_seconds"
               }
             ]
           },
@@ -392,14 +392,14 @@
           "refId": "A",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=-1w&latest_time=now",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=soar | table name successful_run_count failed_run_count earliest=-1w latest=now"
+                "value": "search index=soar | table name successful_run_count failed_run_count"
               }
             ]
           },
@@ -454,14 +454,14 @@
           "refId": "A",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=-1w&latest_time=now",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=soar | table name avg_duration_seconds earliest=-1w latest=now"
+                "value": "search index=soar | table name avg_duration_seconds"
               }
             ]
           },
@@ -515,14 +515,14 @@
           "refId": "A",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=-1w&latest_time=now",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=soar | table category playbook_run_count earliest=-1w latest=now"
+                "value": "search index=soar | table category playbook_run_count"
               }
             ]
           },
@@ -689,14 +689,14 @@
           "refId": "A",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=-1w&latest_time=now",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
             "body_form": [
               {
                 "key": "search",
-                "value": "search index=soar | table id name category active playbook_run_count successful_run_count failed_run_count avg_duration_seconds last_run_time earliest=-1w latest=now"
+                "value": "search index=soar | table id name category active playbook_run_count successful_run_count failed_run_count avg_duration_seconds last_run_time"
               }
             ]
           },
