@@ -98,7 +98,7 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from}&latest_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
@@ -215,7 +215,7 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from}&latest_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
@@ -340,7 +340,7 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from}&latest_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
@@ -418,7 +418,7 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from}&latest_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
@@ -498,7 +498,7 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from}&latest_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
@@ -575,7 +575,7 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from}&latest_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
@@ -710,7 +710,7 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from}&latest_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
@@ -829,7 +829,7 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from}&latest_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
@@ -914,7 +914,7 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from}&latest_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
@@ -1029,7 +1029,7 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from}&latest_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
@@ -1100,7 +1100,7 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from}&latest_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
@@ -1301,7 +1301,7 @@
           "root_selector": "",
           "source": "url",
           "type": "csv",
-          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from}&latest_time=${__to}",
+          "url": "http://soc-splunk:8089/services/search/jobs/export?output_mode=csv&earliest_time=${__from:date:seconds}&latest_time=${__to:date:seconds}",
           "url_options": {
             "method": "POST",
             "body_type": "x-www-form-urlencoded",
