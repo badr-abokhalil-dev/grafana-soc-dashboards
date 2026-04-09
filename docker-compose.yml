@@ -47,8 +47,9 @@ services:
       - GF_ANALYTICS_CHECK_FOR_UPDATES=false
       - GF_ANALYTICS_CHECK_FOR_PLUGIN_UPDATES=false
       - GF_ANALYTICS_FEEDBACK_LINKS_ENABLED=false
-      # Splunk API token (provisioned into datasource)
+      # Splunk credentials (provisioned into datasource)
       - SPLUNK_API_TOKEN=${SPLUNK_API_TOKEN:-}
+      - SPLUNK_PASSWORD=${SPLUNK_PASSWORD:-SocDash2026!}
       # Image renderer for PDF/PNG export
       - GF_RENDERING_SERVER_URL=http://soc-renderer:8081/render
       - GF_RENDERING_CALLBACK_URL=http://soc-grafana:3000/

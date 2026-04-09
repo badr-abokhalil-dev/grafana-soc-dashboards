@@ -18,8 +18,10 @@ datasources:
     isDefault: true
     # Grafana core TLS skip
     tls_skip_verify_insecure: true
+    basicAuth: true
+    basicAuthUser: admin
     jsonData:
-      authType: bearerToken
+      authType: basicAuth
       # Infinity plugin TLS skip
       tlsSkipVerify: true
       allowedHosts:
@@ -33,7 +35,7 @@ datasources:
         - 127.0.0.1
         - 172.21.0.60
     secureJsonData:
-      bearerToken: "${SPLUNK_API_TOKEN}"
+      basicAuthPassword: "${SPLUNK_PASSWORD}"
     editable: true
 
   # --- Infinity: SOAR REST API ---
